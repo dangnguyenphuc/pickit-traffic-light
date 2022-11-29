@@ -1,0 +1,42 @@
+#include "uart.h"
+#include "..\timer\timer.h"
+
+void init_uart()
+{
+
+	SPBRGH = 0;  //Baud Rate Generator Register 
+	//Baud Rate =  FOSC/(64 ([SPBRGH:SPBRG] + 1)) 
+	//when SYNC = 0, BRG16 = 1, BRGH = 0 => Baudrate = F/[16(n+1)]
+	SPBRG = 129; //9600
+	TXSTAbits.TXEN = 1; //Transmit enabled
+	TXSTAbits.BRGH = 0; //Low Speed
+	BAUDCONbits.BRG16 = 1; //16-bit Baud Rate Generator
+
+	TXSTAbits.SYNC = 0;	//Asynchronous mode
+	//RCSTAbits.SPEN = 1; // clear
+	RCSTAbits.CREN = 1; //Enables receive
+
+	PIR1bits.RCIF = 0;  // clear interrupt flag uart
+	PIE1bits.RCIE = 1;	//enable interrupt uart
+	IPR1bits.RCIP = 0;	// Priority: low
+	TRISCbits.RC6 = 0; // RC6 output
+	TRISCbits.RC7 = 1; // RC7 input
+}
+
+void uart_transmit_send(unsigned char data)
+{
+	TXREG = data;
+	while(PIR1bits.TXIF == 0);
+	PIR1bits.TXIF = 0;
+}
+
+void uart_send_str(const char *str)
+{
+	while(*str)
+	{
+		uart_transmit_send(*str);
+		v_timer0(5);
+		*str++;
+	}
+}
+
