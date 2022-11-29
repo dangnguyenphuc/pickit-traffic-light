@@ -1,22 +1,26 @@
-Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 74 : call of function without prototype
-Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 75 : call of function without prototype
-Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 91 : call of function without prototype
-Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 92 : call of function without prototype
-Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 93 : call of function without prototype
-Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 109 : call of function without prototype
-Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 124 : call of function without prototype
-Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 125 : call of function without prototype
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 195 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 208 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 214 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 268 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 284 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 399 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 402 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 431 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 434 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 461 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 464 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 490 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 493 : suspicious pointer conversion
-Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 505 : suspicious pointer conversion
+Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 82 : call of function without prototype
+Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 83 : call of function without prototype
+Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 96 : call of function without prototype
+Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 99 : call of function without prototype
+Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 100 : call of function without prototype
+Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 101 : call of function without prototype
+Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 102 : call of function without prototype
+Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 118 : call of function without prototype
+Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 134 : call of function without prototype
+Warning[2058] C:\Users\phucd\Desktop\TKLL_Project\main.c 135 : call of function without prototype
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 205 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 218 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 224 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 278 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 294 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 436 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 439 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 474 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 477 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 510 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 513 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 545 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 548 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 630 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 687 : suspicious pointer conversion
+Warning[2054] C:\Users\phucd\Desktop\TKLL_Project\main.c 744 : suspicious pointer conversion

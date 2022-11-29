@@ -1,6 +1,6 @@
 #include "main.h"
 // Noi khai bao hang so
-#define     LED     PORTA
+#define     LED     PORTD
 #define     ON      1
 #define     OFF     0
 
@@ -47,6 +47,11 @@ void GetDistance(void);
 void delay_trigger(void);
 void pulse(void);
 
+//button
+unsigned char switchMan();
+unsigned char increaseValue();
+unsigned char decreaseValue();
+
 void Phase1_GreenOn();
 void Phase1_GreenOff();
 void Phase1_YellowOn();
@@ -60,9 +65,12 @@ void Phase2_YellowOff();
 void Phase2_RedOn();
 void Phase2_RedOff();
 
+
+
+// 1st FSM
 void fsm_automatic();
-
-
+// 2nd FSM
+void fsm_manual();
 
 ////////////////////////////////////////////////////////////////////
 //Hien thuc cac chuong trinh con, ham, module, function duoi cho nay
@@ -85,11 +93,12 @@ void main(void)
             //k = k + 1111;
             //UartSendNumToString(k);
             //UartSendString(" ");
-            //scan_key_matrix_with_uart();
+            scan_key_matrix_with_uart();
             //BaiTap_UART();
 //            GetSensor();
             LcdClearS();
             fsm_automatic();
+            fsm_manual();
             DisplayLcdScreen();
 	}
 }
@@ -115,8 +124,8 @@ void init_system(void)
         //init_timer1(9390);//dinh thoi 2ms
         
         
-	init_timer3(46950);//dinh thoi 10ms
-//    init_timer3(4695);//dinh thoi 1ms sai so 1%
+//	init_timer3(46950);//dinh thoi 10ms
+    init_timer3(4695);//dinh thoi 1ms sai so 1%
     
     
 	//SetTimer0_ms(2);
@@ -361,6 +370,33 @@ void Phase2_RedOff()
     CloseOutput(7);
 }
 
+unsigned char switchMan(){
+    if(key_code[0] == 1) {
+        return 1;
+    }
+    else{
+        return 0;
+    }
+    
+}
+unsigned char increaseValue(){
+    if(key_code[1] == 1) {
+        return 1;
+    }
+    else{
+        return 0;
+    }
+    
+}
+unsigned char decreaseValue(){
+    if(key_code[1]>=20 && key_code[1] % 10 == 1) {
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
 void fsm_automatic(){
     cntOfLight = (cntOfLight+1)%20;
     if(cntOfLight==1){
@@ -405,10 +441,16 @@ void fsm_automatic(){
             
             
             //Switch
+            // Time out!
             if(timeOfLight <= 0){
                 status = PHASE1_YELLOW;
                 timeOfLight = yellow_1_Time;
             }
+            // Button pressed
+            if(switchMan()){
+                status = INIT_MANUAL;
+            }
+
             break;
         
         case PHASE1_YELLOW:
@@ -436,10 +478,16 @@ void fsm_automatic(){
             LcdPrintNumS(1,13,timeOfLight_2);
             
             //Switch
+            // Time out
             if(timeOfLight <= 0){
                 status = PHASE2_GREEN;
                 timeOfLight = redTime;
                 timeOfLight_2 = green_2_Time;
+            }
+            
+            // Button pressed
+            if(switchMan()){
+                status = INIT_MANUAL;
             }
             break;
         
@@ -466,9 +514,15 @@ void fsm_automatic(){
             LcdPrintNumS(1,13,timeOfLight_2);
             
             //Switch
+            // Time out
             if(timeOfLight_2 <= 0){
                 status = PHASE2_YELLOW;
                 timeOfLight_2 = yellow_2_Time;
+            }
+            
+            // Button pressed
+            if(switchMan()){
+                status = INIT_MANUAL;
             }
             break;
         
@@ -491,20 +545,219 @@ void fsm_automatic(){
             LcdPrintStringS(0,0,"RED 1:   ");
             LcdPrintNumS(0,13,timeOfLight);
             // 2nd
-            LcdPrintStringS(1,0," YELLOW 2:   ");
+            LcdPrintStringS(1,0,"YELLOW 2:   ");
             LcdPrintNumS(1,13,timeOfLight_2);
             
             //Switch
+            // Time out
             if(timeOfLight_2 <= 0){
                 status = PHASE1_GREEN;
                 timeOfLight = green_1_Time;
                 timeOfLight_2 = redTime_2;
             }
+            
+            // Button pressed
+            if(switchMan()){
+                status = INIT_MANUAL;
+            }
             break;
         
         default:
-            LcdPrintStringS(0,0,"ERROR!");
-            LcdPrintNumS(1,0,status);
+            break;
+            
+    }
+
+}
+
+
+
+void fsm_manual(){
+    cntOfMan = (cntOfMan+1)%20;
+    if(cntOfMan==1){
+        timeInManMode --;
+    }
+    switch(status){
+        
+        case INIT_MANUAL:
+            
+            //TODO:
+                // NONE
+            
+            //Switch
+            status = MAN_RED;
+            timeInManMode = TIME_IN_MAN_MODE;
+            break;
+            
+        case MAN_RED:
+            
+            //TODO:
+            // Toggle RED 1 up for 1 sec:
+            if(cntOfMan==1){
+                Phase1_RedOn();
+                Phase1_GreenOff();
+                Phase1_YellowOff();
+                
+                Phase2_RedOn();
+                Phase2_GreenOff();
+                Phase2_YellowOff();
+            }
+            else{
+                Phase1_RedOff();
+                Phase1_GreenOff();
+                Phase1_YellowOff();
+                
+                Phase2_RedOff();
+                Phase2_GreenOff();
+                Phase2_YellowOff();
+            }
+            
+            if(increaseValue()){
+                redTime += 1;
+                
+            }
+            
+            if(decreaseValue()){
+                redTime -= 1;
+            }
+            
+            if(redTime < 0){
+                redTime = 50;
+            }
+            redTime_2 = redTime;
+
+            // Display times:
+            // 1st RED:
+            LcdPrintStringS(1,0,"RED:   ");
+            LcdPrintNumS(1,13,redTime);
+            
+            
+            //Switch
+            // Time out
+            if(timeInManMode == 0){
+                status = INIT_SYSTEM;
+            }
+            
+            // Button Pressed
+            if(switchMan()){
+                status = MAN_YELLOW;
+                timeInManMode = TIME_IN_MAN_MODE;
+            }
+            break;
+        
+        case MAN_YELLOW:
+            
+            //TODO:
+            // Toggle RED 1 up for 1 sec:
+            if(cntOfMan==1){
+                Phase1_RedOff();
+                Phase1_GreenOff();
+                Phase1_YellowOn();
+                
+                Phase2_RedOff();
+                Phase2_GreenOff();
+                Phase2_YellowOn();
+            }
+            else{
+                Phase1_RedOff();
+                Phase1_GreenOff();
+                Phase1_YellowOff();
+                
+                Phase2_RedOff();
+                Phase2_GreenOff();
+                Phase2_YellowOff();
+            }
+            
+            if(increaseValue()){
+                yellow_1_Time += 1;
+                
+            }
+            
+            if(decreaseValue()){
+                yellow_1_Time -= 1;
+            }
+            
+            if(yellow_1_Time < 0){
+                yellow_1_Time = 50;
+            }
+            
+            yellow_2_Time = yellow_1_Time;
+
+            // Display times:
+            // 1st RED:
+            LcdPrintStringS(1,0,"YELLOW:   ");
+            LcdPrintNumS(1,13,yellow_1_Time);
+            
+            
+            //Switch
+            // Time out
+            if(timeInManMode == 0){
+                status = INIT_SYSTEM;
+            }
+            
+            // Button Pressed
+            if(switchMan()){
+                status = MAN_GREEN;
+                timeInManMode = TIME_IN_MAN_MODE;
+            }
+            break;
+        
+        case MAN_GREEN:
+            
+            //TODO:
+            // Toggle RED 1 up for 1 sec:
+            if(cntOfMan==1){
+                Phase1_RedOff();
+                Phase1_GreenOn();
+                Phase1_YellowOff();
+                
+                Phase2_RedOff();
+                Phase2_GreenOn();
+                Phase2_YellowOff();
+            }
+            else{
+                Phase1_RedOff();
+                Phase1_GreenOff();
+                Phase1_YellowOff();
+                
+                Phase2_RedOff();
+                Phase2_GreenOff();
+                Phase2_YellowOff();
+            }
+            
+            if(increaseValue()){
+                green_1_Time += 1;
+                
+            }
+            
+            if(decreaseValue()){
+                green_1_Time -= 1;
+            }
+            
+            if(green_1_Time < 0){
+                green_1_Time = 50;
+            }
+            
+            green_2_Time = green_1_Time;
+
+            // Display times:
+            // 1st RED:
+            LcdPrintStringS(1,0,"GREEN:   ");
+            LcdPrintNumS(1,13,green_1_Time);
+            
+            
+            //Switch
+            // Time out
+            if(timeInManMode == 0){
+                status = INIT_SYSTEM;
+            }
+            
+            // Button Pressed
+            if(switchMan()){
+                status = INIT_SYSTEM;
+            }
+            break;
+        
+        default:
             break;
             
     }

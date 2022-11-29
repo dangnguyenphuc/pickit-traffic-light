@@ -7,6 +7,9 @@ unsigned char timeOfLight_2 = 0;
 
 unsigned char cntOfLight = 0;
 
+unsigned char timeInManMode = 0;
+unsigned char cntOfMan = 0;
+
 unsigned int green_1_Time= GREEN_PHASE1_TIME;
 unsigned int yellow_1_Time= YELLOW_PHASE1_TIME;
 unsigned int redTime = GREEN_PHASE1_TIME + YELLOW_PHASE1_TIME;

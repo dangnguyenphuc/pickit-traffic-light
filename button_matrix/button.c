@@ -38,17 +38,29 @@ void scan_key_matrix()
 
 void scan_key_matrix_with_uart()
 {
-	int i,j;
-	for(i=0;i<2;i++)
+//	int i,j;
+//	for(i=0;i<2;i++)
+//	{
+//		PORT_BUTTON = PORT_BUTTON & ~arrayMaskOutputOfKey[i];
+//                PORT_BUTTON = PORT_BUTTON | 0x0f;
+//		for(j=0;j<MAX_COL;j++)
+//		{
+//			if((PORT_BUTTON & arrayMaskInputOfKey[j]) == 0)
+//				key_code[i*MAX_ROW+j] = key_code[i*MAX_ROW+j] + 1;
+//			else
+//				key_code[i*MAX_ROW+j] = 0;
+//		}
+//	}
+    	int i,j;
+	for(i=0;i<2;i++)     
 	{
-		PORT_BUTTON = PORT_BUTTON & ~arrayMaskOutputOfKey[i];
-                PORT_BUTTON = PORT_BUTTON | 0x0f;
+		PORT_BUTTON = ~arrayMaskOutputOfKey[i];
 		for(j=0;j<MAX_COL;j++)
-		{
-			if((PORT_BUTTON & arrayMaskInputOfKey[j]) == 0)
+		{ 
+			if((PORT_BUTTON & arrayMaskInputOfKey[j]) == 0)  
 				key_code[i*MAX_ROW+j] = key_code[i*MAX_ROW+j] + 1;
 			else
-				key_code[i*MAX_ROW+j] = 0;
+				key_code[i*MAX_ROW+j] = 0;   
 		}
 	}
 }
