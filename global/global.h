@@ -9,7 +9,7 @@
 #define	GLOBAL_H
 
 #define     INIT_SYSTEM                 255
-#define     INIT_MANUAL                 511
+#define     INIT_TUNING                 511
 
 #define     PHASE1_GREEN                5
 #define     PHASE1_YELLOW               6
@@ -18,13 +18,14 @@
 
 #define     WAIT                        50
 
-#define     MAN_RED                     15
-#define     MAN_GREEN                   16
-#define     MAN_YELLOW                  17
+#define     MAN_GREEN1                  15
+#define     MAN_YELLOW1                 16
+#define     MAN_GREEN2                  115
+#define     MAN_YELLOW2                 116
 
-#define     MAN_RED                     15
-#define     MAN_GREEN                   16
-#define     MAN_YELLOW                  17
+#define     TUNING_RED                  25
+#define     TUNING_GREEN                26 
+#define     TUNING_YELLOW               27  
 
 
 #define     GREEN_PHASE1_TIME           10
@@ -35,9 +36,19 @@
 
 #define     TIME_IN_MAN_MODE            30
 
+// ERROR: ================
+#define NONE_ERROR                      0
+#define VALUE_OUT_OF_RANGE              1
+
+// =======================
+
 
 extern unsigned int status;
 
+// ERROR ================
+extern unsigned int error;
+extern unsigned int errorCounter;
+// ======================
 
 extern unsigned int green_1_Time;
 extern unsigned int yellow_1_Time;
@@ -49,10 +60,10 @@ extern unsigned int redTime_2;
 // FSM 1 variables
 extern unsigned char timeOfLight;
 extern unsigned char timeOfLight_2;
-extern unsigned char cntOfLight;
+extern unsigned char counterAllFSM;
 
-// FSM 2 variables
+// FSM 2 and FSM 3 variables
 extern unsigned char timeInManMode;
-extern unsigned char cntOfMan;
+
 #endif	/* GLOBAL_H */
 
