@@ -336,13 +336,17 @@ void Error_Handle(){
             LcdClearS();
             LcdPrintStringS(0,0,"OUT OF RANGE");
             timeInManMode = TIME_IN_MAN_MODE;
-            if(errorCounter == 1){
-                error = NONE_ERROR;
-                timeInManMode = TIME_IN_MAN_MODE;
-            }
+            break;
+        case THREE_STEPS_SETTING:
+            LcdPrintStringS(0,0,"APPLY IN YELLOW");
+            timeInManMode = TIME_IN_MAN_MODE;
             break;
         default:
             break;
+    }
+    if(errorCounter == 1){
+        error = NONE_ERROR;
+        timeInManMode = TIME_IN_MAN_MODE;
     }
 }
 
@@ -707,6 +711,7 @@ void fsm_manual(){
                 timeOfLight = green_1_Time;
                 timeOfLight_2 = redTime_2;
             }
+            
             break;
         
         case MAN_YELLOW1:
@@ -755,6 +760,10 @@ void fsm_manual(){
                 timeOfLight_2 = yellow_1_Time;
             }
             
+            if(backingState()){
+                status = MAN_GREEN1;
+                timeInManMode = TIME_IN_MAN_MODE;
+            }
             break;
             
         case MAN_GREEN2:
@@ -802,6 +811,11 @@ void fsm_manual(){
                 timeOfLight = redTime;
                 timeOfLight_2 = green_2_Time;
             }
+            
+            if(backingState()){
+                status = MAN_YELLOW1;
+                timeInManMode = TIME_IN_MAN_MODE;
+            }
             break;
         
         case MAN_YELLOW2:
@@ -848,6 +862,11 @@ void fsm_manual(){
                 status = PHASE1_YELLOW;
                 timeOfLight = yellow_1_Time;
                 timeOfLight_2 = yellow_1_Time;
+            }
+            
+            if(backingState()){
+                status = MAN_GREEN2;
+                timeInManMode = TIME_IN_MAN_MODE;
             }
             break;
         
@@ -931,6 +950,11 @@ void fsm_tuning(){
                 status = TUNING_GREEN;
                 timeInManMode = TIME_IN_MAN_MODE;
             }
+            
+            if(applySetting()){
+                error = THREE_STEPS_SETTING;
+                Error_Handle();
+            }
             break;
         
         case TUNING_GREEN:
@@ -998,6 +1022,11 @@ void fsm_tuning(){
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_RED;
             }
+            
+            if(applySetting()){
+                error = THREE_STEPS_SETTING;
+                Error_Handle();
+            }
             break;
             
             case TUNING_YELLOW:
@@ -1033,6 +1062,7 @@ void fsm_tuning(){
                 yellow_2_Time = yellow_1_Time;
             
                 // Display times:
+                LcdPrintStringS(0,0,"YELLOW=RED-GREEN");
                 LcdPrintStringS(1,0,"YELLOW:   ");
                 LcdPrintNumS(1,13,yellow_1_Time);
             }else{
