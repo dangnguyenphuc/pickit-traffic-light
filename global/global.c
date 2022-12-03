@@ -3,8 +3,8 @@
 unsigned int status = INIT_SYSTEM;
 unsigned int error = NONE_ERROR;
 
-unsigned char timeOfLight = 0;
-unsigned char timeOfLight_2 = 0;
+int timeOfLight = 0;
+int timeOfLight_2 = 0;
 
 unsigned char counterAllFSM = 0;
 

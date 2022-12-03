@@ -1,5 +1,5 @@
 MPLINK 5.00, LINKER
-Linker Map File - Created Sat Dec 03 17:53:52 2022
+Linker Map File - Created Sun Dec 04 00:18:57 2022
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
@@ -11,53 +11,53 @@ Linker Map File - Created Sat Dec 03 17:53:52 2022
      .idata_interrupt.o_i    romdata   0x000011    program   0x000004
        InterruptVectorLow       code   0x000018    program   0x000006
                    .cinit    romdata   0x00001e    program   0x000056
-             .code_main.o       code   0x000074    program   0x0016fa
-              .code_lcd.o       code   0x00176e    program   0x000e20
-             .code_uart.o       code   0x00258e    program   0x00058e
-            .code_timer.o       code   0x002b1c    program   0x00051c
-           .code_button.o       code   0x003038    program   0x00047c
-        .code_interrupt.o       code   0x0034b4    program   0x0001d0
-                     PROG       code   0x003684    program   0x0000da
-               _cinit_scn       code   0x00375e    program   0x00009e
-              .code_adc.o       code   0x0037fc    program   0x00008c
-             .stringtable    romdata   0x003888    program   0x00007b
-           .idata_adc.o_i    romdata   0x003903    program   0x000000
-           .romdata_adc.o    romdata   0x003903    program   0x000000
-        .romdata_global.o    romdata   0x003903    program   0x000000
-        .romdata___init.o    romdata   0x003903    program   0x000000
-      .idata_fxd0808u.o_i    romdata   0x003903    program   0x000000
-      .romdata_fxd0808u.o    romdata   0x003903    program   0x000000
-      .idata_fxd1616u.o_i    romdata   0x003903    program   0x000000
-        .idata___init.o_i    romdata   0x003903    program   0x000000
-      .romdata_fxd1616u.o    romdata   0x003903    program   0x000000
-      .idata_fxd2424u.o_i    romdata   0x003903    program   0x000000
-      .romdata_fxd2424u.o    romdata   0x003903    program   0x000000
-      .idata_fxd3232u.o_i    romdata   0x003903    program   0x000000
-       .romdata_fxm3232.o    romdata   0x003903    program   0x000000
-       .idata_fxm3232.o_i    romdata   0x003903    program   0x000000
-      .romdata_fxd3232u.o    romdata   0x003903    program   0x000000
-         .idata_c018i.o_i    romdata   0x003903    program   0x000000
-         .romdata_c018i.o    romdata   0x003903    program   0x000000
-        .romdata_button.o    romdata   0x003903    program   0x000000
-     .romdata_interrupt.o    romdata   0x003903    program   0x000000
-           .romdata_lcd.o    romdata   0x003903    program   0x000000
-         .romdata_timer.o    romdata   0x003903    program   0x000000
-          .romdata_main.o    romdata   0x003903    program   0x000000
-          .romdata_uart.o    romdata   0x003903    program   0x000000
-            .code_c018i.o       code   0x003904    program   0x000000
-          .code_fxm3232.o       code   0x003904    program   0x000070
-           .code_global.o       code   0x003904    program   0x000000
-         .code_fxd3232u.o       code   0x003974    program   0x000048
-         .code_fxd2424u.o       code   0x0039bc    program   0x00003a
-         .code_fxd1616u.o       code   0x0039f6    program   0x00002c
-                    .code       code   0x003a22    program   0x000020
-             _startup_scn       code   0x003a42    program   0x00001c
-         .code_fxd0808u.o       code   0x003a5e    program   0x00001c
-         .idata_timer.o_i    romdata   0x003a7a    program   0x000020
-          .idata_main.o_i    romdata   0x003a9a    program   0x000029
-           .idata_lcd.o_i    romdata   0x003ac3    program   0x000061
-        .idata_global.o_i    romdata   0x003b24    program   0x000016
-        .idata_button.o_i    romdata   0x003b3a    program   0x000028
+             .code_main.o       code   0x000074    program   0x0021e4
+              .code_lcd.o       code   0x002258    program   0x000e20
+             .code_uart.o       code   0x003078    program   0x00058e
+            .code_timer.o       code   0x003606    program   0x00051c
+           .code_button.o       code   0x003b22    program   0x00047c
+        .code_interrupt.o       code   0x003f9e    program   0x0001d0
+             .stringtable    romdata   0x00416e    program   0x0000f9
+        .romdata_global.o    romdata   0x004267    program   0x000000
+      .idata_fxd0808u.o_i    romdata   0x004267    program   0x000000
+           .romdata_adc.o    romdata   0x004267    program   0x000000
+           .idata_adc.o_i    romdata   0x004267    program   0x000000
+      .romdata_fxd0808u.o    romdata   0x004267    program   0x000000
+      .idata_fxd1616u.o_i    romdata   0x004267    program   0x000000
+      .romdata_fxd1616u.o    romdata   0x004267    program   0x000000
+      .idata_fxd2424u.o_i    romdata   0x004267    program   0x000000
+      .romdata_fxd2424u.o    romdata   0x004267    program   0x000000
+      .idata_fxd3232u.o_i    romdata   0x004267    program   0x000000
+      .romdata_fxd3232u.o    romdata   0x004267    program   0x000000
+       .idata_fxm3232.o_i    romdata   0x004267    program   0x000000
+       .romdata_fxm3232.o    romdata   0x004267    program   0x000000
+        .idata___init.o_i    romdata   0x004267    program   0x000000
+        .romdata___init.o    romdata   0x004267    program   0x000000
+         .idata_c018i.o_i    romdata   0x004267    program   0x000000
+         .romdata_c018i.o    romdata   0x004267    program   0x000000
+        .romdata_button.o    romdata   0x004267    program   0x000000
+     .romdata_interrupt.o    romdata   0x004267    program   0x000000
+           .romdata_lcd.o    romdata   0x004267    program   0x000000
+         .romdata_timer.o    romdata   0x004267    program   0x000000
+          .romdata_uart.o    romdata   0x004267    program   0x000000
+          .romdata_main.o    romdata   0x004267    program   0x000000
+            .code_c018i.o       code   0x004268    program   0x000000
+           .code_global.o       code   0x004268    program   0x000000
+                     PROG       code   0x004268    program   0x0000da
+               _cinit_scn       code   0x004342    program   0x00009e
+              .code_adc.o       code   0x0043e0    program   0x00008c
+          .code_fxm3232.o       code   0x00446c    program   0x000070
+         .code_fxd3232u.o       code   0x0044dc    program   0x000048
+         .code_fxd2424u.o       code   0x004524    program   0x00003a
+         .code_fxd1616u.o       code   0x00455e    program   0x00002c
+                    .code       code   0x00458a    program   0x000020
+             _startup_scn       code   0x0045aa    program   0x00001c
+         .code_fxd0808u.o       code   0x0045c6    program   0x00001c
+         .idata_timer.o_i    romdata   0x0045e2    program   0x000020
+          .idata_main.o_i    romdata   0x004602    program   0x000029
+           .idata_lcd.o_i    romdata   0x00462b    program   0x000061
+        .idata_global.o_i    romdata   0x00468c    program   0x000018
+        .idata_button.o_i    romdata   0x0046a4    program   0x000028
     .config_300001_main.o    romdata   0x300001    program   0x000001
     .config_300002_main.o    romdata   0x300002    program   0x000001
     .config_300003_main.o    romdata   0x300003    program   0x000001
@@ -72,9 +72,9 @@ Linker Map File - Created Sat Dec 03 17:53:52 2022
                 MATH_DATA      udata   0x000000       data   0x000010
                  .tmpdata      udata   0x000010       data   0x00000a
              .idata_lcd.o      idata   0x000080       data   0x000061
-          .idata_global.o      idata   0x0000e1       data   0x000016
-       .idata_interrupt.o      idata   0x0000f7       data   0x000004
-            .idata_uart.o      idata   0x0000fb       data   0x000003
+          .idata_global.o      idata   0x0000e1       data   0x000018
+       .idata_interrupt.o      idata   0x0000f9       data   0x000004
+            .idata_uart.o      idata   0x0000fd       data   0x000003
             .udata_main.o      udata   0x000100       data   0x0000f6
             .udata_uart.o      udata   0x0001f6       data   0x00000a
                    .stack      udata   0x000e00       data   0x000100
@@ -110,12 +110,12 @@ Linker Map File - Created Sat Dec 03 17:53:52 2022
                                Start         End      
                            ---------   ---------      
                             0x000000    0x000014      
-                            0x000018    0x003902      
-                            0x003904    0x003b61      
+                            0x000018    0x004266      
+                            0x004268    0x0046cb      
                             0x300001    0x300003      
                             0x300005    0x300006      
                             0x300008    0x30000d      
-            15209 out of 66584 program addresses used, program memory utilization is 22%
+            18131 out of 66584 program addresses used, program memory utilization is 27%
 
 
 
@@ -124,73 +124,73 @@ Linker Map File - Created Sat Dec 03 17:53:52 2022
                 ---------  ---------  ---------  --------- ---------                
               BaiTap_UART   0x000396    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
               CloseOutput   0x0001ea    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                   D0808S   0x00369a    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                D0808SNEG   0x0036a8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                 D0808SOK   0x0036a4    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                  D0808SX   0x0036ae    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                   D1616S   0x0036da    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                D1616SNEG   0x0036e8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                 D1616SOK   0x0036e4    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                  D1616SX   0x0036fa    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                   D2424S   0x00372e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                D2424SNEG   0x00373c    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                 D2424SOK   0x003738    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                  D2424SX   0x003754    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                  DA0808S   0x003690    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                  DA1616S   0x0036ca    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                  DA2424S   0x00371a    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-         DisplayLcdScreen   0x0020ac    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-        DisplayLcdScreen2   0x0021a4    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-      DisplayLcdScreenOld   0x00222a    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+                   D0808S   0x00427e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                D0808SNEG   0x00428c    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                 D0808SOK   0x004288    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                  D0808SX   0x004292    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                   D1616S   0x0042be    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                D1616SNEG   0x0042cc    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 D1616SOK   0x0042c8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                  D1616SX   0x0042de    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                   D2424S   0x004312    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                D2424SNEG   0x004320    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                 D2424SOK   0x00431c    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                  D2424SX   0x004338    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                  DA0808S   0x004274    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                  DA1616S   0x0042ae    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                  DA2424S   0x0042fe    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+         DisplayLcdScreen   0x002b96    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+        DisplayLcdScreen2   0x002c8e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+      DisplayLcdScreenOld   0x002d14    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
              Error_Handle   0x000a7e    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                 FXD0808S   0x003684    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                 FXD0808U   0x003a5e    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808u.c
-                 FXD1616S   0x0036b8    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                 FXD1616U   0x0039f6    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616u.c
-                 FXD2424S   0x003704    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                 FXD2424U   0x0039bc    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424u.c
-                 FXD3232U   0x003974    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd3232u.c
-                  FXM3232   0x003904    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxm3232.c
+                 FXD0808S   0x004268    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                 FXD0808U   0x0045c6    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808u.c
+                 FXD1616S   0x00429c    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 FXD1616U   0x00455e    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616u.c
+                 FXD2424S   0x0042e8    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                 FXD2424U   0x004524    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424u.c
+                 FXD3232U   0x0044dc    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd3232u.c
+                  FXM3232   0x00446c    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxm3232.c
               GetDistance   0x000634    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
                 GetSensor   0x0007fe    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
       InterruptVectorHigh   0x000008    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
        InterruptVectorLow   0x000018    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
-                LcdClearS   0x00204e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-            LcdPrintCharS   0x002294    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-              LcdPrintNum   0x001f8c    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-             LcdPrintNumS   0x0022ea    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-           LcdPrintString   0x001fd4    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-          LcdPrintStringS   0x002538    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+                LcdClearS   0x002b38    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+            LcdPrintCharS   0x002d7e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+              LcdPrintNum   0x002a76    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+             LcdPrintNumS   0x002dd4    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+           LcdPrintString   0x002abe    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+          LcdPrintStringS   0x003022    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
                OpenOutput   0x00019a    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-          Phase1_GreenOff   0x000adc    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-           Phase1_GreenOn   0x000acc    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-            Phase1_RedOff   0x000b1c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-             Phase1_RedOn   0x000b0c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-         Phase1_YellowOff   0x000afc    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-          Phase1_YellowOn   0x000aec    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-          Phase2_GreenOff   0x000b3c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-           Phase2_GreenOn   0x000b2c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-            Phase2_RedOff   0x000b7c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-             Phase2_RedOn   0x000b6c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-         Phase2_YellowOff   0x000b5c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-          Phase2_YellowOn   0x000b4c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+          Phase1_GreenOff   0x000b82    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+           Phase1_GreenOn   0x000b72    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+            Phase1_RedOff   0x000bc2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+             Phase1_RedOn   0x000bb2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+         Phase1_YellowOff   0x000ba2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+          Phase1_YellowOn   0x000b92    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+          Phase2_GreenOff   0x000be2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+           Phase2_GreenOn   0x000bd2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+            Phase2_RedOff   0x000c22    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+             Phase2_RedOn   0x000c12    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+         Phase2_YellowOff   0x000c02    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+          Phase2_YellowOn   0x000bf2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
             ReverseOutput   0x00023a    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-             SetTimer0_ms   0x002f98    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             SetTimer1_ms   0x002fbc    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             SetTimer3_ms   0x002ffa    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             SetTimer0_ms   0x003a82    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             SetTimer1_ms   0x003aa6    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             SetTimer3_ms   0x003ae4    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
                TestOutput   0x0002b6    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
           TestReceiveUart   0x000352    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-        UartSendDataGraph   0x0026f8    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-      UartSendNumToString   0x002804    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-           UartSendString   0x002690    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-       ___return_lbl00000   0x003972    program     static                          
-       ___return_lbl00000   0x003a78    program     static                          
-       ___return_lbl00000   0x003a20    program     static                          
-       ___return_lbl00000   0x0039f4    program     static                          
-       ___return_lbl00000   0x0039ba    program     static                          
+        UartSendDataGraph   0x0031e2    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+      UartSendNumToString   0x0032ee    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+           UartSendString   0x00317a    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+       ___return_lbl00000   0x0044da    program     static                          
        ___return_lbl00000   0x000004    program     static                          
-       ___return_lbl00001   0x003a5c    program     static                          
-       ___return_lbl00002   0x0037fa    program     static                          
+       ___return_lbl00000   0x004522    program     static                          
+       ___return_lbl00000   0x0045e0    program     static                          
+       ___return_lbl00000   0x004588    program     static                          
+       ___return_lbl00000   0x00455c    program     static                          
+       ___return_lbl00001   0x0045c4    program     static                          
+       ___return_lbl00002   0x0043de    program     static                          
        ___return_lbl00002   0x00001c    program     static                          
        ___return_lbl00003   0x00000c    program     static                          
                __config_0   0x300001    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
@@ -205,110 +205,119 @@ Linker Map File - Created Sat Dec 03 17:53:52 2022
                __config_8   0x30000b    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
                __config_9   0x30000c    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
                    __init   0x000006    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\stdclib\__init.c
-               __string_0   0x0038ff    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_1   0x0038fd    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-              __string_10   0x00389d    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-              __string_11   0x003893    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-              __string_12   0x003888    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_2   0x0038f8    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_3   0x0038eb    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_4   0x0038df    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_5   0x0038d5    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_6   0x0038c8    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_7   0x0038be    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_8   0x0038b2    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_9   0x0038a5    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-            __zero_memory   0x003a22    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                _do_cinit   0x00375e    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
+               __string_0   0x004263    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_1   0x004261    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_10   0x0041df    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_11   0x0041d3    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_12   0x0041c9    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_13   0x0041c3    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_14   0x0041b6    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_15   0x0041ac    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_16   0x0041a0    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_17   0x004193    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_18   0x004182    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_19   0x004178    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_2   0x00425c    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_20   0x00416e    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_3   0x00424f    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_4   0x00423f    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_5   0x004231    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_6   0x004223    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_7   0x004212    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_8   0x004201    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_9   0x0041f0    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+            __zero_memory   0x00458a    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                _do_cinit   0x004342    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
                    _entry   0x000000    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
-                   _false   0x0039b6    program     static                          
-                   _false   0x0039f0    program     static                          
-                 _startup   0x003a42    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
-                 applyMan   0x000bbc    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-             applySetting   0x000c14    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-             backingState   0x000bac    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-          button_delay_ms   0x003306    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
-                compare_l   0x003a38    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                copy_loop   0x0037d0    program     static                          
-            copy_one_byte   0x0037d6    program     static                          
-                countTime   0x000c24    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-            decreaseValue   0x000bdc    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+                   _false   0x004558    program     static                          
+                   _false   0x00451e    program     static                          
+                 _startup   0x0045aa    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
+                 applyMan   0x000c62    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+             applySetting   0x000cba    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+             backingState   0x000c52    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+          button_delay_ms   0x003df0    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
+                compare_l   0x0045a0    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                copy_loop   0x0043b4    program     static                          
+            copy_one_byte   0x0043ba    program     static                          
+                countTime   0x000cda    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+            decreaseValue   0x000c82    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
                  delay_ms   0x0000c2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
             delay_trigger   0x000a0a    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                     done   0x0037fa    program     static                          
-             done_copying   0x0037e4    program     static                          
-                  endloop   0x003a74    program     static                          
-                  endloop   0x003a1c    program     static                          
-            fsm_automatic   0x000c78    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-               fsm_manual   0x000ffe    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-               fsm_tuning   0x0013d8    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-            get_adc_value   0x00380a    program     extern C:\Users\phucd\Desktop\TKLL_Project\adc\adc.c
-                 high_isr   0x0035ae    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
-            increaseValue   0x000bcc    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                 init_adc   0x0037fc    program     extern C:\Users\phucd\Desktop\TKLL_Project\adc\adc.c
-            init_ext_int0   0x0034bc    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
-           init_interrupt   0x0034b4    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
-          init_key_matrix   0x003038    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
-init_key_matrix_with_uart   0x003040    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
-                 init_lcd   0x00190e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+                     done   0x0043de    program     static                          
+             done_copying   0x0043c8    program     static                          
+                  endloop   0x004584    program     static                          
+                  endloop   0x0045dc    program     static                          
+            fsm_automatic   0x000d56    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+               fsm_manual   0x00139c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+               fsm_tuning   0x001aca    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+            get_adc_value   0x0043ee    program     extern C:\Users\phucd\Desktop\TKLL_Project\adc\adc.c
+                 high_isr   0x004098    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
+            increaseValue   0x000c72    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+                 init_adc   0x0043e0    program     extern C:\Users\phucd\Desktop\TKLL_Project\adc\adc.c
+            init_ext_int0   0x003fa6    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
+           init_interrupt   0x003f9e    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
+          init_key_matrix   0x003b22    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
+init_key_matrix_with_uart   0x003b2a    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
+                 init_lcd   0x0023f8    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
               init_system   0x00014a    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-              init_timer0   0x002b1c    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              init_timer1   0x002c60    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              init_timer2   0x002daa    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              init_timer3   0x002de2    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-                init_uart   0x00258e    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+              init_timer0   0x003606    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              init_timer1   0x00374a    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              init_timer2   0x003894    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              init_timer3   0x0038cc    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+                init_uart   0x003078    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
              isButtonCall   0x000332    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
           isButtonMessage   0x000342    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                lcd_clear   0x001c60    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-                lcd_delay   0x00176e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-             lcd_power_of   0x001c74    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-           lcd_print_char   0x001bcc    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-          lcd_print_charS   0x002008    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-            lcd_print_num   0x001d56    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-            lcd_print_str   0x001be6    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-              lcd_putchar   0x001bb2    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-          lcd_read_status   0x001a1c    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-          lcd_sendCommand   0x00188e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-           lcd_set_cursor   0x001c26    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-            lcd_wait_busy   0x001ad2    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-          lcd_write_4bits   0x001af2    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-            lcd_write_cmd   0x001b38    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-           lcd_write_data   0x001b74    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-                     loop   0x003a52    program     static                          
-                     loop   0x003982    program     static                          
-                     loop   0x0039c8    program     static                          
-                     loop   0x003a00    program     static                          
-                     loop   0x003a66    program     static                          
-                   loop_h   0x003a30    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                   loop_l   0x003a3a    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                  low_isr   0x0034c4    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
+                lcd_clear   0x00274a    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+                lcd_delay   0x002258    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+             lcd_power_of   0x00275e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+           lcd_print_char   0x0026b6    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+          lcd_print_charS   0x002af2    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+            lcd_print_num   0x002840    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+            lcd_print_str   0x0026d0    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+              lcd_putchar   0x00269c    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+          lcd_read_status   0x002506    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+          lcd_sendCommand   0x002378    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+           lcd_set_cursor   0x002710    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+            lcd_wait_busy   0x0025bc    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+          lcd_write_4bits   0x0025dc    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+            lcd_write_cmd   0x002622    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+           lcd_write_data   0x00265e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+                     loop   0x004530    program     static                          
+                     loop   0x004568    program     static                          
+                     loop   0x0044ea    program     static                          
+                     loop   0x0045ba    program     static                          
+                     loop   0x0045ce    program     static                          
+                   loop_h   0x004598    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                   loop_l   0x0045a2    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                  low_isr   0x003fae    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
                      main   0x000074    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
                     pulse   0x000a50    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-          scan_key_matrix   0x00304a    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
-     scan_key_matrix_demo   0x00338e    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
-scan_key_matrix_with_uart   0x0031a8    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
-             start_timer0   0x002bd4    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             start_timer1   0x002d1a    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             start_timer2   0x002dd6    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             start_timer3   0x002e98    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              stop_timer0   0x002bd0    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              stop_timer1   0x002da6    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              stop_timer2   0x002dde    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              stop_timer3   0x002f24    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-                switchMan   0x000b8c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                switchTun   0x000b9c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                     test   0x003778    program     static                          
-               timer0_isr   0x002f28    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-               timer1_isr   0x002f44    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-               timer2_isr   0x002f60    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-               timer3_isr   0x002f7c    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-            uart_delay_ms   0x0025ac    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-                 uart_isr   0x0026dc    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-            uart_power_of   0x002a3a    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-             uart_putchar   0x002634    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-            uart_send_str   0x002650    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-                 v_timer0   0x0017fe    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-               zero_block   0x003a30    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+          scan_key_matrix   0x003b34    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
+     scan_key_matrix_demo   0x003e78    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
+scan_key_matrix_with_uart   0x003c92    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
+          slowDownPressed   0x000cca    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+             start_timer0   0x0036be    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             start_timer1   0x003804    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             start_timer2   0x0038c0    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             start_timer3   0x003982    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              stop_timer0   0x0036ba    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              stop_timer1   0x003890    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              stop_timer2   0x0038c8    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              stop_timer3   0x003a0e    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+                switchMan   0x000c32    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+                switchTun   0x000c42    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+                     test   0x00435c    program     static                          
+               timer0_isr   0x003a12    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+               timer1_isr   0x003a2e    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+               timer2_isr   0x003a4a    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+               timer3_isr   0x003a66    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+            uart_delay_ms   0x003096    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+                 uart_isr   0x0031c6    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+            uart_power_of   0x003524    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+             uart_putchar   0x00311e    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+            uart_send_str   0x00313a    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+                 v_timer0   0x0022e8    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+               zero_block   0x004598    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
                    ADCON0   0x000fc2       data     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
                ADCON0bits   0x000fc2       data     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
                    ADCON1   0x000fc1       data     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
@@ -337,7 +346,7 @@ scan_key_matrix_with_uart   0x0031a8    program     extern C:\Users\phucd\Deskto
                 CMCONbits   0x000fb4       data     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
                    CVRCON   0x000fb5       data     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
                CVRCONbits   0x000fb5       data     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-        ColumnDislayMoney   0x0000fd       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+        ColumnDislayMoney   0x0000ff       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
                      DDRA   0x000f92       data     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
                  DDRAbits   0x000f92       data     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
                      DDRB   0x000f93       data     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
@@ -531,9 +540,9 @@ scan_key_matrix_with_uart   0x0031a8    program     extern C:\Users\phucd\Deskto
      arrayMaskOutputOfKey   0x000f49       data     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
           averageDistance   0x000f20       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
             averageSensor   0x000f12       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                     cnt0   0x0000f7       data     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
-                     cnt1   0x0000f9       data     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
-            counterAllFSM   0x0000e7       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+                     cnt0   0x0000f9       data     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
+                     cnt1   0x0000fb       data     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
+            counterAllFSM   0x0000e9       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
                 curr_byte   0x000f74       data     static E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
                curr_entry   0x000f76       data     static E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
               current_col   0x000f7d       data     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
@@ -544,37 +553,37 @@ scan_key_matrix_with_uart   0x0031a8    program     extern C:\Users\phucd\Deskto
           dataUartReceive   0x0001f6       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
                  data_ptr   0x000f78       data     static E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
                     error   0x0000e3       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-             errorCounter   0x0000f5       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+             errorCounter   0x0000f7       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
               flag_timer0   0x000f59       data     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
               flag_timer1   0x000f5a       data     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
               flag_timer2   0x000f5b       data     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
               flag_timer3   0x000f5c       data     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             green_1_Time   0x0000e9       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-             green_2_Time   0x0000ef       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+             green_1_Time   0x0000eb       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+             green_2_Time   0x0000f1       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
               indexOfData   0x000f1b       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
                  key_code   0x000f29       data     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
                kindOfData   0x0001ff       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
                      prom   0x000f71       data     static E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
               rawDistance   0x000f24       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
                 rawSensor   0x000f16       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                  redTime   0x0000ed       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-                redTime_2   0x0000f3       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+                  redTime   0x0000ef       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+                redTime_2   0x0000f5       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
                    status   0x0000e1       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
            statusDistance   0x000f28       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
                 statusLCD   0x0000c0       data     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
              statusOutput   0x000f08       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-            statusReceive   0x0000fb       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+            statusReceive   0x0000fd       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
              statusSensor   0x000f1a       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
              statusSim900   0x000f10       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-        statusUartReceive   0x0000fc       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+        statusUartReceive   0x0000fe       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
                      time   0x000f1c       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
                 time0_MUL   0x000f69       data     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
                 time1_MUL   0x000f6b       data     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
                 time2_MUL   0x000f6d       data     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
                 time3_MUL   0x000f6f       data     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-            timeInManMode   0x0000e8       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+            timeInManMode   0x0000ea       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
               timeOfLight   0x0000e5       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-            timeOfLight_2   0x0000e6       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+            timeOfLight_2   0x0000e7       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
                timer0_cnt   0x000f61       data     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
              timer0_value   0x000f51       data     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
                timer1_cnt   0x000f63       data     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
@@ -587,8 +596,8 @@ scan_key_matrix_with_uart   0x0031a8    program     extern C:\Users\phucd\Deskto
                    v_cnt1   0x000f5f       data     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
                   x_Graph   0x000100       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
                   y_Graph   0x000102       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-            yellow_1_Time   0x0000eb       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-            yellow_2_Time   0x0000f1       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+            yellow_1_Time   0x0000ed       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+            yellow_2_Time   0x0000f3       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
                   z_Graph   0x000104       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
 
 
@@ -619,159 +628,168 @@ scan_key_matrix_with_uart   0x0031a8    program     extern C:\Users\phucd\Deskto
             delay_trigger   0x000a0a    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
                     pulse   0x000a50    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
              Error_Handle   0x000a7e    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-           Phase1_GreenOn   0x000acc    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-          Phase1_GreenOff   0x000adc    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-          Phase1_YellowOn   0x000aec    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-         Phase1_YellowOff   0x000afc    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-             Phase1_RedOn   0x000b0c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-            Phase1_RedOff   0x000b1c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-           Phase2_GreenOn   0x000b2c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-          Phase2_GreenOff   0x000b3c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-          Phase2_YellowOn   0x000b4c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-         Phase2_YellowOff   0x000b5c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-             Phase2_RedOn   0x000b6c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-            Phase2_RedOff   0x000b7c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                switchMan   0x000b8c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                switchTun   0x000b9c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-             backingState   0x000bac    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                 applyMan   0x000bbc    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-            increaseValue   0x000bcc    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-            decreaseValue   0x000bdc    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-             applySetting   0x000c14    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                countTime   0x000c24    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-            fsm_automatic   0x000c78    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-               fsm_manual   0x000ffe    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-               fsm_tuning   0x0013d8    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
-                lcd_delay   0x00176e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-                 v_timer0   0x0017fe    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-          lcd_sendCommand   0x00188e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-                 init_lcd   0x00190e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-          lcd_read_status   0x001a1c    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-            lcd_wait_busy   0x001ad2    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-          lcd_write_4bits   0x001af2    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-            lcd_write_cmd   0x001b38    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-           lcd_write_data   0x001b74    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-              lcd_putchar   0x001bb2    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-           lcd_print_char   0x001bcc    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-            lcd_print_str   0x001be6    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-           lcd_set_cursor   0x001c26    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-                lcd_clear   0x001c60    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-             lcd_power_of   0x001c74    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-            lcd_print_num   0x001d56    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-              LcdPrintNum   0x001f8c    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-           LcdPrintString   0x001fd4    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-          lcd_print_charS   0x002008    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-                LcdClearS   0x00204e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-         DisplayLcdScreen   0x0020ac    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-        DisplayLcdScreen2   0x0021a4    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-      DisplayLcdScreenOld   0x00222a    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-            LcdPrintCharS   0x002294    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-             LcdPrintNumS   0x0022ea    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-          LcdPrintStringS   0x002538    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
-                init_uart   0x00258e    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-            uart_delay_ms   0x0025ac    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-             uart_putchar   0x002634    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-            uart_send_str   0x002650    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-           UartSendString   0x002690    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-                 uart_isr   0x0026dc    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-        UartSendDataGraph   0x0026f8    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-      UartSendNumToString   0x002804    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-            uart_power_of   0x002a3a    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-              init_timer0   0x002b1c    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              stop_timer0   0x002bd0    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             start_timer0   0x002bd4    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              init_timer1   0x002c60    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             start_timer1   0x002d1a    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              stop_timer1   0x002da6    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              init_timer2   0x002daa    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             start_timer2   0x002dd6    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              stop_timer2   0x002dde    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              init_timer3   0x002de2    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             start_timer3   0x002e98    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-              stop_timer3   0x002f24    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-               timer0_isr   0x002f28    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-               timer1_isr   0x002f44    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-               timer2_isr   0x002f60    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-               timer3_isr   0x002f7c    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             SetTimer0_ms   0x002f98    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             SetTimer1_ms   0x002fbc    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-             SetTimer3_ms   0x002ffa    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
-          init_key_matrix   0x003038    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
-init_key_matrix_with_uart   0x003040    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
-          scan_key_matrix   0x00304a    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
-scan_key_matrix_with_uart   0x0031a8    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
-          button_delay_ms   0x003306    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
-     scan_key_matrix_demo   0x00338e    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
-           init_interrupt   0x0034b4    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
-            init_ext_int0   0x0034bc    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
-                  low_isr   0x0034c4    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
-                 high_isr   0x0035ae    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
-                 FXD0808S   0x003684    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                  DA0808S   0x003690    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                   D0808S   0x00369a    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                 D0808SOK   0x0036a4    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                D0808SNEG   0x0036a8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                  D0808SX   0x0036ae    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                 FXD1616S   0x0036b8    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                  DA1616S   0x0036ca    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                   D1616S   0x0036da    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                 D1616SOK   0x0036e4    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                D1616SNEG   0x0036e8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                  D1616SX   0x0036fa    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                 FXD2424S   0x003704    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                  DA2424S   0x00371a    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                   D2424S   0x00372e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                 D2424SOK   0x003738    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                D2424SNEG   0x00373c    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                  D2424SX   0x003754    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                _do_cinit   0x00375e    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
-                     test   0x003778    program     static                          
-                copy_loop   0x0037d0    program     static                          
-            copy_one_byte   0x0037d6    program     static                          
-             done_copying   0x0037e4    program     static                          
-                     done   0x0037fa    program     static                          
-       ___return_lbl00002   0x0037fa    program     static                          
-                 init_adc   0x0037fc    program     extern C:\Users\phucd\Desktop\TKLL_Project\adc\adc.c
-            get_adc_value   0x00380a    program     extern C:\Users\phucd\Desktop\TKLL_Project\adc\adc.c
-              __string_12   0x003888    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-              __string_11   0x003893    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-              __string_10   0x00389d    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_9   0x0038a5    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_8   0x0038b2    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_7   0x0038be    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_6   0x0038c8    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_5   0x0038d5    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_4   0x0038df    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_3   0x0038eb    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_2   0x0038f8    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_1   0x0038fd    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-               __string_0   0x0038ff    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
-                  FXM3232   0x003904    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxm3232.c
-       ___return_lbl00000   0x003972    program     static                          
-                 FXD3232U   0x003974    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd3232u.c
-                     loop   0x003982    program     static                          
-                   _false   0x0039b6    program     static                          
-       ___return_lbl00000   0x0039ba    program     static                          
-                 FXD2424U   0x0039bc    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424u.c
-                     loop   0x0039c8    program     static                          
-                   _false   0x0039f0    program     static                          
-       ___return_lbl00000   0x0039f4    program     static                          
-                 FXD1616U   0x0039f6    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616u.c
-                     loop   0x003a00    program     static                          
-                  endloop   0x003a1c    program     static                          
-       ___return_lbl00000   0x003a20    program     static                          
-            __zero_memory   0x003a22    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-               zero_block   0x003a30    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                   loop_h   0x003a30    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                compare_l   0x003a38    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                   loop_l   0x003a3a    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                 _startup   0x003a42    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
-                     loop   0x003a52    program     static                          
-       ___return_lbl00001   0x003a5c    program     static                          
-                 FXD0808U   0x003a5e    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808u.c
-                     loop   0x003a66    program     static                          
-                  endloop   0x003a74    program     static                          
-       ___return_lbl00000   0x003a78    program     static                          
+           Phase1_GreenOn   0x000b72    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+          Phase1_GreenOff   0x000b82    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+          Phase1_YellowOn   0x000b92    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+         Phase1_YellowOff   0x000ba2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+             Phase1_RedOn   0x000bb2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+            Phase1_RedOff   0x000bc2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+           Phase2_GreenOn   0x000bd2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+          Phase2_GreenOff   0x000be2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+          Phase2_YellowOn   0x000bf2    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+         Phase2_YellowOff   0x000c02    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+             Phase2_RedOn   0x000c12    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+            Phase2_RedOff   0x000c22    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+                switchMan   0x000c32    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+                switchTun   0x000c42    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+             backingState   0x000c52    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+                 applyMan   0x000c62    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+            increaseValue   0x000c72    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+            decreaseValue   0x000c82    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+             applySetting   0x000cba    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+          slowDownPressed   0x000cca    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+                countTime   0x000cda    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+            fsm_automatic   0x000d56    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+               fsm_manual   0x00139c    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+               fsm_tuning   0x001aca    program     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
+                lcd_delay   0x002258    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+                 v_timer0   0x0022e8    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+          lcd_sendCommand   0x002378    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+                 init_lcd   0x0023f8    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+          lcd_read_status   0x002506    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+            lcd_wait_busy   0x0025bc    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+          lcd_write_4bits   0x0025dc    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+            lcd_write_cmd   0x002622    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+           lcd_write_data   0x00265e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+              lcd_putchar   0x00269c    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+           lcd_print_char   0x0026b6    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+            lcd_print_str   0x0026d0    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+           lcd_set_cursor   0x002710    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+                lcd_clear   0x00274a    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+             lcd_power_of   0x00275e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+            lcd_print_num   0x002840    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+              LcdPrintNum   0x002a76    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+           LcdPrintString   0x002abe    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+          lcd_print_charS   0x002af2    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+                LcdClearS   0x002b38    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+         DisplayLcdScreen   0x002b96    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+        DisplayLcdScreen2   0x002c8e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+      DisplayLcdScreenOld   0x002d14    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+            LcdPrintCharS   0x002d7e    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+             LcdPrintNumS   0x002dd4    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+          LcdPrintStringS   0x003022    program     extern C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c
+                init_uart   0x003078    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+            uart_delay_ms   0x003096    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+             uart_putchar   0x00311e    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+            uart_send_str   0x00313a    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+           UartSendString   0x00317a    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+                 uart_isr   0x0031c6    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+        UartSendDataGraph   0x0031e2    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+      UartSendNumToString   0x0032ee    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+            uart_power_of   0x003524    program     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+              init_timer0   0x003606    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              stop_timer0   0x0036ba    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             start_timer0   0x0036be    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              init_timer1   0x00374a    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             start_timer1   0x003804    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              stop_timer1   0x003890    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              init_timer2   0x003894    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             start_timer2   0x0038c0    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              stop_timer2   0x0038c8    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              init_timer3   0x0038cc    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             start_timer3   0x003982    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+              stop_timer3   0x003a0e    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+               timer0_isr   0x003a12    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+               timer1_isr   0x003a2e    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+               timer2_isr   0x003a4a    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+               timer3_isr   0x003a66    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             SetTimer0_ms   0x003a82    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             SetTimer1_ms   0x003aa6    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+             SetTimer3_ms   0x003ae4    program     extern C:\Users\phucd\Desktop\TKLL_Project\timer\timer.c
+          init_key_matrix   0x003b22    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
+init_key_matrix_with_uart   0x003b2a    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
+          scan_key_matrix   0x003b34    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
+scan_key_matrix_with_uart   0x003c92    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
+          button_delay_ms   0x003df0    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
+     scan_key_matrix_demo   0x003e78    program     extern C:\Users\phucd\Desktop\TKLL_Project\button_matrix\button.c
+           init_interrupt   0x003f9e    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
+            init_ext_int0   0x003fa6    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
+                  low_isr   0x003fae    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
+                 high_isr   0x004098    program     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
+              __string_20   0x00416e    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_19   0x004178    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_18   0x004182    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_17   0x004193    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_16   0x0041a0    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_15   0x0041ac    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_14   0x0041b6    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_13   0x0041c3    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_12   0x0041c9    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_11   0x0041d3    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+              __string_10   0x0041df    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_9   0x0041f0    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_8   0x004201    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_7   0x004212    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_6   0x004223    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_5   0x004231    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_4   0x00423f    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_3   0x00424f    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_2   0x00425c    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_1   0x004261    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+               __string_0   0x004263    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
+                 FXD0808S   0x004268    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                  DA0808S   0x004274    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                   D0808S   0x00427e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                 D0808SOK   0x004288    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                D0808SNEG   0x00428c    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                  D0808SX   0x004292    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                 FXD1616S   0x00429c    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                  DA1616S   0x0042ae    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                   D1616S   0x0042be    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 D1616SOK   0x0042c8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                D1616SNEG   0x0042cc    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                  D1616SX   0x0042de    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 FXD2424S   0x0042e8    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                  DA2424S   0x0042fe    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                   D2424S   0x004312    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                 D2424SOK   0x00431c    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                D2424SNEG   0x004320    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                  D2424SX   0x004338    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                _do_cinit   0x004342    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
+                     test   0x00435c    program     static                          
+                copy_loop   0x0043b4    program     static                          
+            copy_one_byte   0x0043ba    program     static                          
+             done_copying   0x0043c8    program     static                          
+                     done   0x0043de    program     static                          
+       ___return_lbl00002   0x0043de    program     static                          
+                 init_adc   0x0043e0    program     extern C:\Users\phucd\Desktop\TKLL_Project\adc\adc.c
+            get_adc_value   0x0043ee    program     extern C:\Users\phucd\Desktop\TKLL_Project\adc\adc.c
+                  FXM3232   0x00446c    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxm3232.c
+       ___return_lbl00000   0x0044da    program     static                          
+                 FXD3232U   0x0044dc    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd3232u.c
+                     loop   0x0044ea    program     static                          
+                   _false   0x00451e    program     static                          
+       ___return_lbl00000   0x004522    program     static                          
+                 FXD2424U   0x004524    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424u.c
+                     loop   0x004530    program     static                          
+                   _false   0x004558    program     static                          
+       ___return_lbl00000   0x00455c    program     static                          
+                 FXD1616U   0x00455e    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616u.c
+                     loop   0x004568    program     static                          
+                  endloop   0x004584    program     static                          
+       ___return_lbl00000   0x004588    program     static                          
+            __zero_memory   0x00458a    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+               zero_block   0x004598    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                   loop_h   0x004598    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                compare_l   0x0045a0    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                   loop_l   0x0045a2    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                 _startup   0x0045aa    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
+                     loop   0x0045ba    program     static                          
+       ___return_lbl00001   0x0045c4    program     static                          
+                 FXD0808U   0x0045c6    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808u.c
+                     loop   0x0045ce    program     static                          
+                  endloop   0x0045dc    program     static                          
+       ___return_lbl00000   0x0045e0    program     static                          
                __config_0   0x300001    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
                __config_1   0x300002    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
                __config_2   0x300003    program     static C:\Users\phucd\Desktop\TKLL_Project\main.c
@@ -816,21 +834,21 @@ scan_key_matrix_with_uart   0x0031a8    program     extern C:\Users\phucd\Deskto
                    status   0x0000e1       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
                     error   0x0000e3       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
               timeOfLight   0x0000e5       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-            timeOfLight_2   0x0000e6       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-            counterAllFSM   0x0000e7       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-            timeInManMode   0x0000e8       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-             green_1_Time   0x0000e9       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-            yellow_1_Time   0x0000eb       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-                  redTime   0x0000ed       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-             green_2_Time   0x0000ef       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-            yellow_2_Time   0x0000f1       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-                redTime_2   0x0000f3       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-             errorCounter   0x0000f5       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
-                     cnt0   0x0000f7       data     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
-                     cnt1   0x0000f9       data     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
-            statusReceive   0x0000fb       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-        statusUartReceive   0x0000fc       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
-        ColumnDislayMoney   0x0000fd       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+            timeOfLight_2   0x0000e7       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+            counterAllFSM   0x0000e9       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+            timeInManMode   0x0000ea       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+             green_1_Time   0x0000eb       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+            yellow_1_Time   0x0000ed       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+                  redTime   0x0000ef       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+             green_2_Time   0x0000f1       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+            yellow_2_Time   0x0000f3       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+                redTime_2   0x0000f5       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+             errorCounter   0x0000f7       data     extern C:\Users\phucd\Desktop\TKLL_Project\global\global.c
+                     cnt0   0x0000f9       data     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
+                     cnt1   0x0000fb       data     extern C:\Users\phucd\Desktop\TKLL_Project\interrupt\interrupt.c
+            statusReceive   0x0000fd       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+        statusUartReceive   0x0000fe       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
+        ColumnDislayMoney   0x0000ff       data     extern C:\Users\phucd\Desktop\TKLL_Project\uart\uart.c
                   x_Graph   0x000100       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
                   y_Graph   0x000102       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c
                   z_Graph   0x000104       data     extern C:\Users\phucd\Desktop\TKLL_Project\main.c

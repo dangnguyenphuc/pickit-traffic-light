@@ -16,6 +16,8 @@
 #define     PHASE2_GREEN                105
 #define     PHASE2_YELLOW               106
 
+#define     SLOW_DOWN1                  48
+#define     SLOW_DOWN2                  49
 #define     WAIT                        50
 
 #define     MAN_GREEN1                  15
@@ -27,6 +29,10 @@
 #define     TUNING_GREEN                26 
 #define     TUNING_YELLOW               27  
 
+#define     TUNING_RED2                  30
+#define     TUNING_GREEN2                31 
+#define     TUNING_YELLOW2               35 
+
 
 #define     GREEN_PHASE1_TIME           10
 #define     YELLOW_PHASE1_TIME          5
@@ -35,11 +41,21 @@
 #define     YELLOW_PHASE2_TIME          5
 
 #define     TIME_IN_MAN_MODE            30
+#define     TIME_FOR_SLOW_DOWN           5
+#define     TIME_FOR_PEDESTRIAN         20
 
 // ERROR: ================
 #define NONE_ERROR                      0
 #define VALUE_OUT_OF_RANGE              1
-
+#define THREE_STEPS_SETTING             2
+#define CHANGING_RED_1                  3
+#define CHANGING_RED_2                  4
+#define DELAY_TO_SYNC_YELLOW1           5
+#define DELAY_TO_SYNC_YELLOW2           6
+#define DELAY_TO_SYNC_RED1              7
+#define DELAY_TO_SYNC_RED2              8
+#define DELAY_TO_SYNC_RED1_GREEN        9
+#define DELAY_TO_SYNC_RED2_GREEN        10
 // =======================
 
 
@@ -58,8 +74,8 @@ extern unsigned int green_2_Time;
 extern unsigned int yellow_2_Time;
 extern unsigned int redTime_2;
 // FSM 1 variables
-extern unsigned char timeOfLight;
-extern unsigned char timeOfLight_2;
+extern int timeOfLight;
+extern int timeOfLight_2;
 extern unsigned char counterAllFSM;
 
 // FSM 2 and FSM 3 variables
