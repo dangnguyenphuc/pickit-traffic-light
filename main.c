@@ -589,10 +589,6 @@ void fsm_automatic(){
             else if(switchTun()){
                 status = INIT_TUNING;
             }
-            else if(slowDownPressed()){
-                status = SLOW_DOWN1;
-                timeInManMode = TIME_FOR_SLOW_DOWN;
-            }
             
 
             break;
@@ -728,10 +724,7 @@ void fsm_automatic(){
                 status = INIT_TUNING;
             }
             
-            else if(slowDownPressed()){
-                status = SLOW_DOWN2;
-                timeInManMode = TIME_FOR_SLOW_DOWN;
-            }
+            
             break;
         
         case PHASE2_YELLOW:
@@ -805,10 +798,7 @@ void fsm_automatic(){
                 status = INIT_TUNING;
             }
             
-            if(slowDownPressed()){
-                status = SLOW_DOWN2;
-                timeInManMode = TIME_FOR_SLOW_DOWN;
-            }
+           
             break;
             
         case WAIT:
@@ -865,6 +855,11 @@ void fsm_manual(){
                 status = PHASE1_GREEN;
                 timeOfLight = green_1_Time;
                 timeOfLight_2 = redTime_2;
+            }
+            
+            if(backingState()){
+                status = MAN_YELLOW2;
+                timeInManMode = TIME_IN_MAN_MODE;
             }
             
             break;
@@ -1025,101 +1020,6 @@ void fsm_manual(){
             }
             break;
             
-        case SLOW_DOWN1:
-            //TODO:
-            Phase1_YellowOn();
-            
-            Phase1_GreenOff();
-            Phase1_RedOff();
-            
-            
-            Phase2_RedOn();
-            
-            Phase2_GreenOff();
-            Phase2_YellowOff();
-            
-            // Display times:
-            // 1st:
-            LcdPrintStringS(0,0,"YELLOW 1:   ");
-            LcdPrintNumS(0,13,timeInManMode);
-            // 2nd
-            LcdPrintStringS(1,0,"RED 2:   ");
-            LcdPrintNumS(1,13,timeOfLight_2);
-            
-            // Display times:
-            if(timeOfLight_2 == -1){
-                LcdPrintStringS(1,11,"DELAY");
-            }
-            
-            //Switch
-            // Time out
-            if(timeInManMode == 0){
-                status = WAIT;
-                timeInManMode = TIME_FOR_PEDESTRIAN;
-            }
-            
-            break;
-        case SLOW_DOWN2:
-            //TODO:
-            Phase2_YellowOn();
-            
-            Phase2_GreenOff();
-            Phase2_RedOff();
-            
-            
-            Phase1_RedOn();
-            
-            Phase1_GreenOff();
-            Phase1_YellowOff();
-            
-            // Display times:
-            // 1st:
-            LcdPrintStringS(0,0,"RED 1:   ");
-            LcdPrintNumS(0,13,timeOfLight);
-            // 2nd
-            LcdPrintStringS(1,0,"YELLOW 2:   ");
-            LcdPrintNumS(1,13,timeInManMode);
-            
-            // Display times:
-            if(timeOfLight == -1){
-                LcdPrintStringS(0,11,"DELAY");
-            }
-            
-            //Switch
-            // Time out
-            if(timeInManMode == 0){
-                status = WAIT;
-                timeInManMode = TIME_FOR_PEDESTRIAN;
-            }
-            
-            break;
-        case WAIT:
-            //TODO:
-            Phase2_YellowOff();
-            
-            Phase2_GreenOff();
-            Phase2_RedOn();
-            
-            
-            Phase1_RedOn();
-            
-            Phase1_GreenOff();
-            Phase1_YellowOff();
-            
-            // Display times:
-            // 1st:
-            LcdPrintStringS(0,0,"RED 1:   ");
-            LcdPrintNumS(0,13,timeInManMode);
-            // 2nd
-            LcdPrintStringS(1,0,"RED 2:   ");
-            LcdPrintNumS(1,13,timeInManMode);
-            
-            //Switch
-            // Time out
-            if(timeInManMode == 0){
-                status = INIT_SYSTEM;
-            }
-            break;
         default:
             break;
             
@@ -1204,6 +1104,11 @@ void fsm_tuning(){
             if(switchMan()){
                 status = TUNING_YELLOW1;
                 timeInManMode = TIME_IN_MAN_MODE;
+            }
+            
+            if(backingState()){
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_YELLOW2;
             }
             
             if(applySetting()){
@@ -1433,7 +1338,11 @@ void fsm_tuning(){
             }
             
             // Button Pressed
-
+            if(switchMan()){
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_GREEN1;
+            }
+            
             if(backingState()){
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN2;

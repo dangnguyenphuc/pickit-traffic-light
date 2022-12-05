@@ -1,5 +1,5 @@
 MPLINK 5.00, LINKER
-Linker Map File - Created Mon Dec 05 09:19:33 2022
+Linker Map File - Created Mon Dec 05 09:39:34 2022
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
@@ -36,28 +36,28 @@ Linker Map File - Created Mon Dec 05 09:19:33 2022
             .code_c018i.o       code   0x000016    program   0x000000
        InterruptVectorLow       code   0x000018    program   0x000006
                    .cinit    romdata   0x00001e    program   0x000056
-             .code_main.o       code   0x000074    program   0x001fc8
-              .code_lcd.o       code   0x00203c    program   0x000e20
-             .code_uart.o       code   0x002e5c    program   0x00058e
-            .code_timer.o       code   0x0033ea    program   0x00051c
-           .code_button.o       code   0x003906    program   0x00047c
-        .code_interrupt.o       code   0x003d82    program   0x0001d0
-                     PROG       code   0x003f52    program   0x0000da
-             .stringtable    romdata   0x00402c    program   0x0000d4
-               _cinit_scn       code   0x004100    program   0x00009e
-              .code_adc.o       code   0x00419e    program   0x00008c
-          .code_fxm3232.o       code   0x00422a    program   0x000070
-         .code_fxd3232u.o       code   0x00429a    program   0x000048
-         .code_fxd2424u.o       code   0x0042e2    program   0x00003a
-         .code_fxd1616u.o       code   0x00431c    program   0x00002c
-                    .code       code   0x004348    program   0x000020
-             _startup_scn       code   0x004368    program   0x00001c
-         .code_fxd0808u.o       code   0x004384    program   0x00001c
-         .idata_timer.o_i    romdata   0x0043a0    program   0x000020
-          .idata_main.o_i    romdata   0x0043c0    program   0x000029
-           .idata_lcd.o_i    romdata   0x0043e9    program   0x000061
-        .idata_global.o_i    romdata   0x00444a    program   0x000020
-        .idata_button.o_i    romdata   0x00446a    program   0x000028
+             .code_main.o       code   0x000074    program   0x001d2e
+              .code_lcd.o       code   0x001da2    program   0x000e20
+             .code_uart.o       code   0x002bc2    program   0x00058e
+            .code_timer.o       code   0x003150    program   0x00051c
+           .code_button.o       code   0x00366c    program   0x00047c
+        .code_interrupt.o       code   0x003ae8    program   0x0001d0
+                     PROG       code   0x003cb8    program   0x0000da
+             .stringtable    romdata   0x003d92    program   0x0000d4
+               _cinit_scn       code   0x003e66    program   0x00009e
+              .code_adc.o       code   0x003f04    program   0x00008c
+          .code_fxm3232.o       code   0x003f90    program   0x000070
+         .code_fxd3232u.o       code   0x004000    program   0x000048
+         .code_fxd2424u.o       code   0x004048    program   0x00003a
+         .code_fxd1616u.o       code   0x004082    program   0x00002c
+                    .code       code   0x0040ae    program   0x000020
+             _startup_scn       code   0x0040ce    program   0x00001c
+         .code_fxd0808u.o       code   0x0040ea    program   0x00001c
+         .idata_timer.o_i    romdata   0x004106    program   0x000020
+          .idata_main.o_i    romdata   0x004126    program   0x000029
+           .idata_lcd.o_i    romdata   0x00414f    program   0x000061
+        .idata_global.o_i    romdata   0x0041b0    program   0x000020
+        .idata_button.o_i    romdata   0x0041d0    program   0x000028
     .config_300001_main.o    romdata   0x300001    program   0x000001
     .config_300002_main.o    romdata   0x300002    program   0x000001
     .config_300003_main.o    romdata   0x300003    program   0x000001
@@ -110,11 +110,11 @@ Linker Map File - Created Mon Dec 05 09:19:33 2022
                                Start         End      
                            ---------   ---------      
                             0x000000    0x000014      
-                            0x000018    0x004491      
+                            0x000018    0x0041f7      
                             0x300001    0x300003      
                             0x300005    0x300006      
                             0x300008    0x30000d      
-            17562 out of 66584 program addresses used, program memory utilization is 26%
+            16896 out of 66584 program addresses used, program memory utilization is 25%
 
 
 
@@ -123,43 +123,43 @@ Linker Map File - Created Mon Dec 05 09:19:33 2022
                 ---------  ---------  ---------  --------- ---------                
               BaiTap_UART   0x000396    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
               CloseOutput   0x0001ea    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-                   D0808S   0x003f68    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                D0808SNEG   0x003f76    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                 D0808SOK   0x003f72    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                  D0808SX   0x003f7c    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                   D1616S   0x003fa8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                D1616SNEG   0x003fb6    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                 D1616SOK   0x003fb2    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                  D1616SX   0x003fc8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                   D2424S   0x003ffc    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                D2424SNEG   0x00400a    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                 D2424SOK   0x004006    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                  D2424SX   0x004022    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                  DA0808S   0x003f5e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                  DA1616S   0x003f98    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                  DA2424S   0x003fe8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-         DisplayLcdScreen   0x00297a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-        DisplayLcdScreen2   0x002a72    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-      DisplayLcdScreenOld   0x002af8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+                   D0808S   0x003cce    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                D0808SNEG   0x003cdc    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                 D0808SOK   0x003cd8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                  D0808SX   0x003ce2    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                   D1616S   0x003d0e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                D1616SNEG   0x003d1c    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 D1616SOK   0x003d18    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                  D1616SX   0x003d2e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                   D2424S   0x003d62    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                D2424SNEG   0x003d70    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                 D2424SOK   0x003d6c    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                  D2424SX   0x003d88    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                  DA0808S   0x003cc4    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                  DA1616S   0x003cfe    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                  DA2424S   0x003d4e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+         DisplayLcdScreen   0x0026e0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+        DisplayLcdScreen2   0x0027d8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+      DisplayLcdScreenOld   0x00285e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
              Error_Handle   0x000a7e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-                 FXD0808S   0x003f52    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                 FXD0808U   0x004384    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808u.c
-                 FXD1616S   0x003f86    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                 FXD1616U   0x00431c    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616u.c
-                 FXD2424S   0x003fd2    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                 FXD2424U   0x0042e2    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424u.c
-                 FXD3232U   0x00429a    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd3232u.c
-                  FXM3232   0x00422a    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxm3232.c
+                 FXD0808S   0x003cb8    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                 FXD0808U   0x0040ea    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808u.c
+                 FXD1616S   0x003cec    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 FXD1616U   0x004082    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616u.c
+                 FXD2424S   0x003d38    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                 FXD2424U   0x004048    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424u.c
+                 FXD3232U   0x004000    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd3232u.c
+                  FXM3232   0x003f90    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxm3232.c
               GetDistance   0x000634    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
                 GetSensor   0x0007fe    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
       InterruptVectorHigh   0x000008    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
        InterruptVectorLow   0x000018    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
-                LcdClearS   0x00291c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-            LcdPrintCharS   0x002b62    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-              LcdPrintNum   0x00285a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-             LcdPrintNumS   0x002bb8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-           LcdPrintString   0x0028a2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-          LcdPrintStringS   0x002e06    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+                LcdClearS   0x002682    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+            LcdPrintCharS   0x0028c8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+              LcdPrintNum   0x0025c0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+             LcdPrintNumS   0x00291e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+           LcdPrintString   0x002608    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+          LcdPrintStringS   0x002b6c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
                OpenOutput   0x00019a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
           Phase1_GreenOff   0x000b82    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
            Phase1_GreenOn   0x000b72    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
@@ -174,22 +174,22 @@ Linker Map File - Created Mon Dec 05 09:19:33 2022
          Phase2_YellowOff   0x000c02    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
           Phase2_YellowOn   0x000bf2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
             ReverseOutput   0x00023a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-             SetTimer0_ms   0x003866    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-             SetTimer1_ms   0x00388a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-             SetTimer3_ms   0x0038c8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             SetTimer0_ms   0x0035cc    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             SetTimer1_ms   0x0035f0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             SetTimer3_ms   0x00362e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
                TestOutput   0x0002b6    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
           TestReceiveUart   0x000352    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-        UartSendDataGraph   0x002fc6    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-      UartSendNumToString   0x0030d2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-           UartSendString   0x002f5e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-       ___return_lbl00000   0x004298    program     static                          
+        UartSendDataGraph   0x002d2c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+      UartSendNumToString   0x002e38    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+           UartSendString   0x002cc4    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+       ___return_lbl00000   0x003ffe    program     static                          
        ___return_lbl00000   0x000004    program     static                          
-       ___return_lbl00000   0x0042e0    program     static                          
-       ___return_lbl00000   0x00439e    program     static                          
-       ___return_lbl00000   0x004346    program     static                          
-       ___return_lbl00000   0x00431a    program     static                          
-       ___return_lbl00001   0x004382    program     static                          
-       ___return_lbl00002   0x00419c    program     static                          
+       ___return_lbl00000   0x004046    program     static                          
+       ___return_lbl00000   0x004104    program     static                          
+       ___return_lbl00000   0x0040ac    program     static                          
+       ___return_lbl00000   0x004080    program     static                          
+       ___return_lbl00001   0x0040e8    program     static                          
+       ___return_lbl00002   0x003f02    program     static                          
        ___return_lbl00002   0x00001c    program     static                          
        ___return_lbl00003   0x00000c    program     static                          
                __config_0   0x300001    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
@@ -204,116 +204,116 @@ Linker Map File - Created Mon Dec 05 09:19:33 2022
                __config_8   0x30000b    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
                __config_9   0x30000c    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
                    __init   0x000006    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\stdclib\__init.c
-               __string_0   0x0040fc    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_1   0x0040fa    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_10   0x004078    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_11   0x00406c    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_12   0x004062    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_13   0x00405c    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_14   0x00404f    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_15   0x004045    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_16   0x004039    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_17   0x00402c    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_2   0x0040f5    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_3   0x0040e8    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_4   0x0040d8    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_5   0x0040ca    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_6   0x0040bc    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_7   0x0040ab    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_8   0x00409a    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_9   0x004089    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-            __zero_memory   0x004348    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                _do_cinit   0x004100    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
+               __string_0   0x003e62    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_1   0x003e60    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_10   0x003dde    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_11   0x003dd2    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_12   0x003dc8    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_13   0x003dc2    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_14   0x003db5    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_15   0x003dab    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_16   0x003d9f    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_17   0x003d92    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_2   0x003e5b    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_3   0x003e4e    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_4   0x003e3e    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_5   0x003e30    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_6   0x003e22    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_7   0x003e11    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_8   0x003e00    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_9   0x003def    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+            __zero_memory   0x0040ae    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                _do_cinit   0x003e66    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
                    _entry   0x000000    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
-                   _false   0x0042dc    program     static                          
-                   _false   0x004316    program     static                          
-                 _startup   0x004368    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
+                   _false   0x004042    program     static                          
+                   _false   0x00407c    program     static                          
+                 _startup   0x0040ce    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
                  applyMan   0x000c62    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
              applySetting   0x000cba    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
              backingState   0x000c52    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-          button_delay_ms   0x003bd4    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
-                compare_l   0x00435e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                copy_loop   0x004172    program     static                          
-            copy_one_byte   0x004178    program     static                          
+          button_delay_ms   0x00393a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
+                compare_l   0x0040c4    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                copy_loop   0x003ed8    program     static                          
+            copy_one_byte   0x003ede    program     static                          
                 countTime   0x000cda    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
             decreaseValue   0x000c82    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
                  delay_ms   0x0000c2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
             delay_trigger   0x000a0a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-                     done   0x00419c    program     static                          
-             done_copying   0x004186    program     static                          
-                  endloop   0x004342    program     static                          
-                  endloop   0x00439a    program     static                          
+                     done   0x003f02    program     static                          
+             done_copying   0x003eec    program     static                          
+                  endloop   0x0040a8    program     static                          
+                  endloop   0x004100    program     static                          
             fsm_automatic   0x000d56    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               fsm_manual   0x00139c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               fsm_tuning   0x001aca    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-            get_adc_value   0x0041ac    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\adc\adc.c
-                 high_isr   0x003e7c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
+               fsm_manual   0x00136e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               fsm_tuning   0x001804    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+            get_adc_value   0x003f12    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\adc\adc.c
+                 high_isr   0x003be2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
             increaseValue   0x000c72    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-                 init_adc   0x00419e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\adc\adc.c
-            init_ext_int0   0x003d8a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
-           init_interrupt   0x003d82    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
-          init_key_matrix   0x003906    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
-init_key_matrix_with_uart   0x00390e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
-                 init_lcd   0x0021dc    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+                 init_adc   0x003f04    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\adc\adc.c
+            init_ext_int0   0x003af0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
+           init_interrupt   0x003ae8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
+          init_key_matrix   0x00366c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
+init_key_matrix_with_uart   0x003674    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
+                 init_lcd   0x001f42    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
               init_system   0x00014a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              init_timer0   0x0033ea    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              init_timer1   0x00352e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              init_timer2   0x003678    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              init_timer3   0x0036b0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-                init_uart   0x002e5c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+              init_timer0   0x003150    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              init_timer1   0x003294    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              init_timer2   0x0033de    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              init_timer3   0x003416    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+                init_uart   0x002bc2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
              isButtonCall   0x000332    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
           isButtonMessage   0x000342    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-                lcd_clear   0x00252e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-                lcd_delay   0x00203c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-             lcd_power_of   0x002542    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-           lcd_print_char   0x00249a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-          lcd_print_charS   0x0028d6    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-            lcd_print_num   0x002624    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-            lcd_print_str   0x0024b4    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-              lcd_putchar   0x002480    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-          lcd_read_status   0x0022ea    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-          lcd_sendCommand   0x00215c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-           lcd_set_cursor   0x0024f4    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-            lcd_wait_busy   0x0023a0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-          lcd_write_4bits   0x0023c0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-            lcd_write_cmd   0x002406    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-           lcd_write_data   0x002442    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-                     loop   0x0042ee    program     static                          
-                     loop   0x004326    program     static                          
-                     loop   0x0042a8    program     static                          
-                     loop   0x00438c    program     static                          
-                     loop   0x004378    program     static                          
-                   loop_h   0x004356    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                   loop_l   0x004360    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                  low_isr   0x003d92    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
+                lcd_clear   0x002294    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+                lcd_delay   0x001da2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+             lcd_power_of   0x0022a8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+           lcd_print_char   0x002200    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+          lcd_print_charS   0x00263c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+            lcd_print_num   0x00238a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+            lcd_print_str   0x00221a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+              lcd_putchar   0x0021e6    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+          lcd_read_status   0x002050    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+          lcd_sendCommand   0x001ec2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+           lcd_set_cursor   0x00225a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+            lcd_wait_busy   0x002106    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+          lcd_write_4bits   0x002126    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+            lcd_write_cmd   0x00216c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+           lcd_write_data   0x0021a8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+                     loop   0x004054    program     static                          
+                     loop   0x00408c    program     static                          
+                     loop   0x00400e    program     static                          
+                     loop   0x0040f2    program     static                          
+                     loop   0x0040de    program     static                          
+                   loop_h   0x0040bc    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                   loop_l   0x0040c6    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                  low_isr   0x003af8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
                      main   0x000074    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
                     pulse   0x000a50    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-          scan_key_matrix   0x003918    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
-     scan_key_matrix_demo   0x003c5c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
-scan_key_matrix_with_uart   0x003a76    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
+          scan_key_matrix   0x00367e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
+     scan_key_matrix_demo   0x0039c2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
+scan_key_matrix_with_uart   0x0037dc    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
           slowDownPressed   0x000cca    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-             start_timer0   0x0034a2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-             start_timer1   0x0035e8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-             start_timer2   0x0036a4    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-             start_timer3   0x003766    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              stop_timer0   0x00349e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              stop_timer1   0x003674    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              stop_timer2   0x0036ac    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              stop_timer3   0x0037f2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             start_timer0   0x003208    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             start_timer1   0x00334e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             start_timer2   0x00340a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             start_timer3   0x0034cc    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              stop_timer0   0x003204    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              stop_timer1   0x0033da    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              stop_timer2   0x003412    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              stop_timer3   0x003558    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
                 switchMan   0x000c32    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
                 switchTun   0x000c42    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-                     test   0x00411a    program     static                          
-               timer0_isr   0x0037f6    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-               timer1_isr   0x003812    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-               timer2_isr   0x00382e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-               timer3_isr   0x00384a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-            uart_delay_ms   0x002e7a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-                 uart_isr   0x002faa    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-            uart_power_of   0x003308    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-             uart_putchar   0x002f02    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-            uart_send_str   0x002f1e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-                 v_timer0   0x0020cc    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-               zero_block   0x004356    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                     test   0x003e80    program     static                          
+               timer0_isr   0x00355c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+               timer1_isr   0x003578    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+               timer2_isr   0x003594    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+               timer3_isr   0x0035b0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+            uart_delay_ms   0x002be0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+                 uart_isr   0x002d10    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+            uart_power_of   0x00306e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+             uart_putchar   0x002c68    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+            uart_send_str   0x002c84    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+                 v_timer0   0x001e32    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+               zero_block   0x0040bc    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
                    ADCON0   0x000fc2       data     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
                ADCON0bits   0x000fc2       data     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
                    ADCON1   0x000fc1       data     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
@@ -650,143 +650,143 @@ scan_key_matrix_with_uart   0x003a76    program     extern F:\Study Document\DA_
           slowDownPressed   0x000cca    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
                 countTime   0x000cda    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
             fsm_automatic   0x000d56    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               fsm_manual   0x00139c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               fsm_tuning   0x001aca    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-                lcd_delay   0x00203c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-                 v_timer0   0x0020cc    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-          lcd_sendCommand   0x00215c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-                 init_lcd   0x0021dc    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-          lcd_read_status   0x0022ea    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-            lcd_wait_busy   0x0023a0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-          lcd_write_4bits   0x0023c0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-            lcd_write_cmd   0x002406    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-           lcd_write_data   0x002442    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-              lcd_putchar   0x002480    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-           lcd_print_char   0x00249a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-            lcd_print_str   0x0024b4    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-           lcd_set_cursor   0x0024f4    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-                lcd_clear   0x00252e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-             lcd_power_of   0x002542    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-            lcd_print_num   0x002624    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-              LcdPrintNum   0x00285a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-           LcdPrintString   0x0028a2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-          lcd_print_charS   0x0028d6    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-                LcdClearS   0x00291c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-         DisplayLcdScreen   0x00297a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-        DisplayLcdScreen2   0x002a72    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-      DisplayLcdScreenOld   0x002af8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-            LcdPrintCharS   0x002b62    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-             LcdPrintNumS   0x002bb8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-          LcdPrintStringS   0x002e06    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
-                init_uart   0x002e5c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-            uart_delay_ms   0x002e7a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-             uart_putchar   0x002f02    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-            uart_send_str   0x002f1e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-           UartSendString   0x002f5e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-                 uart_isr   0x002faa    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-        UartSendDataGraph   0x002fc6    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-      UartSendNumToString   0x0030d2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-            uart_power_of   0x003308    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
-              init_timer0   0x0033ea    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              stop_timer0   0x00349e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-             start_timer0   0x0034a2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              init_timer1   0x00352e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-             start_timer1   0x0035e8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              stop_timer1   0x003674    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              init_timer2   0x003678    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-             start_timer2   0x0036a4    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              stop_timer2   0x0036ac    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              init_timer3   0x0036b0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-             start_timer3   0x003766    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-              stop_timer3   0x0037f2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-               timer0_isr   0x0037f6    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-               timer1_isr   0x003812    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-               timer2_isr   0x00382e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-               timer3_isr   0x00384a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-             SetTimer0_ms   0x003866    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-             SetTimer1_ms   0x00388a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-             SetTimer3_ms   0x0038c8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
-          init_key_matrix   0x003906    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
-init_key_matrix_with_uart   0x00390e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
-          scan_key_matrix   0x003918    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
-scan_key_matrix_with_uart   0x003a76    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
-          button_delay_ms   0x003bd4    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
-     scan_key_matrix_demo   0x003c5c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
-           init_interrupt   0x003d82    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
-            init_ext_int0   0x003d8a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
-                  low_isr   0x003d92    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
-                 high_isr   0x003e7c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
-                 FXD0808S   0x003f52    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                  DA0808S   0x003f5e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                   D0808S   0x003f68    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                 D0808SOK   0x003f72    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                D0808SNEG   0x003f76    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                  D0808SX   0x003f7c    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
-                 FXD1616S   0x003f86    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                  DA1616S   0x003f98    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                   D1616S   0x003fa8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                 D1616SOK   0x003fb2    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                D1616SNEG   0x003fb6    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                  D1616SX   0x003fc8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
-                 FXD2424S   0x003fd2    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                  DA2424S   0x003fe8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                   D2424S   0x003ffc    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                 D2424SOK   0x004006    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                D2424SNEG   0x00400a    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-                  D2424SX   0x004022    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
-              __string_17   0x00402c    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_16   0x004039    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_15   0x004045    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_14   0x00404f    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_13   0x00405c    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_12   0x004062    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_11   0x00406c    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-              __string_10   0x004078    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_9   0x004089    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_8   0x00409a    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_7   0x0040ab    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_6   0x0040bc    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_5   0x0040ca    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_4   0x0040d8    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_3   0x0040e8    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_2   0x0040f5    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_1   0x0040fa    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-               __string_0   0x0040fc    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
-                _do_cinit   0x004100    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
-                     test   0x00411a    program     static                          
-                copy_loop   0x004172    program     static                          
-            copy_one_byte   0x004178    program     static                          
-             done_copying   0x004186    program     static                          
-       ___return_lbl00002   0x00419c    program     static                          
-                     done   0x00419c    program     static                          
-                 init_adc   0x00419e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\adc\adc.c
-            get_adc_value   0x0041ac    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\adc\adc.c
-                  FXM3232   0x00422a    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxm3232.c
-       ___return_lbl00000   0x004298    program     static                          
-                 FXD3232U   0x00429a    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd3232u.c
-                     loop   0x0042a8    program     static                          
-                   _false   0x0042dc    program     static                          
-       ___return_lbl00000   0x0042e0    program     static                          
-                 FXD2424U   0x0042e2    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424u.c
-                     loop   0x0042ee    program     static                          
-                   _false   0x004316    program     static                          
-       ___return_lbl00000   0x00431a    program     static                          
-                 FXD1616U   0x00431c    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616u.c
-                     loop   0x004326    program     static                          
-                  endloop   0x004342    program     static                          
-       ___return_lbl00000   0x004346    program     static                          
-            __zero_memory   0x004348    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-               zero_block   0x004356    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                   loop_h   0x004356    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                compare_l   0x00435e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                   loop_l   0x004360    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
-                 _startup   0x004368    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
-                     loop   0x004378    program     static                          
-       ___return_lbl00001   0x004382    program     static                          
-                 FXD0808U   0x004384    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808u.c
-                     loop   0x00438c    program     static                          
-                  endloop   0x00439a    program     static                          
-       ___return_lbl00000   0x00439e    program     static                          
+               fsm_manual   0x00136e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               fsm_tuning   0x001804    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+                lcd_delay   0x001da2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+                 v_timer0   0x001e32    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+          lcd_sendCommand   0x001ec2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+                 init_lcd   0x001f42    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+          lcd_read_status   0x002050    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+            lcd_wait_busy   0x002106    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+          lcd_write_4bits   0x002126    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+            lcd_write_cmd   0x00216c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+           lcd_write_data   0x0021a8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+              lcd_putchar   0x0021e6    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+           lcd_print_char   0x002200    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+            lcd_print_str   0x00221a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+           lcd_set_cursor   0x00225a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+                lcd_clear   0x002294    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+             lcd_power_of   0x0022a8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+            lcd_print_num   0x00238a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+              LcdPrintNum   0x0025c0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+           LcdPrintString   0x002608    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+          lcd_print_charS   0x00263c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+                LcdClearS   0x002682    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+         DisplayLcdScreen   0x0026e0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+        DisplayLcdScreen2   0x0027d8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+      DisplayLcdScreenOld   0x00285e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+            LcdPrintCharS   0x0028c8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+             LcdPrintNumS   0x00291e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+          LcdPrintStringS   0x002b6c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c
+                init_uart   0x002bc2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+            uart_delay_ms   0x002be0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+             uart_putchar   0x002c68    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+            uart_send_str   0x002c84    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+           UartSendString   0x002cc4    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+                 uart_isr   0x002d10    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+        UartSendDataGraph   0x002d2c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+      UartSendNumToString   0x002e38    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+            uart_power_of   0x00306e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\uart\uart.c
+              init_timer0   0x003150    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              stop_timer0   0x003204    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             start_timer0   0x003208    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              init_timer1   0x003294    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             start_timer1   0x00334e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              stop_timer1   0x0033da    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              init_timer2   0x0033de    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             start_timer2   0x00340a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              stop_timer2   0x003412    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              init_timer3   0x003416    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             start_timer3   0x0034cc    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+              stop_timer3   0x003558    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+               timer0_isr   0x00355c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+               timer1_isr   0x003578    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+               timer2_isr   0x003594    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+               timer3_isr   0x0035b0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             SetTimer0_ms   0x0035cc    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             SetTimer1_ms   0x0035f0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+             SetTimer3_ms   0x00362e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\timer\timer.c
+          init_key_matrix   0x00366c    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
+init_key_matrix_with_uart   0x003674    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
+          scan_key_matrix   0x00367e    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
+scan_key_matrix_with_uart   0x0037dc    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
+          button_delay_ms   0x00393a    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
+     scan_key_matrix_demo   0x0039c2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\button_matrix\button.c
+           init_interrupt   0x003ae8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
+            init_ext_int0   0x003af0    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
+                  low_isr   0x003af8    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
+                 high_isr   0x003be2    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\interrupt\interrupt.c
+                 FXD0808S   0x003cb8    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                  DA0808S   0x003cc4    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                   D0808S   0x003cce    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                 D0808SOK   0x003cd8    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                D0808SNEG   0x003cdc    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                  D0808SX   0x003ce2    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808s.asm
+                 FXD1616S   0x003cec    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                  DA1616S   0x003cfe    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                   D1616S   0x003d0e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 D1616SOK   0x003d18    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                D1616SNEG   0x003d1c    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                  D1616SX   0x003d2e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616s.asm
+                 FXD2424S   0x003d38    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                  DA2424S   0x003d4e    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                   D2424S   0x003d62    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                 D2424SOK   0x003d6c    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                D2424SNEG   0x003d70    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+                  D2424SX   0x003d88    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424s.asm
+              __string_17   0x003d92    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_16   0x003d9f    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_15   0x003dab    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_14   0x003db5    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_13   0x003dc2    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_12   0x003dc8    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_11   0x003dd2    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+              __string_10   0x003dde    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_9   0x003def    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_8   0x003e00    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_7   0x003e11    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_6   0x003e22    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_5   0x003e30    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_4   0x003e3e    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_3   0x003e4e    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_2   0x003e5b    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_1   0x003e60    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+               __string_0   0x003e62    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
+                _do_cinit   0x003e66    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
+                     test   0x003e80    program     static                          
+                copy_loop   0x003ed8    program     static                          
+            copy_one_byte   0x003ede    program     static                          
+             done_copying   0x003eec    program     static                          
+       ___return_lbl00002   0x003f02    program     static                          
+                     done   0x003f02    program     static                          
+                 init_adc   0x003f04    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\adc\adc.c
+            get_adc_value   0x003f12    program     extern F:\Study Document\DA_TKLL\Logic_Design_Project\adc\adc.c
+                  FXM3232   0x003f90    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxm3232.c
+       ___return_lbl00000   0x003ffe    program     static                          
+                 FXD3232U   0x004000    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd3232u.c
+                     loop   0x00400e    program     static                          
+                   _false   0x004042    program     static                          
+       ___return_lbl00000   0x004046    program     static                          
+                 FXD2424U   0x004048    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd2424u.c
+                     loop   0x004054    program     static                          
+                   _false   0x00407c    program     static                          
+       ___return_lbl00000   0x004080    program     static                          
+                 FXD1616U   0x004082    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd1616u.c
+                     loop   0x00408c    program     static                          
+                  endloop   0x0040a8    program     static                          
+       ___return_lbl00000   0x0040ac    program     static                          
+            __zero_memory   0x0040ae    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+               zero_block   0x0040bc    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                   loop_h   0x0040bc    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                compare_l   0x0040c4    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                   loop_l   0x0040c6    program     static E:\3.46\pic18-lt\cxx-framework\src\traditional\proc\p18f4620.asm
+                 _startup   0x0040ce    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\startup\c018i.c
+                     loop   0x0040de    program     static                          
+       ___return_lbl00001   0x0040e8    program     static                          
+                 FXD0808U   0x0040ea    program     extern E:\3.46\pic18-lt\cxx-framework\src\traditional\math\fxd0808u.c
+                     loop   0x0040f2    program     static                          
+                  endloop   0x004100    program     static                          
+       ___return_lbl00000   0x004104    program     static                          
                __config_0   0x300001    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
                __config_1   0x300002    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
                __config_2   0x300003    program     static F:\Study Document\DA_TKLL\Logic_Design_Project\main.c
