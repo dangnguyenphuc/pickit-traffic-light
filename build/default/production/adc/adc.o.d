@@ -1,4 +1,4 @@
 build/default/production/adc/adc.o:  \
-	C:/Users/phucd/Desktop/TKLL_Project/adc/adc.c  \
-	C:/Users/phucd/Desktop/TKLL_Project/adc/adc.h  \
+	F:/Study\ Document/DA_TKLL/Logic_Design_Project/adc/adc.c  \
+	F:/Study\ Document/DA_TKLL/Logic_Design_Project/adc/adc.h  \
 

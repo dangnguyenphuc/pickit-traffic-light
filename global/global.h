@@ -25,11 +25,11 @@
 #define     MAN_GREEN2                  115
 #define     MAN_YELLOW2                 116
 
-#define     TUNING_RED                  25
-#define     TUNING_GREEN                26 
-#define     TUNING_YELLOW               27  
+//#define     TUNING_RED                  25
+#define     TUNING_GREEN1                26 
+#define     TUNING_YELLOW1               27  
 
-#define     TUNING_RED2                  30
+//#define     TUNING_RED2                  30
 #define     TUNING_GREEN2                31 
 #define     TUNING_YELLOW2               35 
 
@@ -80,6 +80,12 @@ extern unsigned char counterAllFSM;
 
 // FSM 2 and FSM 3 variables
 extern unsigned char timeInManMode;
+
+//term value for tuning mode
+extern unsigned int temp_green1;
+extern unsigned int temp_yellow1;
+extern unsigned int temp_green2;
+extern unsigned int temp_yellow2;
 
 #endif	/* GLOBAL_H */
 

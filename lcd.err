@@ -1,7 +1,7 @@
-Warning[2056] C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c 80 : expression is always true
-Warning[2056] C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c 94 : expression is always true
-Warning[2056] C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c 108 : expression is always true
-Warning[2056] C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c 122 : expression is always true
-Warning[2056] C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c 196 : expression is always true
-Warning[2056] C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c 213 : expression is always true
-Warning[2066] C:\Users\phucd\Desktop\TKLL_Project\lcd\lcd.c 297 : type qualifier mismatch in assignment
+Warning[2056] F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c 80 : expression is always true
+Warning[2056] F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c 94 : expression is always true
+Warning[2056] F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c 108 : expression is always true
+Warning[2056] F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c 122 : expression is always true
+Warning[2056] F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c 196 : expression is always true
+Warning[2056] F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c 213 : expression is always true
+Warning[2066] F:\Study Document\DA_TKLL\Logic_Design_Project\lcd\lcd.c 297 : type qualifier mismatch in assignment

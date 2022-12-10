@@ -1,4 +1,4 @@
 build/default/production/lcd/lcd.o:  \
-	C:/Users/phucd/Desktop/TKLL_Project/lcd/lcd.c  \
-	C:/Users/phucd/Desktop/TKLL_Project/lcd/lcd.h  \
+	F:/Study\ Document/DA_TKLL/Logic_Design_Project/lcd/lcd.c  \
+	F:/Study\ Document/DA_TKLL/Logic_Design_Project/lcd/lcd.h  \
 
