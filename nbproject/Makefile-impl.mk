@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=Logic_Design_Project
+PROJECTNAME=TKLL_Project
 
 # Active Configuration
 DEFAULTCONF=default

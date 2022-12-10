@@ -24,3 +24,11 @@ unsigned int temp_green2 = 0;
 unsigned int temp_yellow2 = 0;
 
 unsigned int errorCounter = 0;
+
+char redIsOn = 0;
+char yellowIsOn = 0;
+char greenIsOn = 0;
+
+char red2IsOn = 0;
+char yellow2IsOn = 0;
+char green2IsOn = 0;

@@ -76,6 +76,22 @@ void Phase2_RedOff();
 // ERROR:
 void Error_Handle();
 
+// UART: 
+// sending
+void UART_sendingStatus();
+void UART_sendingTimerLight1(int isError);
+void UART_sendingTimerLight2(int isError);
+
+void UART_sendingTimerLight1_MAN();
+void UART_sendingTimerLight2_MAN();
+void UART_sendingSettngLight1();
+void UART_sendingSettngLight2();
+
+void sendLightTimer();
+// receiving
+void UART_receiving();
+
+
 // 1st FSM
 void fsm_automatic();
 // 2nd FSM
@@ -92,15 +108,12 @@ void main(void)
 	init_system();
         lcd_clear();
         LcdClearS();
-        //TestOutput();
         delay_ms(1000);
-//        UartSendString("Xin chao cac ban");
-        //uart_putchar(1 + '0');
 	while (1)
 	{
             while (!flag_timer3);
             flag_timer3 = 0;
-            //TestReceiveUart();
+            TestReceiveUart();
             //k = k + 1111;
             //UartSendNumToString(k);
             //UartSendString(" ");
@@ -137,8 +150,8 @@ void init_system(void)
         //init_timer1(9390);//dinh thoi 2ms
         
         
-//	init_timer3(46950);//dinh thoi 10ms
-    init_timer3(4695);//dinh thoi 1ms sai so 1%
+	init_timer3(46950);//dinh thoi 10ms
+//    init_timer3(4695);//dinh thoi 1ms sai so 1%
     
     
 	//SetTimer0_ms(2);
@@ -329,6 +342,9 @@ void pulse(void)
     CloseOutput(1);
 }
 
+
+// ===================================================
+// Error
 void Error_Handle(){
     switch(error){
         case NONE_ERROR: 
@@ -373,61 +389,83 @@ void Error_Handle(){
         timeInManMode = TIME_IN_MAN_MODE;
     }
 }
+// ===================================================
 
+// ###################################################
+
+// ===================================================
+// led
 void Phase1_GreenOn()
 {
     OpenOutput(0);
+    greenIsOn = 1;
 }
 void Phase1_GreenOff()
 {
     CloseOutput(0);
+    greenIsOn = 0;
 }
 
 void Phase1_YellowOn()
 {
     OpenOutput(4);
+    yellowIsOn = 1;
 }
 void Phase1_YellowOff()
 {
     CloseOutput(4);
+    yellowIsOn = 0;
 }
 
 void Phase1_RedOn()
 {
     OpenOutput(6);
+    redIsOn = 1;
 }
 void Phase1_RedOff()
 {
     CloseOutput(6);
+    redIsOn = 0;
 }
 
 void Phase2_GreenOn()
 {
     OpenOutput(1);
+    green2IsOn = 1;
 }
 void Phase2_GreenOff()
 {
     CloseOutput(1);
+    green2IsOn = 0;
 }
 
 void Phase2_YellowOn()
 {
     OpenOutput(5);
+    yellow2IsOn = 1;
 }
 void Phase2_YellowOff()
 {
     CloseOutput(5);
+    yellow2IsOn = 0;
 }
 
 void Phase2_RedOn()
 {
     OpenOutput(7);
+    red2IsOn = 1;
 }
 void Phase2_RedOff()
 {
     CloseOutput(7);
+    red2IsOn = 0;
 }
+// ===================================================
 
+// ###################################################
+
+// ===================================================
+// buttons
 unsigned char switchMan(){
     if(key_code[0] == 1) {
         return 1;
@@ -499,7 +537,152 @@ unsigned char slowDownPressed(){
         return 0;
     }
 }
+// ===================================================
 
+// ###################################################
+
+// ===================================================
+// UART ==============================================
+// sending
+void UART_sendingStatus(){
+    
+    /*
+     SENDING : !STATUS:status#
+    */
+    
+    UartSendString("!");
+    UartSendString("STATUS:");
+    UartSendNumToString(status);
+    UartSendString("#");
+}
+
+void UART_sendingTimerLight1(int isError){
+    
+    /*
+     SENDING : !LIGHT1:time:red:yellow:green#
+    */
+    
+    UartSendString("!");
+    UartSendString("LIGHT1:");
+    if(!isError){
+       UartSendNumToString(timeOfLight); 
+    }else{
+        UartSendString("DELAY");
+    }
+    UartSendString(":");
+    UartSendNumToString(redIsOn);
+    UartSendString(":");
+    UartSendNumToString(yellowIsOn);
+    UartSendString(":");
+    UartSendNumToString(greenIsOn);
+    UartSendString("#");
+}
+
+void UART_sendingTimerLight2(int isError){
+    
+    /*
+     SENDING : !LIGHT2:time:red:yellow:green#
+    */
+    
+    UartSendString("!");
+    UartSendString("LIGHT2:");
+    if(!isError){
+       UartSendNumToString(timeOfLight_2); 
+    }else{
+        UartSendString("DELAY");
+    }
+    UartSendString(":");
+    UartSendNumToString(red2IsOn);
+    UartSendString(":");
+    UartSendNumToString(yellow2IsOn);
+    UartSendString(":");
+    UartSendNumToString(green2IsOn);
+    UartSendString("#");
+}
+
+void UART_sendingTimerLight1_MAN(){
+    UartSendString("!");
+    UartSendString("LIGHT1:");
+    UartSendNumToString(timeInManMode); 
+    UartSendString(":");
+    UartSendNumToString(redIsOn);
+    UartSendString(":");
+    UartSendNumToString(yellowIsOn);
+    UartSendString(":");
+    UartSendNumToString(greenIsOn);
+    UartSendString("#");
+}
+
+void UART_sendingTimerLight2_MAN(){
+    UartSendString("!");
+    UartSendString("LIGHT2:");
+    UartSendNumToString(timeInManMode); 
+    UartSendString(":");
+    UartSendNumToString(red2IsOn);
+    UartSendString(":");
+    UartSendNumToString(yellow2IsOn);
+    UartSendString(":");
+    UartSendNumToString(green2IsOn);
+    UartSendString("#");
+}
+
+void UART_sendingSettngLight1(){
+        
+    /*
+     SENDING setting times : !SET1:red:yellow:green#
+    */
+    
+    UartSendString("!");
+    UartSendString("SET1:");
+    UartSendNumToString(temp_green1 + temp_yellow1);
+    UartSendString(":");
+    UartSendNumToString(temp_yellow1);
+    UartSendString(":");
+    UartSendNumToString(temp_green1);
+    UartSendString("#");
+}
+
+void UART_sendingSettngLight2(){
+    
+    /*
+     SENDING setting times : !SET2:red:yellow:green#
+    */
+    
+    UartSendString("!");
+    UartSendString("SET2:");
+    UartSendNumToString(temp_green2 + temp_yellow2);
+    UartSendString(":");
+    UartSendNumToString(temp_yellow2);
+    UartSendString(":");
+    UartSendNumToString(temp_green2);
+    UartSendString("#");
+}
+
+void sendLightTimer(){
+    if(counterAllFSM == 1){
+        if(timeOfLight <= -1){
+            UART_sendingTimerLight1(1);
+        }
+        else{
+            UART_sendingTimerLight1(0);
+        }
+        
+        if(timeOfLight_2 <= -1){
+            UART_sendingTimerLight2(1);
+        }else{
+            UART_sendingTimerLight2(0);
+        }
+    }
+}
+
+void sendLightTimer_MAN(){
+    if(counterAllFSM == 1){
+        UART_sendingTimerLight1_MAN();
+        UART_sendingTimerLight2_MAN();
+    }
+}
+
+// ===================================================
 void countTime(){
     errorCounter = (errorCounter+1)%40;
     counterAllFSM = (counterAllFSM+1)%20;
@@ -533,6 +716,7 @@ void fsm_automatic(){
             status = PHASE1_GREEN;
             timeOfLight = green_1_Time;
             timeOfLight_2 = redTime_2;
+            UART_sendingStatus();
             break;
             
         case PHASE1_GREEN:
@@ -554,6 +738,9 @@ void fsm_automatic(){
                 error = DELAY_TO_SYNC_RED2;
             }
             
+            // UART: 
+            sendLightTimer();
+            
             // Display times:
             // 1st:
             LcdPrintStringS(0,0,"GREEN 1:   ");
@@ -561,6 +748,8 @@ void fsm_automatic(){
             // 2nd
             LcdPrintStringS(1,0,"RED 2:   ");
             LcdPrintNumS(1,13,timeOfLight_2);
+            
+
             
             // Error:
             if(error == NONE_ERROR){
@@ -578,16 +767,19 @@ void fsm_automatic(){
             // Time out!
             if(timeOfLight <= 0){
                 status = PHASE1_YELLOW;
+                UART_sendingStatus();
                 timeOfLight = yellow_1_Time;
             }
             // Button pressed
-            else if(switchMan()){
+            else if(switchMan() || dataUartReceive - 48 == 0 ){
                 status = MAN_YELLOW1;
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            else if(switchTun()){
+            else if(switchTun() || dataUartReceive - 48 == 1){
                 status = INIT_TUNING;
+                UART_sendingStatus();
             }
             
 
@@ -617,6 +809,8 @@ void fsm_automatic(){
                 error = DELAY_TO_SYNC_RED2;
             }
             
+            // UART: 
+            sendLightTimer();
             
             // Display time:
             // 1st:
@@ -653,18 +847,21 @@ void fsm_automatic(){
             // Time out
             if(timeOfLight <= 0 && timeOfLight_2 <= 0){
                 status = PHASE2_GREEN;
+                UART_sendingStatus();
                 timeOfLight = redTime;
                 timeOfLight_2 = green_2_Time;
             }
             
             // Button pressed
-            if(switchMan()){
+            if(switchMan() || dataUartReceive - 48 == 0){
                 status = MAN_GREEN2;
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun()){
+            if(switchTun() || dataUartReceive - 48 == 1){
                 status = INIT_TUNING;
+                UART_sendingStatus();
             }
             
             break;
@@ -686,6 +883,9 @@ void fsm_automatic(){
             if(timeOfLight == -1){
                 error = DELAY_TO_SYNC_RED1;
             }
+            
+            // UART: 
+            sendLightTimer();
             
             // Display time:
             // 1st:
@@ -711,17 +911,20 @@ void fsm_automatic(){
             // Time out
             if(timeOfLight_2 <= 0){
                 status = PHASE2_YELLOW;
+                UART_sendingStatus();
                 timeOfLight_2 = yellow_2_Time;
             }
             
             // Button pressed
-            if(switchMan()){
+            if(switchMan() || dataUartReceive - 48 == 0){
                 status = MAN_YELLOW2;
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun()){
+            if(switchTun() || dataUartReceive - 48 == 1){
                 status = INIT_TUNING;
+                UART_sendingStatus();
             }
             
             
@@ -748,6 +951,9 @@ void fsm_automatic(){
             if(timeOfLight_2 == -1){
                 error = DELAY_TO_SYNC_YELLOW2;
             }
+            
+            // UART: 
+            sendLightTimer();
             
             // Display time:
             // 1st:
@@ -784,24 +990,28 @@ void fsm_automatic(){
             // Time out
             if(timeOfLight_2 <= 0 && timeOfLight <= 0){
                 status = PHASE1_GREEN;
+                UART_sendingStatus();
                 timeOfLight = green_1_Time;
                 timeOfLight_2 = redTime_2;
             }
             
             // Button pressed
-            if(switchMan()){
+            if(switchMan() || dataUartReceive - 48 == 0 ){
                 status = MAN_GREEN1; 
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun()){
+            if(switchTun() || dataUartReceive - 48 == 1 ){
                 status = INIT_TUNING;
+                UART_sendingStatus();
             }
             
            
             break;
             
         case WAIT:
+            break;
             
         default:
             break;
@@ -824,6 +1034,9 @@ void fsm_manual(){
             
             Phase2_GreenOff();
             Phase2_YellowOff();
+           
+            //UART
+            sendLightTimer_MAN();
             
             // Display times:
             // 1st:
@@ -837,28 +1050,33 @@ void fsm_manual(){
             // Time out
             if(timeInManMode <= 0){
                 status = PHASE1_YELLOW;
+                UART_sendingStatus();
                 timeOfLight = yellow_1_Time;
                 timeOfLight_2 = yellow_1_Time;
             }
             
             // Button Pressed
-            if(switchMan()){
+            if(switchMan() || dataUartReceive - 48 == 0){
                 status = MAN_YELLOW1;
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun()){
+            if(switchTun() || dataUartReceive - 48 == 1){
                 status = INIT_TUNING;
+                UART_sendingStatus();
             }
             
-            if(applyMan()){
+            if(applyMan() || dataUartReceive - 48 == 2){
                 status = PHASE1_GREEN;
+                UART_sendingStatus();
                 timeOfLight = green_1_Time;
                 timeOfLight_2 = redTime_2;
             }
             
-            if(backingState()){
+            if(backingState() || dataUartReceive - 48 == 3){
                 status = MAN_YELLOW2;
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
@@ -878,6 +1096,9 @@ void fsm_manual(){
             Phase2_GreenOff();
             Phase2_YellowOff();
             
+            //UART
+            sendLightTimer_MAN();
+            
             // Display times:
             // 1st:
             LcdPrintStringS(0,0,"YELLOW 1:   ");
@@ -890,28 +1111,33 @@ void fsm_manual(){
             // Time out
             if(timeInManMode <= 0){
                 status = PHASE2_GREEN;
+                UART_sendingStatus();
                 timeOfLight = redTime;
                 timeOfLight_2 = green_2_Time;
             }
             
             // Button Pressed
-            if(switchMan()){
+            if(switchMan() || dataUartReceive - 48 == 0){
                 status = MAN_GREEN2;
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun()){
+            if(switchTun() || dataUartReceive - 48 == 1){
                 status = INIT_TUNING;
+                UART_sendingStatus();
             }
             
-            if(applyMan()){
+            if(applyMan()|| dataUartReceive - 48 == 2){
                 status = PHASE1_YELLOW;
+                UART_sendingStatus();
                 timeOfLight = yellow_1_Time;
                 timeOfLight_2 = yellow_1_Time;
             }
             
-            if(backingState()){
+            if(backingState()|| dataUartReceive - 48 == 3){
                 status = MAN_GREEN1;
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             break;
@@ -930,6 +1156,9 @@ void fsm_manual(){
             Phase1_GreenOff();
             Phase1_YellowOff();
             
+            //UART
+            sendLightTimer_MAN();
+            
             // Display times:
             // 1st:
             LcdPrintStringS(0,0,"RED 1:   ");
@@ -942,28 +1171,33 @@ void fsm_manual(){
             // Time out
             if(timeInManMode <= 0){
                 status = PHASE2_YELLOW;
+                UART_sendingStatus();
                 timeOfLight = yellow_2_Time;
                 timeOfLight_2 = yellow_2_Time;
             }
             
             // Button Pressed
-            if(switchMan()){
+            if(switchMan()|| dataUartReceive - 48 == 0){
                 status = MAN_YELLOW2;
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun()){
+            if(switchTun()|| dataUartReceive - 48 == 1){
                 status = INIT_TUNING;
+                UART_sendingStatus();
             }
             
-            if(applyMan()){
+            if(applyMan()|| dataUartReceive - 48 == 2){
                 status = PHASE2_GREEN;
+                UART_sendingStatus();
                 timeOfLight = redTime;
                 timeOfLight_2 = green_2_Time;
             }
             
-            if(backingState()){
+            if(backingState()|| dataUartReceive - 48 == 3){
                 status = MAN_YELLOW1;
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             break;
@@ -982,6 +1216,9 @@ void fsm_manual(){
             Phase1_GreenOff();
             Phase1_YellowOff();
             
+            //UART
+            sendLightTimer_MAN();
+            
             // Display times:
             // 1st:
             LcdPrintStringS(0,0,"RED 1:   ");
@@ -994,28 +1231,33 @@ void fsm_manual(){
             // Time out
             if(timeInManMode == 0){
                 status = PHASE1_GREEN;
+                UART_sendingStatus();
                 timeOfLight = green_1_Time;
                 timeOfLight_2 = redTime;
             }
             
             // Button Pressed
-            if(switchMan()){
+            if(switchMan()|| dataUartReceive - 48 == 0){
                 status = MAN_GREEN1;
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun()){
+            if(switchTun()|| dataUartReceive - 48 == 1){
                 status = INIT_TUNING;
+                UART_sendingStatus();
             }
             
-            if(applyMan()){
+            if(applyMan()|| dataUartReceive - 48 == 2){
                 status = PHASE1_YELLOW;
+                UART_sendingStatus();
                 timeOfLight = yellow_1_Time;
                 timeOfLight_2 = yellow_1_Time;
             }
             
-            if(backingState()){
+            if(backingState()|| dataUartReceive - 48 == 3){
                 status = MAN_GREEN2;
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             break;
@@ -1036,6 +1278,7 @@ void fsm_tuning(){
             
             //Switch
             status = TUNING_GREEN1;
+            UART_sendingStatus();
             timeInManMode = TIME_IN_MAN_MODE;
             temp_green1 = green_1_Time;
             temp_yellow1 = yellow_1_Time;
@@ -1066,20 +1309,24 @@ void fsm_tuning(){
                 Phase2_YellowOff();
             }
             
-            if(increaseValue()){
+            sendLightTimer_MAN();
+            
+            if(increaseValue() || dataUartReceive - 48 == 4 ){
                 if (temp_green1 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green1 += 1;
+                    UART_sendingSettngLight1();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
                 }
             } 
             
-            if(decreaseValue()){
+            if(decreaseValue()|| dataUartReceive - 48 == 5){
                 if (temp_green1 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green1 -= 1;
+                    UART_sendingSettngLight1();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
@@ -1098,20 +1345,23 @@ void fsm_tuning(){
             // Time out
             if(timeInManMode == 0){
                 status = INIT_SYSTEM;
+                UART_sendingStatus();
             }
             
             // Button Pressed
-            if(switchMan()){
+            if(switchMan() || dataUartReceive - 48 == 1){
                 status = TUNING_YELLOW1;
+                UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(backingState()){
+            if(backingState()|| dataUartReceive - 48 == 3){
                 timeInManMode = TIME_IN_MAN_MODE;
+                UART_sendingStatus();
                 status = TUNING_YELLOW2;
             }
             
-            if(applySetting()){
+            if(applySetting() || dataUartReceive - 48 == 2){
                 green_1_Time = temp_green1;
                 yellow_1_Time = temp_yellow1;
                 green_2_Time = temp_green2;
@@ -1119,6 +1369,7 @@ void fsm_tuning(){
                 redTime_2 = green_1_Time + yellow_1_Time;
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
+                UART_sendingStatus();
             }
             break;
         
@@ -1145,20 +1396,24 @@ void fsm_tuning(){
                 Phase2_YellowOff();
             }
             
-            if(increaseValue()){
+            sendLightTimer_MAN();
+            
+            if(increaseValue() || dataUartReceive - 48 == 4){
                 if (temp_yellow1 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow1 += 1;
+                    UART_sendingSettngLight1();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
                 }
             } 
             
-            if(decreaseValue()){
+            if(decreaseValue() || dataUartReceive - 48 == 5){
                 if (temp_yellow1 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow1 -= 1;
+                    UART_sendingSettngLight1();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
@@ -1178,20 +1433,23 @@ void fsm_tuning(){
             // Time out
             if(timeInManMode == 0){
                 status = INIT_SYSTEM;
+                UART_sendingStatus();
             }
             
             // Button Pressed
-            if(switchMan()){
+            if(switchMan() || dataUartReceive - 48 == 1){
                 status = TUNING_GREEN2;
                 timeInManMode = TIME_IN_MAN_MODE;
+                UART_sendingStatus();
             }
             
-            if(backingState()){
+            if(backingState() || dataUartReceive - 48 == 3){
                 status = TUNING_GREEN1;
                 timeInManMode = TIME_IN_MAN_MODE;
+                UART_sendingStatus();
             }
             
-            if(applySetting()){
+            if(applySetting()|| dataUartReceive - 48 == 2){
                 green_1_Time = temp_green1;
                 yellow_1_Time = temp_yellow1;
                 green_2_Time = temp_green2;
@@ -1199,6 +1457,7 @@ void fsm_tuning(){
                 redTime_2 = green_1_Time + yellow_1_Time;
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
+                UART_sendingStatus();
             }
             break;    
             
@@ -1225,20 +1484,24 @@ void fsm_tuning(){
                 Phase2_YellowOff();
             }
             
-            if(increaseValue()){
+            sendLightTimer_MAN();
+            
+            if(increaseValue() || dataUartReceive - 48 == 4){
                 if (temp_green2 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green2 += 1;
+                    UART_sendingSettngLight2();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
                 }
             } 
             
-            if(decreaseValue()){
+            if(decreaseValue()|| dataUartReceive - 48 == 5){
                 if (temp_green2 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green2 -= 1;
+                    UART_sendingSettngLight2();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
@@ -1257,19 +1520,22 @@ void fsm_tuning(){
             // Time out
             if(timeInManMode <= 0){
                 status = INIT_SYSTEM;
+                UART_sendingStatus();
             }
             
             // Button Pressed
-            if(switchMan()){
+            if(switchMan() || dataUartReceive - 48 == 1){
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW2;
+                UART_sendingStatus();
             }
-            if(backingState()){
+            if(backingState()|| dataUartReceive - 48 == 3){
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW1;
+                UART_sendingStatus();
             }
             
-            if(applySetting()){
+            if(applySetting()|| dataUartReceive - 48 == 2){
                 green_1_Time = temp_green1;
                 yellow_1_Time = temp_yellow1;
                 green_2_Time = temp_green2;
@@ -1277,6 +1543,7 @@ void fsm_tuning(){
                 redTime_2 = green_1_Time + yellow_1_Time;
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
+                UART_sendingStatus();
             }
             break;
         
@@ -1303,20 +1570,24 @@ void fsm_tuning(){
                 Phase2_YellowOff();
             }
             
-            if(increaseValue()){
+            sendLightTimer_MAN();
+            
+            if(increaseValue()|| dataUartReceive - 48 == 4){
                 if (temp_yellow2 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow2 += 1;
+                    UART_sendingSettngLight2();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
                 }
             } 
             
-            if(decreaseValue()){
+            if(decreaseValue()|| dataUartReceive - 48 == 5){
                 if (temp_yellow2 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow2 -= 1;
+                    UART_sendingSettngLight2();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
@@ -1335,20 +1606,23 @@ void fsm_tuning(){
             // Time out
             if(timeInManMode <= 0){
                 status = INIT_SYSTEM;
+                UART_sendingStatus();
             }
             
             // Button Pressed
-            if(switchMan()){
+            if(switchMan() || dataUartReceive - 48 == 1){
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN1;
+                UART_sendingStatus();
             }
             
-            if(backingState()){
+            if(backingState()|| dataUartReceive - 48 == 3){
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN2;
+                UART_sendingStatus();
             }
             
-            if(applySetting()){
+            if(applySetting()|| dataUartReceive - 48 == 2){
                 green_1_Time = temp_green1;
                 yellow_1_Time = temp_yellow1;
                 green_2_Time = temp_green2;
@@ -1356,6 +1630,7 @@ void fsm_tuning(){
                 redTime_2 = green_1_Time + yellow_1_Time;
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
+                UART_sendingStatus();
             }
             break;
             

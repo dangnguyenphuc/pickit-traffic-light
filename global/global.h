@@ -30,8 +30,8 @@
 #define     TUNING_YELLOW1               27  
 
 //#define     TUNING_RED2                  30
-#define     TUNING_GREEN2                31 
-#define     TUNING_YELLOW2               35 
+#define     TUNING_GREEN2                28 
+#define     TUNING_YELLOW2               29 
 
 
 #define     GREEN_PHASE1_TIME           10
@@ -87,5 +87,13 @@ extern unsigned int temp_yellow1;
 extern unsigned int temp_green2;
 extern unsigned int temp_yellow2;
 
+// boolean variable
+extern char redIsOn;
+extern char yellowIsOn;
+extern char greenIsOn;
+
+extern char red2IsOn;
+extern char yellow2IsOn;
+extern char green2IsOn;
 #endif	/* GLOBAL_H */
 
