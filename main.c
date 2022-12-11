@@ -634,7 +634,7 @@ void UART_sendingSettngLight1(){
     
     UartSendString("!");
     UartSendString("SET1:");
-    UartSendNumToString(temp_green1 + temp_yellow1);
+    UartSendNumToString(temp_green2 + temp_yellow2);
     UartSendString(":");
     UartSendNumToString(temp_yellow1);
     UartSendString(":");
@@ -650,7 +650,7 @@ void UART_sendingSettngLight2(){
     
     UartSendString("!");
     UartSendString("SET2:");
-    UartSendNumToString(temp_green2 + temp_yellow2);
+    UartSendNumToString(temp_green1 + temp_yellow1);
     UartSendString(":");
     UartSendNumToString(temp_yellow2);
     UartSendString(":");
@@ -772,12 +772,14 @@ void fsm_automatic(){
             }
             // Button pressed
             else if(switchMan() || dataUartReceive - 48 == 0 ){
+                dataUartReceive = 0;
                 status = MAN_YELLOW1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             else if(switchTun() || dataUartReceive - 48 == 1){
+                dataUartReceive = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
@@ -854,12 +856,14 @@ void fsm_automatic(){
             
             // Button pressed
             if(switchMan() || dataUartReceive - 48 == 0){
+                dataUartReceive = 0;
                 status = MAN_GREEN2;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun() || dataUartReceive - 48 == 1){
+                dataUartReceive = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
@@ -917,12 +921,14 @@ void fsm_automatic(){
             
             // Button pressed
             if(switchMan() || dataUartReceive - 48 == 0){
+                dataUartReceive = 0;
                 status = MAN_YELLOW2;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun() || dataUartReceive - 48 == 1){
+                dataUartReceive = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
@@ -997,12 +1003,14 @@ void fsm_automatic(){
             
             // Button pressed
             if(switchMan() || dataUartReceive - 48 == 0 ){
+                dataUartReceive = 0;
                 status = MAN_GREEN1; 
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun() || dataUartReceive - 48 == 1 ){
+                dataUartReceive = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
@@ -1057,17 +1065,20 @@ void fsm_manual(){
             
             // Button Pressed
             if(switchMan() || dataUartReceive - 48 == 0){
+                dataUartReceive = 0;
                 status = MAN_YELLOW1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun() || dataUartReceive - 48 == 1){
+                dataUartReceive = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
             
             if(applyMan() || dataUartReceive - 48 == 2){
+                dataUartReceive = 0;
                 status = PHASE1_GREEN;
                 UART_sendingStatus();
                 timeOfLight = green_1_Time;
@@ -1075,6 +1086,7 @@ void fsm_manual(){
             }
             
             if(backingState() || dataUartReceive - 48 == 3){
+                dataUartReceive = 0;
                 status = MAN_YELLOW2;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1118,17 +1130,20 @@ void fsm_manual(){
             
             // Button Pressed
             if(switchMan() || dataUartReceive - 48 == 0){
+                dataUartReceive = 0;
                 status = MAN_GREEN2;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun() || dataUartReceive - 48 == 1){
+                dataUartReceive = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
             
             if(applyMan()|| dataUartReceive - 48 == 2){
+                dataUartReceive = 0;
                 status = PHASE1_YELLOW;
                 UART_sendingStatus();
                 timeOfLight = yellow_1_Time;
@@ -1136,6 +1151,7 @@ void fsm_manual(){
             }
             
             if(backingState()|| dataUartReceive - 48 == 3){
+                dataUartReceive = 0;
                 status = MAN_GREEN1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1178,17 +1194,20 @@ void fsm_manual(){
             
             // Button Pressed
             if(switchMan()|| dataUartReceive - 48 == 0){
+                dataUartReceive = 0;
                 status = MAN_YELLOW2;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun()|| dataUartReceive - 48 == 1){
+                dataUartReceive = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
             
             if(applyMan()|| dataUartReceive - 48 == 2){
+                dataUartReceive = 0;
                 status = PHASE2_GREEN;
                 UART_sendingStatus();
                 timeOfLight = redTime;
@@ -1196,6 +1215,7 @@ void fsm_manual(){
             }
             
             if(backingState()|| dataUartReceive - 48 == 3){
+                dataUartReceive = 0;
                 status = MAN_YELLOW1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1238,17 +1258,20 @@ void fsm_manual(){
             
             // Button Pressed
             if(switchMan()|| dataUartReceive - 48 == 0){
+                dataUartReceive = 0;
                 status = MAN_GREEN1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun()|| dataUartReceive - 48 == 1){
+                dataUartReceive = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
             
             if(applyMan()|| dataUartReceive - 48 == 2){
+                dataUartReceive = 0;
                 status = PHASE1_YELLOW;
                 UART_sendingStatus();
                 timeOfLight = yellow_1_Time;
@@ -1256,6 +1279,7 @@ void fsm_manual(){
             }
             
             if(backingState()|| dataUartReceive - 48 == 3){
+                dataUartReceive = 0;
                 status = MAN_GREEN2;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1312,6 +1336,7 @@ void fsm_tuning(){
             sendLightTimer_MAN();
             
             if(increaseValue() || dataUartReceive - 48 == 4 ){
+                dataUartReceive = 0;
                 if (temp_green1 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green1 += 1;
@@ -1323,6 +1348,7 @@ void fsm_tuning(){
             } 
             
             if(decreaseValue()|| dataUartReceive - 48 == 5){
+                dataUartReceive = 0;
                 if (temp_green1 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green1 -= 1;
@@ -1350,18 +1376,21 @@ void fsm_tuning(){
             
             // Button Pressed
             if(switchMan() || dataUartReceive - 48 == 1){
+                dataUartReceive = 0;
                 status = TUNING_YELLOW1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(backingState()|| dataUartReceive - 48 == 3){
+                dataUartReceive = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 UART_sendingStatus();
                 status = TUNING_YELLOW2;
             }
             
             if(applySetting() || dataUartReceive - 48 == 2){
+                dataUartReceive = 0;
                 green_1_Time = temp_green1;
                 yellow_1_Time = temp_yellow1;
                 green_2_Time = temp_green2;
@@ -1369,6 +1398,8 @@ void fsm_tuning(){
                 redTime_2 = green_1_Time + yellow_1_Time;
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
+                UART_sendingSettngLight1();
+                UART_sendingSettngLight2();
                 UART_sendingStatus();
             }
             break;
@@ -1399,6 +1430,7 @@ void fsm_tuning(){
             sendLightTimer_MAN();
             
             if(increaseValue() || dataUartReceive - 48 == 4){
+                dataUartReceive = 0;
                 if (temp_yellow1 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow1 += 1;
@@ -1410,6 +1442,7 @@ void fsm_tuning(){
             } 
             
             if(decreaseValue() || dataUartReceive - 48 == 5){
+                dataUartReceive = 0;
                 if (temp_yellow1 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow1 -= 1;
@@ -1438,18 +1471,21 @@ void fsm_tuning(){
             
             // Button Pressed
             if(switchMan() || dataUartReceive - 48 == 1){
+                dataUartReceive = 0;
                 status = TUNING_GREEN2;
                 timeInManMode = TIME_IN_MAN_MODE;
                 UART_sendingStatus();
             }
             
             if(backingState() || dataUartReceive - 48 == 3){
+                dataUartReceive = 0;
                 status = TUNING_GREEN1;
                 timeInManMode = TIME_IN_MAN_MODE;
                 UART_sendingStatus();
             }
             
             if(applySetting()|| dataUartReceive - 48 == 2){
+                dataUartReceive = 0;
                 green_1_Time = temp_green1;
                 yellow_1_Time = temp_yellow1;
                 green_2_Time = temp_green2;
@@ -1457,6 +1493,8 @@ void fsm_tuning(){
                 redTime_2 = green_1_Time + yellow_1_Time;
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
+                UART_sendingSettngLight1();
+                UART_sendingSettngLight2();
                 UART_sendingStatus();
             }
             break;    
@@ -1487,6 +1525,7 @@ void fsm_tuning(){
             sendLightTimer_MAN();
             
             if(increaseValue() || dataUartReceive - 48 == 4){
+                dataUartReceive = 0;
                 if (temp_green2 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green2 += 1;
@@ -1498,6 +1537,7 @@ void fsm_tuning(){
             } 
             
             if(decreaseValue()|| dataUartReceive - 48 == 5){
+                dataUartReceive = 0;
                 if (temp_green2 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green2 -= 1;
@@ -1525,17 +1565,20 @@ void fsm_tuning(){
             
             // Button Pressed
             if(switchMan() || dataUartReceive - 48 == 1){
+                dataUartReceive = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW2;
                 UART_sendingStatus();
             }
             if(backingState()|| dataUartReceive - 48 == 3){
+                dataUartReceive = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW1;
                 UART_sendingStatus();
             }
             
             if(applySetting()|| dataUartReceive - 48 == 2){
+                dataUartReceive = 0;
                 green_1_Time = temp_green1;
                 yellow_1_Time = temp_yellow1;
                 green_2_Time = temp_green2;
@@ -1543,6 +1586,8 @@ void fsm_tuning(){
                 redTime_2 = green_1_Time + yellow_1_Time;
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
+                UART_sendingSettngLight1();
+                UART_sendingSettngLight2();
                 UART_sendingStatus();
             }
             break;
@@ -1573,6 +1618,7 @@ void fsm_tuning(){
             sendLightTimer_MAN();
             
             if(increaseValue()|| dataUartReceive - 48 == 4){
+                dataUartReceive = 0;
                 if (temp_yellow2 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow2 += 1;
@@ -1584,6 +1630,7 @@ void fsm_tuning(){
             } 
             
             if(decreaseValue()|| dataUartReceive - 48 == 5){
+                dataUartReceive = 0;
                 if (temp_yellow2 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow2 -= 1;
@@ -1611,18 +1658,21 @@ void fsm_tuning(){
             
             // Button Pressed
             if(switchMan() || dataUartReceive - 48 == 1){
+                dataUartReceive = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN1;
                 UART_sendingStatus();
             }
             
             if(backingState()|| dataUartReceive - 48 == 3){
+                dataUartReceive = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN2;
                 UART_sendingStatus();
             }
             
             if(applySetting()|| dataUartReceive - 48 == 2){
+                dataUartReceive = 0;
                 green_1_Time = temp_green1;
                 yellow_1_Time = temp_yellow1;
                 green_2_Time = temp_green2;
@@ -1630,6 +1680,8 @@ void fsm_tuning(){
                 redTime_2 = green_1_Time + yellow_1_Time;
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
+                UART_sendingSettngLight1();
+                UART_sendingSettngLight2();
                 UART_sendingStatus();
             }
             break;
