@@ -13,6 +13,7 @@ unsigned char arrayMapOfOutput [8] = {0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};
 unsigned char statusOutput[8] = {0,0,0,0,0,0,0,0};
 unsigned char statusSim900 = INIT_SYSTEM;
 unsigned char WaitResponse = 0;
+
 // Khai bao cac ham co ban IO
 void init_system(void);
 void delay_ms(int value);
@@ -20,7 +21,6 @@ void OpenOutput(int index);
 void CloseOutput(int index);
 void TestOutput(void);
 void ReverseOutput(int index);
-void TestReceiveUart();
 
 unsigned char isButtonCall();
 unsigned char isButtonMessage();
@@ -91,6 +91,8 @@ void sendLightTimer();
 // receiving
 void UART_receiving();
 
+//Compare Receive
+unsigned char compare(int s1, int s2, int s3, int s4, int s5, int s6);
 
 // 1st FSM
 void fsm_automatic();
@@ -106,6 +108,10 @@ void main(void)
 {
 	int k = 0;
 	init_system();
+    UART_sendingSettngLight1();
+    UART_sendingSettngLight2();
+    UART_sendingTimerLight1(0);
+    UART_sendingTimerLight2(0);
         lcd_clear();
         LcdClearS();
         delay_ms(1000);
@@ -113,7 +119,6 @@ void main(void)
 	{
             while (!flag_timer3);
             flag_timer3 = 0;
-            TestReceiveUart();
             //k = k + 1111;
             //UartSendNumToString(k);
             //UartSendString(" ");
@@ -122,8 +127,8 @@ void main(void)
 //            GetSensor();
             LcdClearS();
             countTime();
-            fsm_automatic();
             fsm_manual();
+            fsm_automatic();
             fsm_tuning();
             DisplayLcdScreen();
 	}
@@ -161,6 +166,12 @@ void init_system(void)
         init_uart();
         init_adc();
         TRISB = TRISB | 0x03; // RB1, RB0 input
+}
+
+unsigned char compare(int s0, int s1, int s2, int s3, int s4, int s5){
+    if (dataReceive[0] == s0 && dataReceive[1] == s1 && dataReceive[2] == s2 && dataReceive[3] == s3 && dataReceive[4] == s4 && dataReceive[5] == s5)
+        return 1;
+    return 0;
 }
 
 void OpenOutput(int index)
@@ -226,31 +237,6 @@ unsigned char isButtonMessage()
         return 0;
 }
 
-void TestReceiveUart()
-{
-    LcdPrintStringS(0,0,"   ");
-    LcdPrintNumS(0,0,dataUartReceive);
-}
-void BaiTap_UART()
-{
-    int i_uart;
-    unsigned long pH_value,adc_value;
-    adc_value = get_adc_value(0);
-    pH_value = (adc_value * 140)/1023;
-    uart_putchar(pH_value);
-    if (pH_value<100)
-    {
-        LcdPrintNumS(0,10,pH_value/10);
-        LcdPrintStringS(0,11,".");
-        LcdPrintNumS(0,12,pH_value%10);
-    }
-    else
-    {
-        LcdPrintNumS(0,10,pH_value/10);
-        LcdPrintStringS(0,12,".");
-        LcdPrintNumS(0,13,pH_value%10);
-    }
-}
 
 void GetDistance(void)
 {
@@ -634,7 +620,7 @@ void UART_sendingSettngLight1(){
     
     UartSendString("!");
     UartSendString("SET1:");
-    UartSendNumToString(temp_green2 + temp_yellow2);
+    UartSendNumToString(temp_green1 + temp_yellow1);
     UartSendString(":");
     UartSendNumToString(temp_yellow1);
     UartSendString(":");
@@ -650,7 +636,7 @@ void UART_sendingSettngLight2(){
     
     UartSendString("!");
     UartSendString("SET2:");
-    UartSendNumToString(temp_green1 + temp_yellow1);
+    UartSendNumToString(temp_green2 + temp_yellow2);
     UartSendString(":");
     UartSendNumToString(temp_yellow2);
     UartSendString(":");
@@ -771,19 +757,24 @@ void fsm_automatic(){
                 timeOfLight = yellow_1_Time;
             }
             // Button pressed
-            else if(switchMan() || dataUartReceive - 48 == 0 ){
-                dataUartReceive = 0;
-                status = MAN_YELLOW1;
+            else if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48))){
+                flagOfDataReceiveComplete = 0;
+                status = MAN_GREEN1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            else if(switchTun() || dataUartReceive - 48 == 1){
-                dataUartReceive = 0;
+            else if(switchTun() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
             
+            //Control by terminal
+            if (flagOfDataReceiveComplete == 1 && compare(67, 72, 84, 73, 77, 69)){
+                status = INIT_TUNING;
+                flagOfDataReceiveComplete = 0;
+            }
 
             break;
         
@@ -855,17 +846,23 @@ void fsm_automatic(){
             }
             
             // Button pressed
-            if(switchMan() || dataUartReceive - 48 == 0){
-                dataUartReceive = 0;
-                status = MAN_GREEN2;
+            if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48) )){
+                flagOfDataReceiveComplete = 0;
+                status = MAN_YELLOW1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun() || dataUartReceive - 48 == 1){
-                dataUartReceive = 0;
+            if(switchTun() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
+            }
+            
+            //Control by terminal
+            if (flagOfDataReceiveComplete == 1 && compare(67, 72, 84, 73, 77, 69)){
+                status = INIT_TUNING;
+                flagOfDataReceiveComplete = 0;
             }
             
             break;
@@ -920,17 +917,23 @@ void fsm_automatic(){
             }
             
             // Button pressed
-            if(switchMan() || dataUartReceive - 48 == 0){
-                dataUartReceive = 0;
-                status = MAN_YELLOW2;
+            if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48))){
+                flagOfDataReceiveComplete = 0;
+                status = MAN_GREEN2;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun() || dataUartReceive - 48 == 1){
-                dataUartReceive = 0;
+            if(switchTun() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
+            }
+            
+            //Control by terminal
+            if (flagOfDataReceiveComplete == 1 && compare(67, 72, 84, 73, 77, 69)){
+                status = INIT_TUNING;
+                flagOfDataReceiveComplete = 0;
             }
             
             
@@ -1002,17 +1005,23 @@ void fsm_automatic(){
             }
             
             // Button pressed
-            if(switchMan() || dataUartReceive - 48 == 0 ){
-                dataUartReceive = 0;
-                status = MAN_GREEN1; 
+            if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48)) ){
+                flagOfDataReceiveComplete = 0;
+                status = MAN_YELLOW2; 
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun() || dataUartReceive - 48 == 1 ){
-                dataUartReceive = 0;
+            if(switchTun() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48)) ){
+                flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
+            }
+            
+            //Control by terminal
+            if (flagOfDataReceiveComplete == 1 && compare(67, 72, 84, 73, 77, 69)){
+                status = INIT_TUNING;
+                flagOfDataReceiveComplete = 0;
             }
             
            
@@ -1064,32 +1073,38 @@ void fsm_manual(){
             }
             
             // Button Pressed
-            if(switchMan() || dataUartReceive - 48 == 0){
-                dataUartReceive = 0;
+            if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = MAN_YELLOW1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun() || dataUartReceive - 48 == 1){
-                dataUartReceive = 0;
+            if(switchTun() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
             
-            if(applyMan() || dataUartReceive - 48 == 2){
-                dataUartReceive = 0;
+            if(applyMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = PHASE1_GREEN;
                 UART_sendingStatus();
                 timeOfLight = green_1_Time;
                 timeOfLight_2 = redTime_2;
             }
             
-            if(backingState() || dataUartReceive - 48 == 3){
-                dataUartReceive = 0;
+            if(backingState() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = MAN_YELLOW2;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
+            }
+            
+            //Control by terminal
+            if (flagOfDataReceiveComplete == 1 && compare(67, 72, 84, 73, 77, 69)){
+                status = INIT_TUNING;
+                flagOfDataReceiveComplete = 0;
             }
             
             break;
@@ -1129,32 +1144,38 @@ void fsm_manual(){
             }
             
             // Button Pressed
-            if(switchMan() || dataUartReceive - 48 == 0){
-                dataUartReceive = 0;
+            if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = MAN_GREEN2;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun() || dataUartReceive - 48 == 1){
-                dataUartReceive = 0;
+            if(switchTun() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
             
-            if(applyMan()|| dataUartReceive - 48 == 2){
-                dataUartReceive = 0;
+            if(applyMan()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = PHASE1_YELLOW;
                 UART_sendingStatus();
                 timeOfLight = yellow_1_Time;
                 timeOfLight_2 = yellow_1_Time;
             }
             
-            if(backingState()|| dataUartReceive - 48 == 3){
-                dataUartReceive = 0;
+            if(backingState()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = MAN_GREEN1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
+            }
+            
+            //Control by terminal
+            if (flagOfDataReceiveComplete == 1 && compare(67, 72, 84, 73, 77, 69)){
+                status = INIT_TUNING;
+                flagOfDataReceiveComplete = 0;
             }
             break;
             
@@ -1193,32 +1214,38 @@ void fsm_manual(){
             }
             
             // Button Pressed
-            if(switchMan()|| dataUartReceive - 48 == 0){
-                dataUartReceive = 0;
+            if(switchMan()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = MAN_YELLOW2;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun()|| dataUartReceive - 48 == 1){
-                dataUartReceive = 0;
+            if(switchTun()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
             
-            if(applyMan()|| dataUartReceive - 48 == 2){
-                dataUartReceive = 0;
+            if(applyMan()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = PHASE2_GREEN;
                 UART_sendingStatus();
                 timeOfLight = redTime;
                 timeOfLight_2 = green_2_Time;
             }
             
-            if(backingState()|| dataUartReceive - 48 == 3){
-                dataUartReceive = 0;
+            if(backingState()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = MAN_YELLOW1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
+            }
+            
+            //Control by terminal
+            if (flagOfDataReceiveComplete == 1 && compare(67, 72, 84, 73, 77, 69)){
+                status = INIT_TUNING;
+                flagOfDataReceiveComplete = 0;
             }
             break;
         
@@ -1257,32 +1284,38 @@ void fsm_manual(){
             }
             
             // Button Pressed
-            if(switchMan()|| dataUartReceive - 48 == 0){
-                dataUartReceive = 0;
+            if(switchMan()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = MAN_GREEN1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(switchTun()|| dataUartReceive - 48 == 1){
-                dataUartReceive = 0;
+            if(switchTun()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
                 UART_sendingStatus();
             }
             
-            if(applyMan()|| dataUartReceive - 48 == 2){
-                dataUartReceive = 0;
-                status = PHASE1_YELLOW;
+            if(applyMan()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))){
+                flagOfDataReceiveComplete = 0;
+                status = PHASE2_YELLOW;
                 UART_sendingStatus();
-                timeOfLight = yellow_1_Time;
-                timeOfLight_2 = yellow_1_Time;
+                timeOfLight = yellow_2_Time;
+                timeOfLight_2 = yellow_2_Time;
             }
             
-            if(backingState()|| dataUartReceive - 48 == 3){
-                dataUartReceive = 0;
+            if(backingState()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = MAN_GREEN2;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
+            }
+            
+            //Control by terminal
+            if (flagOfDataReceiveComplete == 1 && compare(67, 72, 84, 73, 77, 69)){
+                status = INIT_TUNING;
+                flagOfDataReceiveComplete = 0;
             }
             break;
             
@@ -1335,8 +1368,8 @@ void fsm_tuning(){
             
             sendLightTimer_MAN();
             
-            if(increaseValue() || dataUartReceive - 48 == 4 ){
-                dataUartReceive = 0;
+            if(increaseValue() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 52, 48, 48)) ){
+                flagOfDataReceiveComplete = 0;
                 if (temp_green1 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green1 += 1;
@@ -1347,8 +1380,8 @@ void fsm_tuning(){
                 }
             } 
             
-            if(decreaseValue()|| dataUartReceive - 48 == 5){
-                dataUartReceive = 0;
+            if(decreaseValue()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 53, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 if (temp_green1 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green1 -= 1;
@@ -1375,22 +1408,23 @@ void fsm_tuning(){
             }
             
             // Button Pressed
-            if(switchMan() || dataUartReceive - 48 == 1){
-                dataUartReceive = 0;
+            if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = TUNING_YELLOW1;
                 UART_sendingStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
-            if(backingState()|| dataUartReceive - 48 == 3){
-                dataUartReceive = 0;
+            if(backingState()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 UART_sendingStatus();
                 status = TUNING_YELLOW2;
             }
             
-            if(applySetting() || dataUartReceive - 48 == 2){
-                dataUartReceive = 0;
+            if(applySetting() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))
+                               || (flagOfDataReceiveComplete == 1 && compare(67, 79, 77, 77, 73, 84))){
+                flagOfDataReceiveComplete = 0;
                 green_1_Time = temp_green1;
                 yellow_1_Time = temp_yellow1;
                 green_2_Time = temp_green2;
@@ -1399,6 +1433,41 @@ void fsm_tuning(){
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
                 UART_sendingSettngLight1();
+                UART_sendingSettngLight2();
+                UART_sendingStatus();
+            }
+            
+            //Control by terminal
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 49){
+                flagOfDataReceiveComplete = 0;
+                temp_green1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                UART_sendingSettngLight1();
+            }
+            
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 50){
+                flagOfDataReceiveComplete = 0;
+                temp_green2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_GREEN2;
+                UART_sendingSettngLight2();
+                UART_sendingStatus();
+            }
+            
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 49){
+                flagOfDataReceiveComplete = 0;
+                temp_yellow1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_YELLOW1;
+                UART_sendingSettngLight1();
+                UART_sendingStatus();
+            }
+            
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 50){
+                flagOfDataReceiveComplete = 0;
+                temp_yellow2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_YELLOW2;
                 UART_sendingSettngLight2();
                 UART_sendingStatus();
             }
@@ -1429,8 +1498,8 @@ void fsm_tuning(){
             
             sendLightTimer_MAN();
             
-            if(increaseValue() || dataUartReceive - 48 == 4){
-                dataUartReceive = 0;
+            if(increaseValue() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 52, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 if (temp_yellow1 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow1 += 1;
@@ -1441,8 +1510,8 @@ void fsm_tuning(){
                 }
             } 
             
-            if(decreaseValue() || dataUartReceive - 48 == 5){
-                dataUartReceive = 0;
+            if(decreaseValue() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 53, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 if (temp_yellow1 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow1 -= 1;
@@ -1470,22 +1539,23 @@ void fsm_tuning(){
             }
             
             // Button Pressed
-            if(switchMan() || dataUartReceive - 48 == 1){
-                dataUartReceive = 0;
+            if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = TUNING_GREEN2;
                 timeInManMode = TIME_IN_MAN_MODE;
                 UART_sendingStatus();
             }
             
-            if(backingState() || dataUartReceive - 48 == 3){
-                dataUartReceive = 0;
+            if(backingState() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 status = TUNING_GREEN1;
                 timeInManMode = TIME_IN_MAN_MODE;
                 UART_sendingStatus();
             }
             
-            if(applySetting()|| dataUartReceive - 48 == 2){
-                dataUartReceive = 0;
+            if(applySetting()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))
+                             || (flagOfDataReceiveComplete == 1 && compare(67, 79, 77, 77, 73, 84))){
+                flagOfDataReceiveComplete = 0;
                 green_1_Time = temp_green1;
                 yellow_1_Time = temp_yellow1;
                 green_2_Time = temp_green2;
@@ -1494,6 +1564,41 @@ void fsm_tuning(){
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
                 UART_sendingSettngLight1();
+                UART_sendingSettngLight2();
+                UART_sendingStatus();
+            }
+            
+            //Control by terminal
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 49){
+                flagOfDataReceiveComplete = 0;
+                temp_green1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_GREEN1;
+                UART_sendingSettngLight1();
+                UART_sendingStatus();
+            }
+            
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 50){
+                flagOfDataReceiveComplete = 0;
+                temp_green2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_GREEN2;
+                UART_sendingSettngLight2();
+                UART_sendingStatus();
+            }
+            
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 49){
+                flagOfDataReceiveComplete = 0;
+                temp_yellow1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                UART_sendingSettngLight1();
+            }
+            
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 50){
+                flagOfDataReceiveComplete = 0;
+                temp_yellow2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_YELLOW2;
                 UART_sendingSettngLight2();
                 UART_sendingStatus();
             }
@@ -1524,8 +1629,8 @@ void fsm_tuning(){
             
             sendLightTimer_MAN();
             
-            if(increaseValue() || dataUartReceive - 48 == 4){
-                dataUartReceive = 0;
+            if(increaseValue() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 52, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 if (temp_green2 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green2 += 1;
@@ -1536,8 +1641,8 @@ void fsm_tuning(){
                 }
             } 
             
-            if(decreaseValue()|| dataUartReceive - 48 == 5){
-                dataUartReceive = 0;
+            if(decreaseValue()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 53, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 if (temp_green2 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green2 -= 1;
@@ -1564,21 +1669,22 @@ void fsm_tuning(){
             }
             
             // Button Pressed
-            if(switchMan() || dataUartReceive - 48 == 1){
-                dataUartReceive = 0;
+            if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW2;
                 UART_sendingStatus();
             }
-            if(backingState()|| dataUartReceive - 48 == 3){
-                dataUartReceive = 0;
+            if(backingState()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW1;
                 UART_sendingStatus();
             }
             
-            if(applySetting()|| dataUartReceive - 48 == 2){
-                dataUartReceive = 0;
+            if(applySetting()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))
+                             || (flagOfDataReceiveComplete == 1 && compare(67, 79, 77, 77, 73, 84))){
+                flagOfDataReceiveComplete = 0;
                 green_1_Time = temp_green1;
                 yellow_1_Time = temp_yellow1;
                 green_2_Time = temp_green2;
@@ -1587,6 +1693,41 @@ void fsm_tuning(){
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
                 UART_sendingSettngLight1();
+                UART_sendingSettngLight2();
+                UART_sendingStatus();
+            }
+            
+            //Control by terminal
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 49){
+                flagOfDataReceiveComplete = 0;
+                temp_green1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_GREEN1;
+                UART_sendingSettngLight1();
+                UART_sendingStatus();
+            }
+            
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 50){
+                flagOfDataReceiveComplete = 0;
+                temp_green2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                UART_sendingSettngLight2();
+            }
+            
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 49){
+                flagOfDataReceiveComplete = 0;
+                temp_yellow1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_YELLOW1;
+                UART_sendingSettngLight1();
+                UART_sendingStatus();
+            }
+            
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 50){
+                flagOfDataReceiveComplete = 0;
+                temp_yellow2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_YELLOW2;
                 UART_sendingSettngLight2();
                 UART_sendingStatus();
             }
@@ -1617,8 +1758,8 @@ void fsm_tuning(){
             
             sendLightTimer_MAN();
             
-            if(increaseValue()|| dataUartReceive - 48 == 4){
-                dataUartReceive = 0;
+            if(increaseValue()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 52, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 if (temp_yellow2 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow2 += 1;
@@ -1629,8 +1770,8 @@ void fsm_tuning(){
                 }
             } 
             
-            if(decreaseValue()|| dataUartReceive - 48 == 5){
-                dataUartReceive = 0;
+            if(decreaseValue()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 53, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 if (temp_yellow2 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow2 -= 1;
@@ -1657,22 +1798,23 @@ void fsm_tuning(){
             }
             
             // Button Pressed
-            if(switchMan() || dataUartReceive - 48 == 1){
-                dataUartReceive = 0;
+            if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN1;
                 UART_sendingStatus();
             }
             
-            if(backingState()|| dataUartReceive - 48 == 3){
-                dataUartReceive = 0;
+            if(backingState()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
+                flagOfDataReceiveComplete = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN2;
                 UART_sendingStatus();
             }
             
-            if(applySetting()|| dataUartReceive - 48 == 2){
-                dataUartReceive = 0;
+            if(applySetting()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))
+                             || (flagOfDataReceiveComplete == 1 && compare(67, 79, 77, 77, 73, 84))){
+                flagOfDataReceiveComplete = 0;
                 green_1_Time = temp_green1;
                 yellow_1_Time = temp_yellow1;
                 green_2_Time = temp_green2;
@@ -1683,6 +1825,41 @@ void fsm_tuning(){
                 UART_sendingSettngLight1();
                 UART_sendingSettngLight2();
                 UART_sendingStatus();
+            }
+            
+            //Control by terminal
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 49){
+                flagOfDataReceiveComplete = 0;
+                temp_green1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_GREEN1;
+                UART_sendingSettngLight1();
+                UART_sendingStatus();
+            }
+            
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 50){
+                flagOfDataReceiveComplete = 0;
+                temp_green2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_GREEN2;
+                UART_sendingSettngLight2();
+                UART_sendingStatus();
+            }
+            
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 49){
+                flagOfDataReceiveComplete = 0;
+                temp_yellow1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                status = TUNING_YELLOW1;
+                UART_sendingSettngLight1();
+                UART_sendingStatus();
+            }
+            
+            if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 50){
+                flagOfDataReceiveComplete = 0;
+                temp_yellow2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
+                timeInManMode = TIME_IN_MAN_MODE;
+                UART_sendingSettngLight2();
             }
             break;
             

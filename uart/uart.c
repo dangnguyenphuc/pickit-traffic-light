@@ -2,19 +2,24 @@
 #include "..\timer\timer.h"
 #include "..\lcd\lcd.h"
 
-#define INIT_RECEIVE    0
-#define DISPLAY         1
+#define INIT_RECEIVE		0
+#define WAIT_HEADER_1		1
+#define WAIT_HEADER_2		2
+#define RECEIVE_DATA		3
+#define END_OF_RECEIVE_1	4
+#define END_OF_RECEIVE_2	5
 
-#define WAIT_CMD    0
-#define WAIT_BYTE2  1
-#define WAIT_DATA   2
-
-unsigned char dataUartReceive;
+unsigned char i;
 unsigned char statusReceive = INIT_RECEIVE;
-unsigned char statusUartReceive = WAIT_CMD;
-unsigned char ColumnDislayMoney = 0;
-unsigned char dataFromUart[8];
-unsigned char kindOfData;
+unsigned char flagOfDataReceiveComplete = 0;
+unsigned char indexOfMachine = 0;
+unsigned char indexOfDataReceive = 0;
+unsigned char indexOfdataSend = 0;
+unsigned char numberOfDataReceive = 6;
+unsigned char dataReceive [50];
+unsigned char numberOfDataSend = 5;
+unsigned char dataSend [50];
+
 void init_uart()
 {
 
@@ -70,11 +75,57 @@ void UartSendString(const rom char *str)
 	}
 }
 
-void uart_isr()
+void uart_isr_simulate_machine()
 {
     unsigned char tempReceive;
     tempReceive = RCREG;
-    dataUartReceive = tempReceive;
+    switch(statusReceive)
+    {
+        case INIT_RECEIVE:
+        case WAIT_HEADER_1:
+            if (tempReceive == 0x21)
+            {
+                indexOfDataReceive = 0;
+                statusReceive = WAIT_HEADER_2;
+            }
+            break;
+        case WAIT_HEADER_2:
+            if (tempReceive == 0x21)
+                statusReceive = RECEIVE_DATA;
+            else
+                statusReceive = WAIT_HEADER_1;
+            break;
+        case RECEIVE_DATA:
+            dataReceive [indexOfDataReceive] = tempReceive;
+            indexOfDataReceive ++;
+            if (indexOfDataReceive >= numberOfDataReceive)
+                statusReceive = END_OF_RECEIVE_1;
+
+            break;
+        case END_OF_RECEIVE_1:
+            if (tempReceive == 0x23)
+                statusReceive = END_OF_RECEIVE_2;
+            else
+                statusReceive = WAIT_HEADER_1;
+            break;
+        case END_OF_RECEIVE_2:
+            if (tempReceive == 0x23)
+            {
+                flagOfDataReceiveComplete = 1;
+                statusReceive = INIT_RECEIVE;
+            }
+            else
+                statusReceive = WAIT_HEADER_1;
+            break;
+        default:
+            statusReceive = INIT_RECEIVE;
+            break;
+    }
+}
+
+void uart_isr()
+{
+    uart_isr_simulate_machine();
 }
 
 void UartSendDataGraph(int value_1,int value_2,int value_3,int value_4)
