@@ -95,25 +95,8 @@ void UART_receiving();
 //Compare Receive
 unsigned char compare(int s1, int s2, int s3, int s4, int s5, int s6);
 
-<<<<<<< HEAD
 //Reset system
 void ServerPressedReset();
-=======
-void ServerPressedReset(){
-	if(compare()){ // Viet giup cai so sánh với !!RESET:000##
-		status = INIT_SYSTEM;
-		green_1_Time = GREEN_PHASE1_TIME;
-		yellow_1_Time = YELLOW_PHASE1_TIME;
-		redTime = green_1_Time+yellow_1_Time;
-		
-		green_2_Time = GREEN_PHASE2_TIME;
-		yellow_2_Time = YELLOW_PHASE2_TIME;
-		redTime_2 = green_2_Time+yellow_2_Time;
-	}
-	
-}
-	
->>>>>>> origin
 
 // 1st FSM
 void fsm_automatic();
@@ -146,11 +129,7 @@ void main(void)
             scan_key_matrix_with_uart();
             //BaiTap_UART();
 //            GetSensor();
-<<<<<<< HEAD
             ServerPressedReset();
-=======
-	    ServerPressedReset()
->>>>>>> origin
             LcdClearS();
             countTime();
             fsm_manual();
