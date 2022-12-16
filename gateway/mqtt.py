@@ -5,6 +5,7 @@ import json
 import time
 import serial.tools.list_ports
 import re
+from model import *
 
 def expand_cmd(cmd):
     if cmd<10:
@@ -55,6 +56,8 @@ def recv_message(client, userdata, message):
             cmd = "!!BT:400##"
         if jsonobj['method'] == "decButton":
             cmd = "!!BT:500##"
+        if jsonobj['method'] == "resetButton":
+            cmd = "!!RS:000##"
 
         # Adjust
         if jsonobj['method'] == "setGreen1":
@@ -162,19 +165,29 @@ client.loop_start()
 client.on_subscribe = subscribed
 client.on_message = recv_message
 
-time1 = 0;
-red1 = True
-yellow1 = True
-green1 = True
+counter = 0
 
-time2 = time1+5
-red2 = True
-yellow2 = True
-green2 = True
-
-status = 1
 while True:
 
     if len(bbc_port) >  0:
         readSerial()
+    
+    
+    # if counter >= 8:
+    #     counter = 0
+    #     ai_result = detect_congesion()
+    #     print("AI Output: ", ai_result)
+
+    #     if ai_result.split(" ")[0] == "1":
+    #         print("Set GREEN1 time to 100s")
+    #         ser.write("!!BT:100##".encode())
+    #         time.sleep(0.5)
+    #         ser.write("!!G1:100##".encode())
+    #         time.sleep(0.5)
+    #         ser.write("!!BT:200##".encode())
+
+    #     collect_data = {"predictCongestion": ai_result}
+    #     client.publish('v1/devices/me/attributes', json.dumps(collect_data), 1)
+
+    counter += 1
     time.sleep(1)

@@ -94,6 +94,9 @@ void UART_receiving();
 //Compare Receive
 unsigned char compare(int s1, int s2, int s3, int s4, int s5, int s6);
 
+//Reset system
+void ServerPressedReset();
+
 // 1st FSM
 void fsm_automatic();
 // 2nd FSM
@@ -125,6 +128,7 @@ void main(void)
             scan_key_matrix_with_uart();
             //BaiTap_UART();
 //            GetSensor();
+            ServerPressedReset();
             LcdClearS();
             countTime();
             fsm_manual();
@@ -172,6 +176,28 @@ unsigned char compare(int s0, int s1, int s2, int s3, int s4, int s5){
     if (dataReceive[0] == s0 && dataReceive[1] == s1 && dataReceive[2] == s2 && dataReceive[3] == s3 && dataReceive[4] == s4 && dataReceive[5] == s5)
         return 1;
     return 0;
+}
+
+void ServerPressedReset(){
+	if(flagOfDataReceiveComplete == 1 && compare(82, 83, 58, 48, 48, 48)){ 
+		flagOfDataReceiveComplete = 0;
+        temp_green1 = GREEN_PHASE1_TIME;
+        temp_green2 = GREEN_PHASE2_TIME;
+        temp_yellow1 = YELLOW_PHASE1_TIME;
+        temp_yellow2 = YELLOW_PHASE2_TIME;
+        
+        status = INIT_SYSTEM;
+		green_1_Time = GREEN_PHASE1_TIME;
+		yellow_1_Time = YELLOW_PHASE1_TIME;
+		redTime_2 = green_1_Time+yellow_1_Time;
+		
+		green_2_Time = GREEN_PHASE2_TIME;
+		yellow_2_Time = YELLOW_PHASE2_TIME;
+		redTime = green_2_Time+yellow_2_Time;
+        UART_sendingSettngLight1();
+        UART_sendingSettngLight2();
+	}
+	
 }
 
 void OpenOutput(int index)

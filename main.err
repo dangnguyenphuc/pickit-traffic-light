@@ -1,62 +1,65 @@
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 111 : call of function without prototype
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 112 : call of function without prototype
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 114 : call of function without prototype
 Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 115 : call of function without prototype
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 116 : call of function without prototype
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 125 : call of function without prototype
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 118 : call of function without prototype
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 119 : call of function without prototype
 Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 128 : call of function without prototype
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 129 : call of function without prototype
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 130 : call of function without prototype
 Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 131 : call of function without prototype
 Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 132 : call of function without prototype
 Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 133 : call of function without prototype
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 149 : call of function without prototype
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 165 : call of function without prototype
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 166 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 290 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 306 : suspicious pointer conversion
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 339 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 340 : suspicious pointer conversion
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 344 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 345 : suspicious pointer conversion
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 349 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 350 : suspicious pointer conversion
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 354 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 355 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 359 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 362 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 365 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 368 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 732 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 735 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 745 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 810 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 813 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 821 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 824 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 893 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 896 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 904 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 969 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 972 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 980 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 983 : suspicious pointer conversion
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1056 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1060 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1063 : suspicious pointer conversion
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1127 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1131 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1134 : suspicious pointer conversion
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1197 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1201 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1204 : suspicious pointer conversion
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1267 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1271 : suspicious pointer conversion
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1274 : suspicious pointer conversion
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1369 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1397 : suspicious pointer conversion
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1499 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1528 : suspicious pointer conversion
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1630 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1658 : suspicious pointer conversion
-Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1759 : call of function without prototype
-Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1787 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 134 : call of function without prototype
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 135 : call of function without prototype
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 136 : call of function without prototype
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 137 : call of function without prototype
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 153 : call of function without prototype
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 169 : call of function without prototype
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 170 : call of function without prototype
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 197 : call of function without prototype
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 198 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 316 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 332 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 365 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 366 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 370 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 371 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 375 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 376 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 380 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 381 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 385 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 388 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 391 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 394 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 758 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 761 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 771 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 836 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 839 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 847 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 850 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 919 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 922 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 930 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 995 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 998 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1006 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1009 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1082 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1086 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1089 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1153 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1157 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1160 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1223 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1227 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1230 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1293 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1297 : suspicious pointer conversion
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1300 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1395 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1423 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1525 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1554 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1656 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1684 : suspicious pointer conversion
+Warning[2058] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1785 : call of function without prototype
+Warning[2054] F:\Study Document\DA_TKLL\Logic_Design_Project\main.c 1813 : suspicious pointer conversion

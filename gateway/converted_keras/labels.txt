@@ -1,0 +1,2 @@
+0 Not_gonna_stuck
+1 Gonna_stuck
