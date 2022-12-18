@@ -24,28 +24,6 @@ void ReverseOutput(int index);
 
 unsigned char isButtonCall();
 unsigned char isButtonMessage();
-void Sim900();
-void BaiTap_UART();
-unsigned int x_Graph,y_Graph,z_Graph;
-
-#define         GET_DATA        0
-#define         SEND_DATA       1
-
-unsigned long dataOfSensor[40];
-unsigned long averageSensor =0 ;
-unsigned long rawSensor =0 ;
-char statusSensor = GET_DATA ;
-void GetSensor(void);
-
-char indexOfData = 0;
-unsigned long dataOfDistance[20];
-unsigned long time=0;
-unsigned long averageDistance =0 ;
-unsigned long rawDistance =0 ;
-char statusDistance = GET_DATA ;
-void GetDistance(void);
-void delay_trigger(void);
-void pulse(void);
 
 //button
 unsigned char switchMan();
@@ -56,6 +34,7 @@ unsigned char decreaseValue();
 unsigned char applyMan();
 unsigned char applySetting();
 unsigned char slowDownPressed();
+unsigned char outTunning();
 
 // Time counter:
 void countTime();
@@ -264,98 +243,6 @@ unsigned char isButtonMessage()
         return 0;
 }
 
-
-void GetDistance(void)
-{
-  char i =0;
-  switch (statusDistance)
-  {
-    case GET_DATA :
-        time = 0;
-        pulse();
-        while (PORTBbits.RB1 == 0)
-        {
-        time++;
-        if (time > 1000) break;
-        }
-        time = 0;
-        while (PORTBbits.RB1 == 1)
-        {
-            time++;
-        }
-        //time = time*10000/18122;
-        rawDistance = time;
-        dataOfDistance[indexOfData] = rawDistance;
-        indexOfData = (indexOfData + 1)%20;
-        statusDistance = SEND_DATA;
-        break;
-    case SEND_DATA:
-        averageDistance = 0;
-        for (i=0;i<20;i++)
-        {
-            averageDistance = averageDistance + dataOfDistance[i];
-        }
-        averageDistance = averageDistance/20;
-        UartSendDataGraph(rawDistance,averageDistance-100,averageDistance/3,0);
-        //UartSendNumToString(averageDistance);
-        //UartSendString(" ");
-        statusDistance = GET_DATA;
-        break;
-    default:
-        statusDistance = GET_DATA;
-        break;
-  }
-}
-
-void GetSensor(void)
-{
-  char i =0;
-  switch (statusSensor)
-  {
-    case GET_DATA :
-        rawSensor = get_adc_value(0);
-        LcdPrintStringS(1,0,"    ");
-        LcdPrintNumS(1,0,rawSensor);
-        dataOfSensor[indexOfData] = rawSensor;
-        indexOfData = (indexOfData + 1)%40;
-        statusSensor = SEND_DATA;
-        //break;
-    case SEND_DATA:
-        averageSensor = 0;
-        for (i=0;i<40;i++)
-        {
-            averageSensor = averageSensor + dataOfSensor[i];
-        }
-        averageSensor = averageSensor/40;
-        UartSendDataGraph(rawSensor,averageSensor-100,averageSensor/3,0);
-        //UartSendNumToString(averageSensor);
-        //UartSendString(" ");
-        LcdPrintStringS(1,8,"    ");
-        LcdPrintNumS(1,8,averageSensor);
-        statusSensor = GET_DATA;
-        break;
-    default:
-        statusSensor = GET_DATA;
-        break;
-  }
-}
-
-void delay_trigger(void)
-{
-    //volatile int i;
-    int i;
-    for(i = 0; i < 30; i++);
-}
-
-void pulse(void)
-{
-    CloseOutput(1);
-    OpenOutput(1);
-    delay_trigger();	//delay 10us
-    CloseOutput(1);
-}
-
-
 // ===================================================
 // Error
 void Error_Handle(){
@@ -544,6 +431,15 @@ unsigned char applySetting(){
 
 unsigned char slowDownPressed(){
     if(key_code[3] == 1) {
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
+unsigned char outTunning(){
+    if(key_code[4] == 1) {
         return 1;
     }
     else{
@@ -1375,13 +1271,13 @@ void fsm_tuning(){
             //TODO:
             // Toggle RED 1 up for 1 sec:
             if(counterAllFSM==1){
-                Phase1_RedOn();
+                Phase1_RedOff();
                 Phase1_GreenOff();
-                Phase1_YellowOff();
+                Phase1_YellowOn();
                 
-                Phase2_RedOn();
+                Phase2_RedOff();
                 Phase2_GreenOff();
-                Phase2_YellowOff();
+                Phase2_YellowOn();
             }
             else{
                 Phase1_RedOff();
@@ -1464,6 +1360,11 @@ void fsm_tuning(){
                 UART_sendingStatus();
             }
             
+            //get out of tunning
+            if (outTunning() || (flagOfDataReceiveComplete == 1 && compare(79, 85, 84, 84, 85, 78))){
+                status = INIT_SYSTEM;
+            }
+            
             //Control by terminal
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 49){
                 flagOfDataReceiveComplete = 0;
@@ -1505,13 +1406,13 @@ void fsm_tuning(){
             //TODO:
             // Toggle RED 1 up for 1 sec:
             if(counterAllFSM==1){
-                Phase1_RedOn();
+                Phase1_RedOff();
                 Phase1_GreenOff();
-                Phase1_YellowOff();
+                Phase1_YellowOn();
                 
-                Phase2_RedOn();
+                Phase2_RedOff();
                 Phase2_GreenOff();
-                Phase2_YellowOff();
+                Phase2_YellowOn();
             }
             else{
                 Phase1_RedOff();
@@ -1595,6 +1496,11 @@ void fsm_tuning(){
                 UART_sendingStatus();
             }
             
+            //get out of tunning
+            if (outTunning() || (flagOfDataReceiveComplete == 1 && compare(79, 85, 84, 84, 85, 78))){
+                status = INIT_SYSTEM;
+            }
+            
             //Control by terminal
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 49){
                 flagOfDataReceiveComplete = 0;
@@ -1636,13 +1542,13 @@ void fsm_tuning(){
             //TODO:
             // Toggle RED 1 up for 1 sec:
             if(counterAllFSM==1){
-                Phase1_RedOn();
+                Phase1_RedOff();
                 Phase1_GreenOff();
-                Phase1_YellowOff();
+                Phase1_YellowOn();
                 
-                Phase2_RedOn();
+                Phase2_RedOff();
                 Phase2_GreenOff();
-                Phase2_YellowOff();
+                Phase2_YellowOn();
             }
             else{
                 Phase1_RedOff();
@@ -1724,6 +1630,11 @@ void fsm_tuning(){
                 UART_sendingStatus();
             }
             
+            //get out of tuning
+            if (outTunning() || (flagOfDataReceiveComplete == 1 && compare(79, 85, 84, 84, 85, 78))){
+                status = INIT_SYSTEM;
+            }
+            
             //Control by terminal
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 49){
                 flagOfDataReceiveComplete = 0;
@@ -1765,13 +1676,13 @@ void fsm_tuning(){
             //TODO:
             // Toggle RED 1 up for 1 sec:
             if(counterAllFSM==1){
-                Phase1_RedOn();
+                Phase1_RedOff();
                 Phase1_GreenOff();
-                Phase1_YellowOff();
+                Phase1_YellowOn();
                 
-                Phase2_RedOn();
+                Phase2_RedOff();
                 Phase2_GreenOff();
-                Phase2_YellowOff();
+                Phase2_YellowOn();
             }
             else{
                 Phase1_RedOff();
@@ -1852,6 +1763,11 @@ void fsm_tuning(){
                 UART_sendingSettngLight1();
                 UART_sendingSettngLight2();
                 UART_sendingStatus();
+            }
+            
+            //get out of tunning
+            if (outTunning() || (flagOfDataReceiveComplete == 1 && compare(79, 85, 84, 84, 85, 78))){
+                status = INIT_SYSTEM;
             }
             
             //Control by terminal

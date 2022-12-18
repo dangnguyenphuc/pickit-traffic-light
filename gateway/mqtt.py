@@ -179,33 +179,38 @@ while True:
         readSerial()
     
     
-#     if counter%8 == 0:
-#         ai_result = detect_congesion()
-#         print("AI Output: ", ai_result)
-#         return_value, image = camera.read()
-#         cv2.imwrite('image/image'+ str(counter) + '.jpg', image)
+    if counter == 8:
+        counter = 0
+        ai_result = detect_congesion()
+        print("AI Output: ", ai_result)
+        return_value, image = camera.read()
+        cv2.imwrite('image/image'+ str(counter) + '.jpg', image)
         
-#         if ai_result.split(" ")[0] == "1":
-#             print("Set GREEN1 time to 100s")
-#             # TODO:
-#             ser.write("!!BT:100##".encode())
-#             time.sleep(0.5)
-#             ser.write("!!G1:100##".encode())
-#             time.sleep(0.5)
-#             ser.write("!!BT:200##".encode())
-
-        
-#         upload_file_list = ['image'+ str(counter) + '.jpg']
-#         gfile = drive.CreateFile({'parents': [{'id': '1fcwUjNr9pdb2BQHw8sP-esR1Iu5R3nHW'}]})
-#         # Read file and set it as the content of this instance.
-#         gfile.SetContentFile(upload_file_list[0])
-#         gfile.Upload() # Upload the file.
-#         file_list = drive.ListFile({'q': "'{}' in parents and trashed=false".format('1fcwUjNr9pdb2BQHw8sP-esR1Iu5R3nHW')}).GetList()
-#         print(file_list[0]['id'])
+        upload_file_list = ['image/image'+ str(counter) + '.jpg']
+        gfile = drive.CreateFile({'parents': [{'id': '1fcwUjNr9pdb2BQHw8sP-esR1Iu5R3nHW'}]})
+        # Read file and set it as the content of this instance.
+        gfile.SetContentFile(upload_file_list[0])
+        gfile.Upload() # Upload the file.
+        file_list = drive.ListFile({'q': "'{}' in parents and trashed=false".format('1fcwUjNr9pdb2BQHw8sP-esR1Iu5R3nHW')}).GetList()
+        print("https://drive.google.com/uc?export=view&id="+file_list[0]['id'])
 
 
         collect_data = {"predictCongestion": ai_result, "image": "https://drive.google.com/uc?export=view&id="+file_list[0]['id']}
         client.publish('v1/devices/me/attributes', json.dumps(collect_data), 1)
+    
+        
+        
+        if ai_result.split(" ")[0] == "1":
+            print("Set GREEN1 time to 100s")
+            # TODO:
+            ser.write("!!BT:100##".encode())
+            time.sleep(0.5)
+            ser.write("!!G1:100##".encode())
+            time.sleep(0.5)
+            ser.write("!!BT:200##".encode())
+
+        
+        
 
     counter += 1
     time.sleep(1)
