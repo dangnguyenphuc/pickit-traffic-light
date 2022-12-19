@@ -172,15 +172,15 @@ client.on_subscribe = subscribed
 client.on_message = recv_message
 
 counter = 0
-
+counter_flag = 1
+ai_result = ""
 while True:
 
     if len(bbc_port) >  0:
         readSerial()
     
     
-    # if counter == 8:
-    #     counter = 0
+    # if counter%10 == 0:
     #     ai_result = detect_congesion()
     #     print("AI Output: ", ai_result)
     #     return_value, image = camera.read()
@@ -199,18 +199,31 @@ while True:
     #     client.publish('v1/devices/me/attributes', json.dumps(collect_data), 1)
     
         
-        
-    #     if ai_result.split(" ")[0] == "1":
-    #         print("Set GREEN1 time to 100s")
-    #         # TODO:
-    #         ser.write("!!BT:100##".encode())
-    #         time.sleep(0.5)
-    #         ser.write("!!G1:100##".encode())
-    #         time.sleep(0.5)
-    #         ser.write("!!BT:200##".encode())
+      #   if(counter_flag == 0):
+    #     	if ai_result.split(" ")[0] == "1":
+#	      		counter_flag = 1
+    #         		print("Set GREEN1 time to 100s")
+    #         	# TODO:
+    #         		ser.write("!!BT:100##".encode())
+    #         		time.sleep(0.5)
+    #         		ser.write("!!G1:100##".encode())
+    #         		time.sleep(0.5)
+    #         		ser.write("!!BT:200##".encode())
 
         
         
+    # if counter%200 == 0:
+#	 if counter_flag == 1:
+	#	if ai_result.split(" ")[0] == "0":
+#	      		counter_flag = 0
+    #         		print("Set GREEN1 time to 100s")
+    #         	# TODO:
+    #         		ser.write("!!BT:100##".encode())
+    #         		time.sleep(0.5)
+    #         		ser.write("!!G1:10##".encode())
+    #         		time.sleep(0.5)
+    #         		ser.write("!!BT:200##".encode())
+
 
     # counter += 1
     time.sleep(1)
