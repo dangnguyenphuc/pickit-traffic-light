@@ -5,6 +5,6 @@
     * Nguyen Phuc Dang - 2012968
     * Le Trung Duc - 2012995
 ## Abstract:
-  In this project, we have implemented the smart traffic light which can connect and communication with Thingsboard Server.
+  In this project, we have implemented the smart traffic light which can connect and communicate with Thingsboard Server.
 
 # END
