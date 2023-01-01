@@ -69,7 +69,7 @@ void UART_sendingSettngLight2();
 void sendLightTimer();
 
 // receiving
-void UART_receiving();
+void UART_receiving_ACK();
 
 //Compare Receive
 unsigned char compare(int s1, int s2, int s3, int s4, int s5, int s6);
@@ -83,6 +83,7 @@ void fsm_automatic();
 void fsm_manual();
 // 3rd FSM
 void fsm_tuning();
+
 
 ////////////////////////////////////////////////////////////////////
 //Hien thuc cac chuong trinh con, ham, module, function duoi cho nay
@@ -108,6 +109,7 @@ void main(void)
             scan_key_matrix_with_uart();
             //BaiTap_UART();
 //            GetSensor();
+            UART_receiving_ACK();
             ServerPressedReset();
             LcdClearS();
             countTime();
@@ -461,7 +463,7 @@ void UART_sendingStatus(){
     
     UartSendString("!");
     UartSendString("STATUS:");
-    UartSendNumToString(status);
+    UartSendNumToString(buffer_status);
     UartSendString("#");
 }
 
@@ -474,16 +476,16 @@ void UART_sendingTimerLight1(int isError){
     UartSendString("!");
     UartSendString("LIGHT1:");
     if(!isError){
-       UartSendNumToString(timeOfLight); 
+       UartSendNumToString(buffer_time[0]); 
     }else{
         UartSendString("DELAY");
     }
     UartSendString(":");
-    UartSendNumToString(redIsOn);
+    UartSendNumToString(buffer_led_red[0]);
     UartSendString(":");
-    UartSendNumToString(yellowIsOn);
+    UartSendNumToString(buffer_led_yellow[0]);    
     UartSendString(":");
-    UartSendNumToString(greenIsOn);
+    UartSendNumToString(buffer_led_green[0]);
     UartSendString("#");
 }
 
@@ -496,42 +498,42 @@ void UART_sendingTimerLight2(int isError){
     UartSendString("!");
     UartSendString("LIGHT2:");
     if(!isError){
-       UartSendNumToString(timeOfLight_2); 
+       UartSendNumToString(buffer_time[1]); 
     }else{
         UartSendString("DELAY");
     }
     UartSendString(":");
-    UartSendNumToString(red2IsOn);
+    UartSendNumToString(buffer_led_red[1]);
     UartSendString(":");
-    UartSendNumToString(yellow2IsOn);
+    UartSendNumToString(buffer_led_yellow[1]);
     UartSendString(":");
-    UartSendNumToString(green2IsOn);
+    UartSendNumToString(buffer_led_green[1]);
     UartSendString("#");
 }
 
 void UART_sendingTimerLight1_MAN(){
     UartSendString("!");
     UartSendString("LIGHT1:");
-    UartSendNumToString(timeInManMode); 
+    UartSendNumToString(buffer_time[0]); 
     UartSendString(":");
-    UartSendNumToString(redIsOn);
+    UartSendNumToString(buffer_led_red[0]);
     UartSendString(":");
-    UartSendNumToString(yellowIsOn);
+    UartSendNumToString(buffer_led_yellow[0]);
     UartSendString(":");
-    UartSendNumToString(greenIsOn);
+    UartSendNumToString(buffer_led_green[0]);
     UartSendString("#");
 }
 
 void UART_sendingTimerLight2_MAN(){
     UartSendString("!");
     UartSendString("LIGHT2:");
-    UartSendNumToString(timeInManMode); 
+    UartSendNumToString(buffer_time[1]); 
     UartSendString(":");
-    UartSendNumToString(red2IsOn);
+    UartSendNumToString(buffer_led_red[1]);
     UartSendString(":");
-    UartSendNumToString(yellow2IsOn);
+    UartSendNumToString(buffer_led_yellow[1]);
     UartSendString(":");
-    UartSendNumToString(green2IsOn);
+    UartSendNumToString(buffer_led_green[1]);
     UartSendString("#");
 }
 
@@ -543,11 +545,11 @@ void UART_sendingSettngLight1(){
     
     UartSendString("!");
     UartSendString("SET1:");
-    UartSendNumToString(temp_green1 + temp_yellow1);
+    UartSendNumToString(buffer_setting[0][0] + buffer_setting[0][1]);
     UartSendString(":");
-    UartSendNumToString(temp_yellow1);
+    UartSendNumToString(buffer_setting[0][1]);
     UartSendString(":");
-    UartSendNumToString(temp_green1);
+    UartSendNumToString(buffer_setting[0][0]);
     UartSendString("#");
 }
 
@@ -559,42 +561,163 @@ void UART_sendingSettngLight2(){
     
     UartSendString("!");
     UartSendString("SET2:");
-    UartSendNumToString(temp_green2 + temp_yellow2);
+    UartSendNumToString(buffer_setting[1][0] + buffer_setting[1][1]);
     UartSendString(":");
-    UartSendNumToString(temp_yellow2);
+    UartSendNumToString(buffer_setting[0][1]);
     UartSendString(":");
-    UartSendNumToString(temp_green2);
+    UartSendNumToString(buffer_setting[0][0]);
     UartSendString("#");
 }
 
 void sendLightTimer(){
     if(counterAllFSM == 1){
-        if(timeOfLight <= -1){
-            UART_sendingTimerLight1(1);
-        }
-        else{
-            UART_sendingTimerLight1(0);
-        }
-        
-        if(timeOfLight_2 <= -1){
-            UART_sendingTimerLight2(1);
-        }else{
-            UART_sendingTimerLight2(0);
+        // Not waiting for ACK then send packet, else dont send
+        if(!flag_waiting_light_ACK){
+            if(buffer_time[0] <= -1){
+                UART_sendingTimerLight1(1);
+            }
+            else{
+                UART_sendingTimerLight1(0);
+            }
+            
+            if(buffer_time[1]  <= -1){
+                UART_sendingTimerLight2(1);
+            }else{
+                UART_sendingTimerLight2(0);
+            }
+            flag_waiting_light_ACK = 1
         }
     }
 }
 
 void sendLightTimer_MAN(){
     if(counterAllFSM == 1){
-        UART_sendingTimerLight1_MAN();
-        UART_sendingTimerLight2_MAN();
+        if(!flag_waiting_light_ACK){
+            UART_sendingTimerLight1_MAN();
+            UART_sendingTimerLight2_MAN();
+            flag_waiting_light_ACK = 1;
+        }
     }
 }
 
+void sendStatus(){
+    if(!flag_wating_status_ACK){
+        UART_sendingStatus();
+        flag_wating_status_ACK = 1;
+    }
+}
+
+void sendSetting(){
+    if(!flag_waiting_setting_ACK){
+        UART_sendingSettngLight1();
+        UART_sendingSettngLight2();
+        flag_waiting_setting_ACK = 1;
+    }
+}
+
+
+// Buffers:
+void addBufferStatus(){
+    buffer_status = status;
+}
+
+void addBufferTime(){
+    if(status == PHASE1_GREEN || status == PHASE1_YELLOW || status == PHASE2_GREEN || status == PHASE2_YELLOW){
+        buffer_time[0] = timeOfLight;
+        buffer_time[1] = timeOfLight_2;
+    }
+    else{
+        buffer_time[0] = timeInManMode;
+        buffer_time[1] = timeInManMode;
+    }
+    
+}
+
+void add_LEDisOn(){
+    buffer_led_red[0] = redIsOn;
+    buffer_led_red[1] = red2IsOn;
+    buffer_led_green[0]= greenIsOn;
+    buffer_led_green[1]= green2IsOn;
+    buffer_led_yellow[0]= yellowIsOn;
+    buffer_led_yellow[1]= yellow2IsOn;
+}
+
+void add_SettingTime(){
+    buffer_setting[0][0] = temp_green1;
+    buffer_setting[0][1] = temp_yellow1;
+    buffer_setting[1][0] = temp_green2;
+    buffer_setting[1][1] = temp_yellow2; 
+}
+
+
+// receiving
+// ACK
+/*
+ * status: !!ACKSTS##
+ * time: !!ACKTIM##
+ * light: !!ACKLED##
+ */
+void UART_receiving_ACK(){
+    if(compare(65,67,75,83,84,83)){
+        flag_wating_status_ACK = 0;
+    }
+    if(compare(65,67,75,84,73,77)){
+        flag_waiting_setting_ACK = 0;
+    }
+    if(compare(65,67,75,76,69,68)){
+        flag_waiting_light_ACK = 0;
+    }
+}
+
+
 // ===================================================
 void countTime(){
-    errorCounter = (errorCounter+1)%40;
-    counterAllFSM = (counterAllFSM+1)%20;
+    if(flag_wating_status_ACK){
+        timer_status_ACK = (timer_status_ACK+1)%10; // 0.5s timer
+
+        // if still waiting for ACk and timer_flag == 1 =>TIME-OUT
+        if(timer_status_ACK == 1){
+            UART_sendingStatus();
+        }
+    }
+    if(flag_waiting_setting_ACK){
+        timer_setting_ACK = (timer_setting_ACK+1)%10; // 0.5s timer
+
+        // if still waiting for ACk and timer_flag == 1 =>TIME-OUT
+        if(timer_setting_ACK == 1){
+            UART_sendingSettngLight1();
+            UART_sendingSettngLight2();
+        }
+    }
+    if(flag_waiting_light_ACK){
+        timer_light_ACK = (timer_light_ACK+1)%10; // 0.5s timer
+
+        // if still waiting for ACk and timer_flag == 1 =>TIME-OUT
+        if(timer_light_ACK == 1){
+            if(status == PHASE1_GREEN || status == PHASE1_YELLOW || status == PHASE2_GREEN || status == PHASE2_YELLOW){
+                if(buffer_time[0] <= -1){
+                    UART_sendingTimerLight1(1);
+                }
+                else{
+                    UART_sendingTimerLight1(0);
+                }
+                
+                if(buffer_time[1]  <= -1){
+                    UART_sendingTimerLight2(1);
+                }else{
+                    UART_sendingTimerLight2(0);
+                }
+            }else{
+                UART_sendingTimerLight1_MAN();
+                UART_sendingTimerLight2_MAN();
+            }
+            
+        }
+    }
+    
+    
+    errorCounter = (errorCounter+1)%40; // 2s timer
+    counterAllFSM = (counterAllFSM+1)%20;   // 1s timer
     if(counterAllFSM == 1){
         timeOfLight -= 1;
         timeOfLight_2 -= 1;
@@ -625,7 +748,11 @@ void fsm_automatic(){
             status = PHASE1_GREEN;
             timeOfLight = green_1_Time;
             timeOfLight_2 = redTime_2;
-            UART_sendingStatus();
+            if(!flag_wating_status_ACK){
+                addBufferStatus();
+                timer_status_AC = 1;
+            }
+            sendStatus();
             break;
             
         case PHASE1_GREEN:
@@ -648,6 +775,11 @@ void fsm_automatic(){
             }
             
             // UART: 
+            if(!timer_light_ACK){
+                addBufferTime();
+                add_LEDisOn();
+                timer_light_ACK = 1;
+            }
             sendLightTimer();
             
             // Display times:
@@ -676,21 +808,42 @@ void fsm_automatic(){
             // Time out!
             if(timeOfLight <= 0){
                 status = PHASE1_YELLOW;
-                UART_sendingStatus();
+
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
+
                 timeOfLight = yellow_1_Time;
             }
             // Button pressed
             else if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = MAN_GREEN1;
-                UART_sendingStatus();
+
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
+
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             else if(switchTun() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
-                UART_sendingStatus();
+
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
+
             }
             
             //Control by terminal
@@ -726,6 +879,11 @@ void fsm_automatic(){
             }
             
             // UART: 
+            if(!timer_light_ACK){
+                addBufferTime();
+                add_LEDisOn();
+                timer_light_ACK = 1;
+            }
             sendLightTimer();
             
             // Display time:
@@ -763,7 +921,13 @@ void fsm_automatic(){
             // Time out
             if(timeOfLight <= 0 && timeOfLight_2 <= 0){
                 status = PHASE2_GREEN;
-                UART_sendingStatus();
+
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeOfLight = redTime;
                 timeOfLight_2 = green_2_Time;
             }
@@ -772,14 +936,24 @@ void fsm_automatic(){
             if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48) )){
                 flagOfDataReceiveComplete = 0;
                 status = MAN_YELLOW1;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             //Control by terminal
@@ -809,6 +983,11 @@ void fsm_automatic(){
             }
             
             // UART: 
+            if(!timer_light_ACK){
+                addBufferTime();
+                add_LEDisOn();
+                timer_light_ACK = 1;
+            }
             sendLightTimer();
             
             // Display time:
@@ -835,7 +1014,12 @@ void fsm_automatic(){
             // Time out
             if(timeOfLight_2 <= 0){
                 status = PHASE2_YELLOW;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeOfLight_2 = yellow_2_Time;
             }
             
@@ -843,14 +1027,24 @@ void fsm_automatic(){
             if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = MAN_GREEN2;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             //Control by terminal
@@ -885,6 +1079,11 @@ void fsm_automatic(){
             }
             
             // UART: 
+            if(!timer_light_ACK){
+                addBufferTime();
+                add_LEDisOn();
+                timer_light_ACK = 1;
+            }
             sendLightTimer();
             
             // Display time:
@@ -922,7 +1121,12 @@ void fsm_automatic(){
             // Time out
             if(timeOfLight_2 <= 0 && timeOfLight <= 0){
                 status = PHASE1_GREEN;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeOfLight = green_1_Time;
                 timeOfLight_2 = redTime_2;
             }
@@ -931,14 +1135,24 @@ void fsm_automatic(){
             if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48)) ){
                 flagOfDataReceiveComplete = 0;
                 status = MAN_YELLOW2; 
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48)) ){
                 flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             //Control by terminal
@@ -976,6 +1190,11 @@ void fsm_manual(){
             Phase2_YellowOff();
            
             //UART
+            if(!timer_light_ACK){
+                addBufferTime();
+                add_LEDisOn();
+                timer_light_ACK = 1;
+            }
             sendLightTimer_MAN();
             
             // Display times:
@@ -990,7 +1209,12 @@ void fsm_manual(){
             // Time out
             if(timeInManMode <= 0){
                 status = PHASE1_YELLOW;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeOfLight = yellow_1_Time;
                 timeOfLight_2 = yellow_1_Time;
             }
@@ -999,20 +1223,35 @@ void fsm_manual(){
             if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = MAN_YELLOW1;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if(applyMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = PHASE1_GREEN;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeOfLight = green_1_Time;
                 timeOfLight_2 = redTime_2;
             }
@@ -1020,7 +1259,12 @@ void fsm_manual(){
             if(backingState() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = MAN_YELLOW2;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
@@ -1047,6 +1291,11 @@ void fsm_manual(){
             Phase2_YellowOff();
             
             //UART
+            if(!timer_light_ACK){
+                addBufferTime();
+                add_LEDisOn();
+                timer_light_ACK = 1;
+            }
             sendLightTimer_MAN();
             
             // Display times:
@@ -1061,7 +1310,12 @@ void fsm_manual(){
             // Time out
             if(timeInManMode <= 0){
                 status = PHASE2_GREEN;
-                UART_sendingStatus();
+                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeOfLight = redTime;
                 timeOfLight_2 = green_2_Time;
             }
@@ -1070,20 +1324,35 @@ void fsm_manual(){
             if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = MAN_GREEN2;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if(applyMan()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = PHASE1_YELLOW;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeOfLight = yellow_1_Time;
                 timeOfLight_2 = yellow_1_Time;
             }
@@ -1091,7 +1360,12 @@ void fsm_manual(){
             if(backingState()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = MAN_GREEN1;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
@@ -1117,6 +1391,11 @@ void fsm_manual(){
             Phase1_YellowOff();
             
             //UART
+            if(!timer_light_ACK){
+                addBufferTime();
+                add_LEDisOn();
+                timer_light_ACK = 1;
+            }
             sendLightTimer_MAN();
             
             // Display times:
@@ -1131,7 +1410,12 @@ void fsm_manual(){
             // Time out
             if(timeInManMode <= 0){
                 status = PHASE2_YELLOW;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeOfLight = yellow_2_Time;
                 timeOfLight_2 = yellow_2_Time;
             }
@@ -1140,20 +1424,35 @@ void fsm_manual(){
             if(switchMan()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = MAN_YELLOW2;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if(applyMan()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = PHASE2_GREEN;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeOfLight = redTime;
                 timeOfLight_2 = green_2_Time;
             }
@@ -1161,7 +1460,12 @@ void fsm_manual(){
             if(backingState()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = MAN_YELLOW1;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
@@ -1187,6 +1491,11 @@ void fsm_manual(){
             Phase1_YellowOff();
             
             //UART
+            if(!timer_light_ACK){
+                addBufferTime();
+                add_LEDisOn();
+                timer_light_ACK = 1;
+            }
             sendLightTimer_MAN();
             
             // Display times:
@@ -1201,7 +1510,12 @@ void fsm_manual(){
             // Time out
             if(timeInManMode == 0){
                 status = PHASE1_GREEN;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeOfLight = green_1_Time;
                 timeOfLight_2 = redTime;
             }
@@ -1210,20 +1524,35 @@ void fsm_manual(){
             if(switchMan()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 48, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = MAN_GREEN1;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(switchTun()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = INIT_TUNING;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if(applyMan()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = PHASE2_YELLOW;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeOfLight = yellow_2_Time;
                 timeOfLight_2 = yellow_2_Time;
             }
@@ -1231,7 +1560,12 @@ void fsm_manual(){
             if(backingState()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = MAN_GREEN2;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
@@ -1258,7 +1592,12 @@ void fsm_tuning(){
             
             //Switch
             status = TUNING_GREEN1;
-            UART_sendingStatus();
+                            // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             timeInManMode = TIME_IN_MAN_MODE;
             temp_green1 = green_1_Time;
             temp_yellow1 = yellow_1_Time;
@@ -1289,6 +1628,11 @@ void fsm_tuning(){
                 Phase2_YellowOff();
             }
             
+            if(!timer_light_ACK){
+                addBufferTime();
+                add_LEDisOn();
+                timer_light_ACK = 1;
+            }
             sendLightTimer_MAN();
             
             if(increaseValue() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 52, 48, 48)) ){
@@ -1296,7 +1640,11 @@ void fsm_tuning(){
                 if (temp_green1 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green1 += 1;
-                    UART_sendingSettngLight1();
+                    if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
@@ -1308,7 +1656,11 @@ void fsm_tuning(){
                 if (temp_green1 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green1 -= 1;
-                    UART_sendingSettngLight1();
+                    if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
@@ -1327,21 +1679,36 @@ void fsm_tuning(){
             // Time out
             if(timeInManMode == 0){
                 status = INIT_SYSTEM;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             // Button Pressed
             if(switchMan() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 49, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = TUNING_YELLOW1;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
             }
             
             if(backingState()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
                 status = TUNING_YELLOW2;
             }
             
@@ -1355,14 +1722,35 @@ void fsm_tuning(){
                 redTime_2 = green_1_Time + yellow_1_Time;
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
-                UART_sendingSettngLight1();
-                UART_sendingSettngLight2();
-                UART_sendingStatus();
+
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                sendSetting();
+
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             //get out of tunning
             if (outTunning() || (flagOfDataReceiveComplete == 1 && compare(79, 85, 84, 84, 85, 78))){
                 status = INIT_SYSTEM;
+                temp_green1 = green_1_Time;
+                temp_green2 = green_2_Time;
+                temp_yellow1 = yellow_1_Time;
+                temp_yellow2 = yellow_2_Time;
+
+
+                if(!flag_waiting_setting_ACK){
+                    add_SettingTime();
+                    timer_setting_ACK = 1;
+                }
+                sendSetting();
             }
             
             //Control by terminal
@@ -1370,7 +1758,6 @@ void fsm_tuning(){
                 flagOfDataReceiveComplete = 0;
                 temp_green1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
-                UART_sendingSettngLight1();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 50){
@@ -1378,8 +1765,12 @@ void fsm_tuning(){
                 temp_green2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN2;
-                UART_sendingSettngLight2();
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 49){
@@ -1387,8 +1778,12 @@ void fsm_tuning(){
                 temp_yellow1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW1;
-                UART_sendingSettngLight1();
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 50){
@@ -1397,7 +1792,12 @@ void fsm_tuning(){
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW2;
                 UART_sendingSettngLight2();
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             break;
         
@@ -1424,6 +1824,11 @@ void fsm_tuning(){
                 Phase2_YellowOff();
             }
             
+            if(!timer_light_ACK){
+                addBufferTime();
+                add_LEDisOn();
+                timer_light_ACK = 1;
+            }
             sendLightTimer_MAN();
             
             if(increaseValue() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 52, 48, 48))){
@@ -1431,7 +1836,11 @@ void fsm_tuning(){
                 if (temp_yellow1 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow1 += 1;
-                    UART_sendingSettngLight1();
+                    if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
@@ -1443,7 +1852,11 @@ void fsm_tuning(){
                 if (temp_yellow1 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow1 -= 1;
-                    UART_sendingSettngLight1();
+                    if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
@@ -1463,7 +1876,12 @@ void fsm_tuning(){
             // Time out
             if(timeInManMode == 0){
                 status = INIT_SYSTEM;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             // Button Pressed
@@ -1471,14 +1889,24 @@ void fsm_tuning(){
                 flagOfDataReceiveComplete = 0;
                 status = TUNING_GREEN2;
                 timeInManMode = TIME_IN_MAN_MODE;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if(backingState() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 status = TUNING_GREEN1;
                 timeInManMode = TIME_IN_MAN_MODE;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if(applySetting()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))
@@ -1491,14 +1919,35 @@ void fsm_tuning(){
                 redTime_2 = green_1_Time + yellow_1_Time;
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
-                UART_sendingSettngLight1();
-                UART_sendingSettngLight2();
-                UART_sendingStatus();
+
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             //get out of tunning
             if (outTunning() || (flagOfDataReceiveComplete == 1 && compare(79, 85, 84, 84, 85, 78))){
                 status = INIT_SYSTEM;
+
+                temp_green1 = green_1_Time;
+                temp_green2 = green_2_Time;
+                temp_yellow1 = yellow_1_Time;
+                temp_yellow2 = yellow_2_Time;
+
+
+                if(!flag_waiting_setting_ACK){
+                    add_SettingTime();
+                    timer_setting_ACK = 1;
+                }
+                sendSetting();
             }
             
             //Control by terminal
@@ -1507,8 +1956,19 @@ void fsm_tuning(){
                 temp_green1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN1;
-                UART_sendingSettngLight1();
-                UART_sendingStatus();
+
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
+
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 50){
@@ -1516,15 +1976,29 @@ void fsm_tuning(){
                 temp_green2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN2;
-                UART_sendingSettngLight2();
-                UART_sendingStatus();
+
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 49){
                 flagOfDataReceiveComplete = 0;
                 temp_yellow1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
-                UART_sendingSettngLight1();
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 50){
@@ -1532,8 +2006,17 @@ void fsm_tuning(){
                 temp_yellow2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW2;
-                UART_sendingSettngLight2();
-                UART_sendingStatus();
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             break;    
             
@@ -1560,6 +2043,11 @@ void fsm_tuning(){
                 Phase2_YellowOff();
             }
             
+            if(!timer_light_ACK){
+                addBufferTime();
+                add_LEDisOn();
+                timer_light_ACK = 1;
+            }
             sendLightTimer_MAN();
             
             if(increaseValue() || (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 52, 48, 48))){
@@ -1567,7 +2055,11 @@ void fsm_tuning(){
                 if (temp_green2 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green2 += 1;
-                    UART_sendingSettngLight2();
+                    if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
@@ -1579,7 +2071,11 @@ void fsm_tuning(){
                 if (temp_green2 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_green2 -= 1;
-                    UART_sendingSettngLight2();
+                    if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
@@ -1598,7 +2094,12 @@ void fsm_tuning(){
             // Time out
             if(timeInManMode <= 0){
                 status = INIT_SYSTEM;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             // Button Pressed
@@ -1606,13 +2107,23 @@ void fsm_tuning(){
                 flagOfDataReceiveComplete = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW2;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             if(backingState()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW1;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if(applySetting()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))
@@ -1625,14 +2136,34 @@ void fsm_tuning(){
                 redTime_2 = green_1_Time + yellow_1_Time;
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
-                UART_sendingSettngLight1();
-                UART_sendingSettngLight2();
-                UART_sendingStatus();
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             //get out of tuning
             if (outTunning() || (flagOfDataReceiveComplete == 1 && compare(79, 85, 84, 84, 85, 78))){
                 status = INIT_SYSTEM;
+
+                temp_green1 = green_1_Time;
+                temp_green2 = green_2_Time;
+                temp_yellow1 = yellow_1_Time;
+                temp_yellow2 = yellow_2_Time;
+
+
+                if(!flag_waiting_setting_ACK){
+                    add_SettingTime();
+                    timer_setting_ACK = 1;
+                }
+                sendSetting();
             }
             
             //Control by terminal
@@ -1641,15 +2172,28 @@ void fsm_tuning(){
                 temp_green1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN1;
-                UART_sendingSettngLight1();
-                UART_sendingStatus();
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 50){
                 flagOfDataReceiveComplete = 0;
                 temp_green2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
-                UART_sendingSettngLight2();
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 49){
@@ -1657,8 +2201,17 @@ void fsm_tuning(){
                 temp_yellow1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW1;
-                UART_sendingSettngLight1();
-                UART_sendingStatus();
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 50){
@@ -1666,8 +2219,17 @@ void fsm_tuning(){
                 temp_yellow2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW2;
-                UART_sendingSettngLight2();
-                UART_sendingStatus();
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             break;
         
@@ -1694,6 +2256,11 @@ void fsm_tuning(){
                 Phase2_YellowOff();
             }
             
+            if(!timer_light_ACK){
+                addBufferTime();
+                add_LEDisOn();
+                timer_light_ACK = 1;
+            }
             sendLightTimer_MAN();
             
             if(increaseValue()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 52, 48, 48))){
@@ -1701,7 +2268,11 @@ void fsm_tuning(){
                 if (temp_yellow2 < 999){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow2 += 1;
-                    UART_sendingSettngLight2();
+                    if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
@@ -1713,7 +2284,11 @@ void fsm_tuning(){
                 if (temp_yellow2 > 1){
                     timeInManMode = TIME_IN_MAN_MODE;
                     temp_yellow2 -= 1;
-                    UART_sendingSettngLight2();
+                    if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
                 } else {
                     error = VALUE_OUT_OF_RANGE;
                     errorCounter = 2;
@@ -1732,7 +2307,12 @@ void fsm_tuning(){
             // Time out
             if(timeInManMode <= 0){
                 status = INIT_SYSTEM;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             // Button Pressed
@@ -1740,14 +2320,24 @@ void fsm_tuning(){
                 flagOfDataReceiveComplete = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN1;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if(backingState()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 51, 48, 48))){
                 flagOfDataReceiveComplete = 0;
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN2;
-                UART_sendingStatus();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if(applySetting()|| (flagOfDataReceiveComplete ==1 && compare(66, 84, 58, 50, 48, 48))
@@ -1760,14 +2350,34 @@ void fsm_tuning(){
                 redTime_2 = green_1_Time + yellow_1_Time;
                 redTime = green_2_Time + yellow_2_Time;
                 status = INIT_SYSTEM;
-                UART_sendingSettngLight1();
-                UART_sendingSettngLight2();
-                UART_sendingStatus();
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             //get out of tunning
             if (outTunning() || (flagOfDataReceiveComplete == 1 && compare(79, 85, 84, 84, 85, 78))){
                 status = INIT_SYSTEM;
+
+                temp_green1 = green_1_Time;
+                temp_green2 = green_2_Time;
+                temp_yellow1 = yellow_1_Time;
+                temp_yellow2 = yellow_2_Time;
+
+
+                if(!flag_waiting_setting_ACK){
+                    add_SettingTime();
+                    timer_setting_ACK = 1;
+                }
+                sendSetting();
             }
             
             //Control by terminal
@@ -1776,8 +2386,17 @@ void fsm_tuning(){
                 temp_green1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN1;
-                UART_sendingSettngLight1();
-                UART_sendingStatus();
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 50){
@@ -1785,8 +2404,17 @@ void fsm_tuning(){
                 temp_green2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_GREEN2;
-                UART_sendingSettngLight2();
-                UART_sendingStatus();
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 49){
@@ -1794,15 +2422,28 @@ void fsm_tuning(){
                 temp_yellow1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
                 status = TUNING_YELLOW1;
-                UART_sendingSettngLight1();
-                UART_sendingStatus();
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
+                                // sendStatus
+                if(!flag_wating_status_ACK){
+                    addBufferStatus();
+                    timer_status_AC = 1;
+                }
+                sendStatus();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 50){
                 flagOfDataReceiveComplete = 0;
                 temp_yellow2 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
-                UART_sendingSettngLight2();
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                    sendSetting();
             }
             break;
             

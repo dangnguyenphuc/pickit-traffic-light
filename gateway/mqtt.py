@@ -99,6 +99,15 @@ def processData(data):
     !LIGHT1:TIMER_VALUE:RED1:YELLOW1:GREEN1#
     !LIGHT2:TIMER_VALUE:RED2:YELLOW2:GREEN2#
     '''
+
+    '''
+    // ACK
+        /*
+        * status: !!ACKSTS##
+        * time: !!ACKTIM##
+        * light: !!ACKLED##
+        */
+    '''
     data = data.replace("!", "")
     data = data.replace("#", "")
     splitData = data.split(":")
@@ -113,6 +122,7 @@ def processData(data):
         client.publish('v1/devices/me/attributes', json.dumps(collect_data), 1)
 
     if splitData[0] == 'LIGHT2':
+        ser.write("!!ACKTIM##".encode())
         time2 = int(splitData[1]) if splitData[1] != "DELAY" else "DELAY"
         red2 = int(splitData[2])
         yellow2 = int(splitData[3])
@@ -128,6 +138,7 @@ def processData(data):
         client.publish('v1/devices/me/attributes', json.dumps(collect_data), 1)
 
     if splitData[0] == 'SET2':
+        ser.write("!!ACKLED##".encode())
         red = int(splitData[1])
         yellow = int(splitData[2])
         green = int(splitData[3])
@@ -135,6 +146,7 @@ def processData(data):
         client.publish('v1/devices/me/attributes', json.dumps(collect_data), 1)
 
     if splitData[0] == 'STATUS':
+        ser.write("!!ACKSTS##".encode())
         status = int(splitData[1])
         if status in [26, 27, 28, 29]:
             status_name = "TUNING"

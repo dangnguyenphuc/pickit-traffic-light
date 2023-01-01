@@ -58,6 +58,36 @@
 #define DELAY_TO_SYNC_RED2_GREEN        10
 // =======================
 
+// STOP AND WAIT: ========
+#define WAITING_TIME_ACK    1
+
+// timer for stop and wait
+extern int timer_status_ACK;
+extern int timer_setting_ACK;
+extern int timer_light_ACK;
+
+
+// flags for stop and wait 
+extern char flag_wating_status_ACK;
+extern char flag_waiting_setting_ACK;
+extern char flag_waiting_light_ACK;
+
+
+// buffers for stop and wait
+extern int buffer_status;
+extern int buffer_setting[2][2];
+extern int buffer_time[2];
+extern int buffer_led_red[2];
+extern int buffer_led_green[2];
+extern int buffer_led_yellow[2];
+
+// ACK
+/*
+ * status: !!ACKSTS##
+ * time: !!ACKTIM##
+ * light: !!ACKLED##
+ */
+// =======================
 
 extern unsigned int status;
 
@@ -95,5 +125,12 @@ extern char greenIsOn;
 extern char red2IsOn;
 extern char yellow2IsOn;
 extern char green2IsOn;
+
+
+
+
+
+
+
 #endif	/* GLOBAL_H */
 

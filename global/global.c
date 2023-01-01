@@ -32,3 +32,30 @@ char greenIsOn = 0;
 char red2IsOn = 0;
 char yellow2IsOn = 0;
 char green2IsOn = 0;
+
+
+// timer for stop and wait
+int timer_status_ACK = 0;
+int timer_setting_ACK = 0;
+int timer_light_ACK = 0;
+
+
+// flags for stop and wait 
+char flag_wating_status_ACK = 0;
+char flag_waiting_setting_ACK = 0;
+char flag_waiting_light_ACK = 0;
+
+
+// buffers for stop and wait
+int buffer_status       = -1;
+
+int buffer_time[2]      = {-1,-1};
+
+int buffer_setting[2][2]   = {{-1,-1},{-1,-1}};
+
+int buffer_led_red[2]   = {-1,-1};
+
+int buffer_led_green[2] = {-1,-1};
+
+int buffer_led_yellow[2]= {-1,-1};
+
