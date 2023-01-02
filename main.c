@@ -66,6 +66,7 @@ void UART_sendingTimerLight2_MAN();
 void UART_sendingSettngLight1();
 void UART_sendingSettngLight2();
 
+void add_SettingTime();
 void sendLightTimer();
 
 // receiving
@@ -92,6 +93,7 @@ void main(void)
 {
 	int k = 0;
 	init_system();
+    add_SettingTime();
     UART_sendingSettngLight1();
     UART_sendingSettngLight2();
     UART_sendingTimerLight1(0);
@@ -563,9 +565,9 @@ void UART_sendingSettngLight2(){
     UartSendString("SET2:");
     UartSendNumToString(buffer_setting[1][0] + buffer_setting[1][1]);
     UartSendString(":");
-    UartSendNumToString(buffer_setting[0][1]);
+    UartSendNumToString(buffer_setting[1][1]);
     UartSendString(":");
-    UartSendNumToString(buffer_setting[0][0]);
+    UartSendNumToString(buffer_setting[1][0]);
     UartSendString("#");
 }
 
@@ -585,7 +587,7 @@ void sendLightTimer(){
             }else{
                 UART_sendingTimerLight2(0);
             }
-            flag_waiting_light_ACK = 1
+            flag_waiting_light_ACK = 1;
         }
     }
 }
@@ -750,7 +752,7 @@ void fsm_automatic(){
             timeOfLight_2 = redTime_2;
             if(!flag_wating_status_ACK){
                 addBufferStatus();
-                timer_status_AC = 1;
+                timer_status_ACK = 1;
             }
             sendStatus();
             break;
@@ -775,7 +777,7 @@ void fsm_automatic(){
             }
             
             // UART: 
-            if(!timer_light_ACK){
+            if(!flag_waiting_light_ACK){
                 addBufferTime();
                 add_LEDisOn();
                 timer_light_ACK = 1;
@@ -812,7 +814,7 @@ void fsm_automatic(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
 
@@ -826,7 +828,7 @@ void fsm_automatic(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
 
@@ -840,7 +842,7 @@ void fsm_automatic(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
 
@@ -879,7 +881,7 @@ void fsm_automatic(){
             }
             
             // UART: 
-            if(!timer_light_ACK){
+            if(!flag_waiting_light_ACK){
                 addBufferTime();
                 add_LEDisOn();
                 timer_light_ACK = 1;
@@ -925,7 +927,7 @@ void fsm_automatic(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeOfLight = redTime;
@@ -939,7 +941,7 @@ void fsm_automatic(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -951,7 +953,7 @@ void fsm_automatic(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -983,7 +985,7 @@ void fsm_automatic(){
             }
             
             // UART: 
-            if(!timer_light_ACK){
+            if(!flag_waiting_light_ACK){
                 addBufferTime();
                 add_LEDisOn();
                 timer_light_ACK = 1;
@@ -1017,7 +1019,7 @@ void fsm_automatic(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeOfLight_2 = yellow_2_Time;
@@ -1030,7 +1032,7 @@ void fsm_automatic(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1042,7 +1044,7 @@ void fsm_automatic(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1079,7 +1081,7 @@ void fsm_automatic(){
             }
             
             // UART: 
-            if(!timer_light_ACK){
+            if(!flag_waiting_light_ACK){
                 addBufferTime();
                 add_LEDisOn();
                 timer_light_ACK = 1;
@@ -1124,7 +1126,7 @@ void fsm_automatic(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeOfLight = green_1_Time;
@@ -1138,7 +1140,7 @@ void fsm_automatic(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1150,7 +1152,7 @@ void fsm_automatic(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1190,7 +1192,7 @@ void fsm_manual(){
             Phase2_YellowOff();
            
             //UART
-            if(!timer_light_ACK){
+            if(!flag_waiting_light_ACK){
                 addBufferTime();
                 add_LEDisOn();
                 timer_light_ACK = 1;
@@ -1212,7 +1214,7 @@ void fsm_manual(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeOfLight = yellow_1_Time;
@@ -1226,7 +1228,7 @@ void fsm_manual(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1238,7 +1240,7 @@ void fsm_manual(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1249,7 +1251,7 @@ void fsm_manual(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeOfLight = green_1_Time;
@@ -1262,7 +1264,7 @@ void fsm_manual(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1291,7 +1293,7 @@ void fsm_manual(){
             Phase2_YellowOff();
             
             //UART
-            if(!timer_light_ACK){
+            if(!flag_waiting_light_ACK){
                 addBufferTime();
                 add_LEDisOn();
                 timer_light_ACK = 1;
@@ -1313,7 +1315,7 @@ void fsm_manual(){
                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeOfLight = redTime;
@@ -1327,7 +1329,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1339,7 +1341,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1350,7 +1352,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeOfLight = yellow_1_Time;
@@ -1363,7 +1365,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1391,7 +1393,7 @@ void fsm_manual(){
             Phase1_YellowOff();
             
             //UART
-            if(!timer_light_ACK){
+            if(!flag_waiting_light_ACK){
                 addBufferTime();
                 add_LEDisOn();
                 timer_light_ACK = 1;
@@ -1413,7 +1415,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeOfLight = yellow_2_Time;
@@ -1427,7 +1429,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1439,7 +1441,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1450,7 +1452,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeOfLight = redTime;
@@ -1463,7 +1465,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1491,7 +1493,7 @@ void fsm_manual(){
             Phase1_YellowOff();
             
             //UART
-            if(!timer_light_ACK){
+            if(!flag_waiting_light_ACK){
                 addBufferTime();
                 add_LEDisOn();
                 timer_light_ACK = 1;
@@ -1513,7 +1515,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeOfLight = green_1_Time;
@@ -1527,7 +1529,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1539,7 +1541,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1550,7 +1552,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeOfLight = yellow_2_Time;
@@ -1563,7 +1565,7 @@ void fsm_manual(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1595,7 +1597,7 @@ void fsm_tuning(){
                             // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             timeInManMode = TIME_IN_MAN_MODE;
@@ -1628,7 +1630,7 @@ void fsm_tuning(){
                 Phase2_YellowOff();
             }
             
-            if(!timer_light_ACK){
+            if(!flag_waiting_light_ACK){
                 addBufferTime();
                 add_LEDisOn();
                 timer_light_ACK = 1;
@@ -1682,7 +1684,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1694,7 +1696,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 timeInManMode = TIME_IN_MAN_MODE;
@@ -1706,7 +1708,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
                 status = TUNING_YELLOW2;
@@ -1732,7 +1734,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1758,6 +1760,12 @@ void fsm_tuning(){
                 flagOfDataReceiveComplete = 0;
                 temp_green1 = (dataReceive[3] - 48) * 100 + (dataReceive[4] - 48) * 10 + (dataReceive[5] - 48);
                 timeInManMode = TIME_IN_MAN_MODE;
+                
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                sendSetting();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 71 && dataReceive[1] == 50){
@@ -1768,9 +1776,15 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
+                
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                sendSetting();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 49){
@@ -1781,9 +1795,15 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
+                
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                sendSetting();
             }
             
             if (flagOfDataReceiveComplete == 1 && dataReceive[0] == 89 && dataReceive[1] == 50){
@@ -1795,9 +1815,15 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
+                
+                if(!flag_waiting_setting_ACK){
+                        add_SettingTime();
+                        timer_setting_ACK = 1;
+                    }
+                sendSetting();
             }
             break;
         
@@ -1824,7 +1850,7 @@ void fsm_tuning(){
                 Phase2_YellowOff();
             }
             
-            if(!timer_light_ACK){
+            if(!flag_waiting_light_ACK){
                 addBufferTime();
                 add_LEDisOn();
                 timer_light_ACK = 1;
@@ -1879,7 +1905,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1892,7 +1918,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1904,7 +1930,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1928,7 +1954,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1966,7 +1992,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -1985,7 +2011,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2014,7 +2040,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2043,7 +2069,7 @@ void fsm_tuning(){
                 Phase2_YellowOff();
             }
             
-            if(!timer_light_ACK){
+            if(!flag_waiting_light_ACK){
                 addBufferTime();
                 add_LEDisOn();
                 timer_light_ACK = 1;
@@ -2097,7 +2123,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2110,7 +2136,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2121,7 +2147,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2144,7 +2170,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2180,7 +2206,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2209,7 +2235,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2227,7 +2253,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2256,7 +2282,7 @@ void fsm_tuning(){
                 Phase2_YellowOff();
             }
             
-            if(!timer_light_ACK){
+            if(!flag_waiting_light_ACK){
                 addBufferTime();
                 add_LEDisOn();
                 timer_light_ACK = 1;
@@ -2310,7 +2336,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2323,7 +2349,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2335,7 +2361,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2358,7 +2384,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2394,7 +2420,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2412,7 +2438,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }
@@ -2430,7 +2456,7 @@ void fsm_tuning(){
                                 // sendStatus
                 if(!flag_wating_status_ACK){
                     addBufferStatus();
-                    timer_status_AC = 1;
+                    timer_status_ACK = 1;
                 }
                 sendStatus();
             }

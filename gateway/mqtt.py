@@ -5,6 +5,7 @@ import json
 import time
 import serial.tools.list_ports
 import re
+from threading import Thread
 from model import *
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
@@ -122,7 +123,7 @@ def processData(data):
         client.publish('v1/devices/me/attributes', json.dumps(collect_data), 1)
 
     if splitData[0] == 'LIGHT2':
-        ser.write("!!ACKTIM##".encode())
+        ser.write("!!ACKLED##".encode())
         time2 = int(splitData[1]) if splitData[1] != "DELAY" else "DELAY"
         red2 = int(splitData[2])
         yellow2 = int(splitData[3])
@@ -138,7 +139,7 @@ def processData(data):
         client.publish('v1/devices/me/attributes', json.dumps(collect_data), 1)
 
     if splitData[0] == 'SET2':
-        ser.write("!!ACKLED##".encode())
+        ser.write("!!ACKTIM##".encode())
         red = int(splitData[1])
         yellow = int(splitData[2])
         green = int(splitData[3])
@@ -183,52 +184,60 @@ client.loop_start()
 client.on_subscribe = subscribed
 client.on_message = recv_message
 
-counter = 1
-counter_flag = 0
+def ai_detect():
+    counter = 1
+    counter_flag = 0
+    while True:
+        if counter%10 == 0: 
+            ai_result = detect_congesion()
+            print("AI Output: ", ai_result)
+            return_value, image = camera.read()
+            cv2.imwrite('image/image'+ str(counter) + '.jpg', image)
+        
+            upload_file_list = ['image/image'+ str(counter) + '.jpg']
+            gfile = drive.CreateFile({'parents': [{'id': '1fcwUjNr9pdb2BQHw8sP-esR1Iu5R3nHW'}]})
+            # Read file and set it as the content of this instance.
+            gfile.SetContentFile(upload_file_list[0])
+            gfile.Upload() # Upload the file.
+            file_list = drive.ListFile({'q': "'{}' in parents and trashed=false".format('1fcwUjNr9pdb2BQHw8sP-esR1Iu5R3nHW')}).GetList()
+            print("https://drive.google.com/uc?export=view&id="+file_list[0]['id'])
+
+
+            collect_data = {"predictCongestion": ai_result, "image": "https://drive.google.com/uc?export=view&id="+file_list[0]['id']}
+            client.publish('v1/devices/me/attributes', json.dumps(collect_data), 1)
+    
+        
+            if (counter_flag == 0):
+                if ai_result.strip().split(" ")[0] == "1":
+                    counter_flag = 1
+                    ser.write("!!BT:100##".encode())
+                    time.sleep(0.5)
+                    ser.write("!!G1:100##".encode())
+                    time.sleep(0.5)
+                    ser.write("!!BT:200##".encode())
+             
+            if counter % 200 == 0:
+                if counter_flag == 1:
+                    if ai_result.strip().split(" ")[0] == "0":
+                        counter_flag = 0
+                        ser.write("!!BT:100##".encode())
+                        time.sleep(0.5)
+                        ser.write("!!G1:010##".encode())
+                        time.sleep(0.5)
+                        ser.write("!!BT:200##".encode())
+
+
+        counter += 1
+        time.sleep(1)
+
+Thread(target=ai_detect).start()
+
 while True:
 
     if len(bbc_port) >  0:
-        readSerial()
-    
-    
-    if counter%10 == 0: 
-        ai_result = detect_congesion()
-        print("AI Output: ", ai_result)
-        return_value, image = camera.read()
-        cv2.imwrite('image/image'+ str(counter) + '.jpg', image)
-        
-        upload_file_list = ['image/image'+ str(counter) + '.jpg']
-        gfile = drive.CreateFile({'parents': [{'id': '1fcwUjNr9pdb2BQHw8sP-esR1Iu5R3nHW'}]})
-        # Read file and set it as the content of this instance.
-        gfile.SetContentFile(upload_file_list[0])
-        gfile.Upload() # Upload the file.
-        file_list = drive.ListFile({'q': "'{}' in parents and trashed=false".format('1fcwUjNr9pdb2BQHw8sP-esR1Iu5R3nHW')}).GetList()
-        print("https://drive.google.com/uc?export=view&id="+file_list[0]['id'])
+        try:
+            readSerial()
+        except:
+            pass
 
-
-        collect_data = {"predictCongestion": ai_result, "image": "https://drive.google.com/uc?export=view&id="+file_list[0]['id']}
-        client.publish('v1/devices/me/attributes', json.dumps(collect_data), 1)
-    
-        
-        if (counter_flag == 0):
-            if ai_result.strip().split(" ")[0] == "1":
-                counter_flag = 1
-                ser.write("!!BT:100##".encode())
-                time.sleep(0.5)
-                ser.write("!!G1:100##".encode())
-                time.sleep(0.5)
-                ser.write("!!BT:200##".encode())
-             
-        if counter % 200 == 0:
-            if counter_flag == 1:
-                if ai_result.strip().split(" ")[0] == "0":
-                    counter_flag = 0
-                    ser.write("!!BT:100##".encode())
-                    time.sleep(0.5)
-                    ser.write("!!G1:010##".encode())
-                    time.sleep(0.5)
-                    ser.write("!!BT:200##".encode())
-
-
-    counter += 1
     time.sleep(1)
